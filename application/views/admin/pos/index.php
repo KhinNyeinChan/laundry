@@ -101,7 +101,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="input-group mb-1">
-                            <input type="text" class="form-control" placeholder="Reference note" name="note" id="note">
+                            <input type="text" class="form-control" placeholder="Reference note" name="refNote" id="refNote">
                         </div>
                     </div>
                 </div>
@@ -193,11 +193,11 @@
                     <div class="col-12 text-center">
                         <div class="row">
                             <div class="col-6 btn-group-vertical btn-block btn-flat p-r-0">
-                                <button type="button" class="btn btn-warning btn-block btn-flat text-white" style="height:48px;font-size:18px;" id="btn_hold">Hold</button>
+                                <button type="button" class="btn btn-info btn-block btn-flat text-white" style="height:48px;font-size:18px;" id="btn_print_order">Print Order</button>
                                 <button type="button" class="btn btn-danger btn-block btn-flat" style="height:48px;font-size:18px;" aria-hidden="true" data-toggle="modal" data-target="#cancel-order-modal">Cancel</button>
                             </div>
                             <div class="col-6 btn-group p-l-0">
-                                <button type="button" id="btn_payment" class="btn btn-block btn-flat btn-success" style="height:96px;font-size:18px;color:white">Payment</button>
+                                <button type="button" id="btn_payment" class="btn btn-block btn-flat btn-success" style="height:96px;font-size:18px;color:white" aria-hidden="true" data-toggle="modal" data-target="#payment-modal">Payment</button>
                             </div>
                         </div>
                     </div>
@@ -248,7 +248,99 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">No</button>
-                        <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal" onClick="cancelOrder()">Yes</button>
+                        <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal" onclick="cancelOrder()">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- payment modal -->
+    <div id="payment-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header modal-primary bg-info">
+                        <h3 class="modal-title text-white">Payment</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>    
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12 col-sm-9">
+                                    <div class="row">
+                                        <div class="col-12 col-xs-12">
+                                            <table class="table table-bordered table-condensed font-14" style="margin-bottom: 0;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="border-right-color: #FFF !important;">Total items</td>
+                                                        <td class="text-right"><span id="item_count">0.00</span></td>
+                                                        <td style="border-right-color: #FFF !important;">Total payable</td>
+                                                        <td class="text-right"><span id="totalPayable">0.00</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border-right-color: #FFF !important;">Total paying</td>
+                                                        <td class="text-right"><span id="total_paying">0.00</span></td>
+                                                        <td style="border-right-color: #FFF !important;">Balance</td>
+                                                        <td class="text-right"><span id="balance">0.00</span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-xs-12 col-12">
+                                            <div class="form-group">
+                                                <label for="note">Note</label>
+                                                <textarea class="form-control" rows="3" id="note"></textarea>
+                                            </div>
+                                        </div>   
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-xs-6 col-6">
+                                            <div class="form-group">
+                                                <label for="amount">Amount</label>
+                                                <input type="text" class="form-control" id="amount" name="amount">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 col-6">
+                                            <div class="form-group">
+                                                <label for="payBy">Paying By</label>
+                                                <select class="form-control" id="payBy">
+                                                    <option value="Cash">Cash</option>
+                                                    <option value="KBZ pay">KBZ pay</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>   
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-xs-12 col-12">
+                                            <div class="form-group">
+                                                <label for="paynote">Payment Note</label>
+                                                <input type="text" class="form-control" id="paynote" name="paynote">
+                                            </div>
+                                        </div>   
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-3">
+                                    <div class="btn btn-group btn-group-vertical w-100">
+                                        <button type="button" class="btn btn-info btn-block" id="quick-payable">0.00</button>
+                                        <button type="button" class="btn btn-block btn-warning money" value="50">50 <span class="badge badge-light count"></span></button>
+                                        <button type="button" class="btn btn-block btn-warning money" value="100">100 <span class="badge badge-light count"></span></button>
+                                        <button type="button" class="btn btn-block btn-warning money" value="200">200 <span class="badge badge-light count"></span></button>
+                                        <button type="button" class="btn btn-block btn-warning money" value="500">500 <span class="badge badge-light count"></span></button>
+                                        <button type="button" class="btn btn-block btn-warning money" value="1000">1000 <span class="badge badge-light count"></span></button>
+                                        <button type="button" class="btn btn-block btn-warning money" value="5000">5000 <span class="badge badge-light count"></span></button>
+                                        <button type="button" class="btn btn-block btn-warning money" value="10000">10000 <span class="badge badge-light count"></span></button>
+                                        <button type="button" class="btn btn-block btn-danger" id="clear-cash-notes">Clear</button>    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-info waves-effect waves-light" data-dismiss="modal" id="submitPayment">Submit</button>
                     </div>
                 </div>
             </div>
@@ -421,20 +513,20 @@
 
     }
 
-    document.getElementById('btn_hold').onclick = () => {
+    document.getElementById('btn_print_order').onclick = () => {
         var xhttpRequest = new XMLHttpRequest();
         const customerId = document.getElementById("selectedCustomer").value;
         const customersArray = <?php echo json_encode($customers) ?>;
         const customer = customersArray.filter(cust => cust.id == customerId)[0];
         const pickupDate = document.getElementById("pickupDate").value;
         const pickupTime = document.getElementById("pickupTime").value;
-        const refNote = document.getElementById("note").value;
+        const refNote = document.getElementById("refNote").value;
         let totalQty = 0;
         let totalItem = orderItemArray.length;
         for(let i = 0; i<orderItemArray.length; i++){
             totalQty += orderItemArray[i].quantity;
         }
-        const holdOrderObj = {
+        const printOrderObj = {
             customer,
             pickupDate,
             pickupTime,
@@ -448,9 +540,133 @@
                 console.log(JSON.parse(this.responseText));
             }
         };
-        xhttpRequest.open("POST","<?php echo base_url() ?>admin/pos/holdOrder",true);
+        xhttpRequest.open("POST","<?php echo base_url() ?>admin/pos/printOrder",true);
         xhttpRequest.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-        xhttpRequest.send(`holdOrderData=${JSON.stringify(holdOrderObj)}`); 
+        xhttpRequest.send(`printOrderData=${JSON.stringify(printOrderObj)}`); 
+    }
+
+    document.getElementById("btn_payment").onclick = () => {
+        let totalQty = 0;
+        let totalItem = orderItemArray.length;
+        for(let i = 0; i<orderItemArray.length; i++){
+            totalQty += orderItemArray[i].quantity;
+        }
+        let totalPayable = document.getElementById("total-payable").innerHTML;
+        document.getElementById("item_count").innerHTML = totalItem + "(" + totalQty + ")";
+        document.getElementById("totalPayable").innerHTML = totalPayable;
+        document.getElementById("quick-payable").innerHTML = totalPayable;
+    }
+
+    // function formatNumber(num){
+    //     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    // }
+
+    const cashCount = document.getElementsByClassName("count");
+    const cashBtn = document.getElementsByClassName("money");
+    const cashArray = [
+        {count : 0, value : 50},
+        {count : 0, value : 100},
+        {count : 0, value : 200},
+        {count : 0, value : 500},
+        {count : 0, value : 1000},
+        {count : 0, value : 5000},
+        {count : 0, value : 10000}
+    ];
+    let totalPaying = 0;
+    let balance = 0;
+    for(let i=0; i<cashBtn.length; i++){
+        cashBtn[i].onclick = () =>{
+            const cashValue = cashBtn[i].value;
+            if(cashBtn[i].value == cashArray[i].value){
+                cashArray[i].count += 1;
+                cashCount[i].innerHTML = cashArray[i].count;
+                totalPaying += parseInt(cashValue);
+                addAmountOfTotalCash(totalPaying, totalPaying-parseInt(document.getElementById("totalPayable").innerHTML));
+            }
+        }
+    }
+
+    document.getElementById("clear-cash-notes").onclick = () => {
+        totalPaying = 0;
+        addAmountOfTotalCash(totalPaying, 0);
+        for (let j = 0; j < cashArray.length; j++) {
+            cashArray[j].count = 0;  
+            cashCount[j].innerHTML = '';          
+        }
+    }
+
+    document.getElementById("quick-payable").onclick = () => {
+        addAmountOfTotalCash(document.getElementById("total-payable").innerHTML, 0);
+    }
+
+    function addAmountOfTotalCash(totalPaying,balance){
+        document.getElementById("total_paying").innerHTML = totalPaying;
+        document.getElementById("balance").innerHTML = balance;
+        document.getElementById("amount").value = totalPaying;
+    }
+
+    document.getElementById("submitPayment").onclick = () =>{
+        const customerId = document.getElementById("selectedCustomer").value;
+        const customersArray = <?php echo json_encode($customers) ?>;
+        const customer = customersArray.filter(cust => cust.id == customerId)[0];
+        const pickupDate = document.getElementById("pickupDate").value;
+        const pickupTime = document.getElementById("pickupTime").value;
+        const refNote = document.getElementById("refNote").value;
+        const totalPayable = document.getElementById("total-payable").innerHTML;
+        const discount = document.getElementById("ds_con").innerHTML;
+        const totalPaying = document.getElementById("total_paying").innerHTML;
+        const balance = document.getElementById("balance").innerHTML;
+        const payingBy = document.getElementById("payBy").value;
+        const paymentNote = document.getElementById("paynote").value;
+        const saleNote = document.getElementById("note").innerHTML;
+        let totalQty = 0;
+        let totalAmount = 0;
+        let paymentStatus = "";
+        let totalItem = orderItemArray.length;
+        for(let i = 0; i<orderItemArray.length; i++){
+            totalQty += orderItemArray[i].quantity;
+            totalAmount += orderItemArray[i].subTotal;
+        }
+        if(balance < 0){
+            paymentStatus = "partial";
+        }else{
+            paymentStatus = "paid";
+        }
+        const paymentOrderObj = {
+            customer,
+            pickupDate,
+            pickupTime,
+            refNote,
+            orderItemArray,
+            totalQty,
+            totalItem,
+            totalAmount,
+            totalPayable,
+            discount,
+            totalPaying,
+            balance,
+            payingBy,
+            paymentNote,
+            saleNote,
+            paymentStatus
+        };
+        var xhttpRequest = new XMLHttpRequest();
+        xhttpRequest.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                console.log(JSON.parse(this.responseText));
+                cancelOrder();
+                document.getElementById("selectedCustomer").value = "";
+                document.getElementById("pickupDate").value = "";
+                document.getElementById("pickupTime").value = "";
+                document.getElementById("refNote").value = "";
+                document.getElementById("total-payable").innerHTML = 0;
+                document.getElementById("count").innerHTML = "0(0)";
+                document.getElementById("total").innerHTML = 0;
+            }
+        };
+        xhttpRequest.open("POST","<?php echo base_url() ?>admin/pos/submitPayment",true);
+        xhttpRequest.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+        xhttpRequest.send(`paymentOrderData=${JSON.stringify(paymentOrderObj)}`);
     }
 </script>
 
@@ -479,7 +695,7 @@
                         
                         var res_name = response[index]['name'];
                         var res_id = response[index]['id'];
-                        dataHtml += '<div class="col-4 col-sm-2 btn">';
+                        dataHtml += '<div class="col-4 col-sm-2 ml-1 btn">';
                         dataHtml += '<input id="cat_id'+ index +'" type="hidden" value="'+res_id+'">';                            
                         dataHtml += '<button id="myCategory" onclick="categoriesItemClick('+res_id+')" class="category waves-effect waves-light btn-xl btn-primary" style="width:100%;" data-cid="'+res_id+'">';
                         dataHtml += '<p class="text-center font-20" style="">';
