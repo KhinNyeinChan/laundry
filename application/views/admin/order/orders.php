@@ -79,7 +79,7 @@
                             </tfoot>
                             
                             <tbody>
-                            <?php if(is_array($orders)): ?>
+                            <!-- <?php if(is_array($orders)): ?> -->
                             <?php foreach ($orders as $order): ?>
                                 
                                 <tr>
@@ -93,8 +93,8 @@
                                     <td><?php echo $order['total_item']; ?></td>
                                  </tr>  
                             <?php endforeach ?>
-                            <?php endif; ?>
-
+                            <!-- <?php endif; ?>
+ -->
                             </tbody>
 
 
@@ -111,10 +111,10 @@
 </div>
 
 
-<?php if(is_array($orders)): ?>
+<!-- <?php if(is_array($orders)): ?>
 <?php foreach ($orders as $order): ?>
  
-<!--div class="modal fade" id="confirm_delete_<?php echo $order['id'];?>">
+div class="modal fade" id="confirm_delete_<?php echo $order['id'];?>">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -125,10 +125,10 @@
 
     </div>
   </div>
-</div-->
+</div
 
 <?php endforeach ?>
-<?php endif; ?>
+<?php endif; ?> -->
 <script type="text/javascript">
 setInterval(function () {
   if(alert('Your session has expired!')){}
