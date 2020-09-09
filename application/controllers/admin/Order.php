@@ -15,7 +15,7 @@ class Order extends CI_Controller {
         $data = array();
         $data['page_title'] = 'Order';
 
-        $data['main_content'] = $this->load->view('admin/order/addOrder', $data, TRUE);
+        $data['main_content'] = $this->load->view('admin/order/orders', $data, TRUE);
         $this->load->view('admin/index', $data);
     }
 
