@@ -50,7 +50,7 @@ public function saverecords($data,$items)
     {
         $this->db->set('assign_to',$data);   
         $this->db->where('id',$data);
-        $this->db->update('orders_item');
+        $this->db->update('order_items');
         return;
         // $o_id = $this->db->update_id();
         // $query="update orders_item set 'assign_to'=$assign_to where 'id'=$o_id";
@@ -139,6 +139,17 @@ public function add($order_items_id)
         return $query;
     }
 
+     function get_all_order_item(){
+        $this->db->select('t.*');
+        $this->db->select('o.customer_name as cname,o.start_date as sdate,o.end_date as edate');
+        $this->db->from('order_items t');
+        $this->db->join('orders o','o.id = t.order_id','LEFT');
+        $this->db->order_by('id','DESC');
+        $query = $this->db->get();
+        $query = $query->result_array();  
+        return $query;
+    }
+
  function get_single_order_info($id){
         $this->db->select('*');
         $this->db->from('orders');
@@ -157,17 +168,7 @@ function get_single_order_detailinfo($id){
         return $query;
     }
 
-    function get_all_order_item(){
-        $this->db->select('t.*');
-        $this->db->select('o.customer_name as cname,o.start_date as sdate,o.end_date as edate');
-        $this->db->from('order_items t');
-        $this->db->join('orders o','o.id = t.order_id','LEFT');
-        //$this->db->order_by('id','DESC');
-        $query = $this->db->get();
-        $query = $query->result_array();  
-        return $query;
-    }
-
+   
 
     //-- image upload function with resize option
     function upload_image($max_size){
