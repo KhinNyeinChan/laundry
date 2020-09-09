@@ -659,11 +659,11 @@
 
                                 <?php if ($this->session->userdata('role') == 'admin'): ?>
                                     <li><a href="<?php echo base_url('admin/order/all_order_list') ?>"><i class="fa fa-angle-right"></i> List Orders</a></li>
-                                    <li><a href="<?php echo base_url('admin/order') ?>"><i class="fa fa-angle-right"></i> List Order Details </a></li>
+                                    <li><a href="<?php echo base_url('admin/order/all_order_item') ?>"><i class="fa fa-angle-right"></i> List Order Details </a></li>
                                 
                                 <?php else: ?>
                                     <?php if(check_power(1)):?>
-                                        <li><a href="<?php echo base_url('admin/order') ?>"><i class="fa fa-angle-right"></i> List Order Details </a></li>
+                                        <li><a href="<?php echo base_url('admin/order/all_order_item') ?>"><i class="fa fa-angle-right"></i> List Order Details </a></li>
                                          
                                     <?php endif; ?>
                                 <?php endif ?>
