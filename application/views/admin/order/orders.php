@@ -45,12 +45,12 @@
         <div class="card-body">
           
                 <?php if ($this->session->userdata('role') == 'admin'): ?>
-                    <a href="<?php echo base_url('admin/order') ?>" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Add New Order</a> 
+                    <a href="<?php echo base_url('admin/pos') ?>" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Add New Order</a> 
                 <?php else: ?>
                     <!-- check logged user role permissions -->
 
                     <?php if(check_power(1)):?>
-                        <a href="<?php echo base_url('admin/order') ?>" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Add New Order</a>
+                        <a href="<?php echo base_url('admin/pos') ?>" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Add New Order</a>
                     <?php endif; ?>
                 <?php endif ?>
                     <div class="table-responsive m-t-40">
