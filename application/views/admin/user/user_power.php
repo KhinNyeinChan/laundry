@@ -90,6 +90,8 @@
                                         <label class="control-label text-right col-md-5"></label>
                                         <div class="controls">
                                             <button type="submit" class="btn btn-success">Add Power</button>
+
+                                            <button type="reset" class="btn btn-default waves-effect" data-dismiss="modal" value="Reset">Cancel</button>
                                         </div>
                                     </div>
                                 </div>
@@ -199,6 +201,8 @@
                             <label class="control-label text-right col-md-5"></label>
                             <div class="controls">
                                 <button type="submit" class="btn btn-success">Update Power</button>
+
+                                <button type="reset" class="btn btn-default waves-effect"  value="cancel" onclick="window.history.back()">Cancel</button>
                             </div>
                         </div>
                     </div>

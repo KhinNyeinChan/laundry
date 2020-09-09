@@ -44,32 +44,23 @@
                                     <div class="form-group row">
                                         <label class="control-label text-right col-md-3">First Name <span class="text-danger"></span></label>
                                         <div class="col-md-9 controls">
-                                            <input type="text" name="first_name" class="form-control" value="<?php echo $user->first_name; ?>">
+                                            <input type="text" name="name" class="form-control" value="<?php echo $user->name; ?>">
                                         </div>
                                     </div>
                                 </div>
                                 <!--/span-->
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                        <label class="control-label text-right col-md-3">Last Name <span class="text-danger"></span></label>
-                                        <div class="col-md-9 controls">
-                                            <input type="text" name="last_name" class="form-control" value="<?php echo $user->last_name; ?>">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
+                           
 
 
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                        <label class="control-label text-right col-md-3">Mobile </label>
+                                        <label class="control-label text-right col-md-3">Phone </label>
                                         <div class="col-md-9 controls">
-                                            <input type="text" name="mobile" class="form-control" value="<?php echo $user->mobile; ?>">
+                                            
+                                             <input type="text" name="phone" class="form-control" value="<?php echo $user->phone; ?>" data-validation-containsnumber-regex="(\d)+" data-validation-required-message=" Enter Valid Phone Number">
                                         </div>
                                     </div>
                                 </div>
@@ -175,6 +166,9 @@
                                         <label class="control-label text-right col-md-3"></label>
                                         <div class="controls">
                                             <button type="submit" class="btn btn-success">Update</button>
+
+                                            <button type="reset" class="btn btn-default waves-effect"  value="cancel" onclick="window.history.back()">Cancel</button>
+                                            
                                         </div>
                                     </div>
                                 </div>
