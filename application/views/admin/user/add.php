@@ -45,9 +45,9 @@
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                        <label class="control-label text-right col-md-3">First Name <span class="text-danger">*</span></label>
+                                        <label class="control-label text-right col-md-3">Name <span class="text-danger">*</span></label>
                                         <div class="col-md-9 controls">
-                                            <input type="text" name="first_name" class="form-control" required data-validation-required-message="First Name is required">
+                                            <input type="text" name="name" class="form-control" required data-validation-required-message="Name is required">
                                         </div>
                                     </div>
                                 </div>
@@ -57,14 +57,17 @@
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                        <label class="control-label text-right col-md-3">Last Name <span class="text-danger">*</span></label>
+                                        <label class="control-label text-right col-md-3">Phone<span class="text-danger">*</span> </label>
                                         <div class="col-md-9 controls">
-                                            <input type="text" name="last_name" class="form-control" required data-validation-required-message="Last Name is required">
+                                            <input type="text" name="phone" class="form-control" 
+                                            data-validation-containsnumber-regex="(\d)+" data-validation-required-message=" Enter Valid Phone Number">
                                         </div>
                                     </div>
                                 </div>
                                 <!--/span-->
                             </div>
+
+                        
 
                             <div class="row">
                                 <div class="col-md-9">
@@ -78,6 +81,7 @@
                                 <!--/span-->
                             </div>
 
+
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="form-group row">
@@ -90,17 +94,7 @@
                                 <!--/span-->
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                        <label class="control-label text-right col-md-3">Mobile </label>
-                                        <div class="col-md-9 controls">
-                                            <input type="text" name="mobile" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
+                            
 
 
                             <!--div class="row">
@@ -176,6 +170,8 @@
                                         <label class="control-label text-right col-md-3"></label>
                                         <div class="controls">
                                             <button type="submit" class="btn btn-success">Save user</button>
+
+                                            <button type="reset" class="btn btn-default waves-effect" data-dismiss="modal" value="Reset">Cancel</button>
                                         </div>
                                     </div>
                                 </div>

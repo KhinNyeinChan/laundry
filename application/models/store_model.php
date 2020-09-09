@@ -1,17 +1,10 @@
 <?php
-class setting_model extends CI_Model {
+class store_model extends CI_Model {
 
     //-- insert function
-    public function insert($data,$table){
+	public function insert($data,$table){
         $this->db->insert($table,$data);        
         return $this->db->insert_id();
-    }
-    
-    public function addPrinter($data = array()) {
-        if($this->db->insert('printers', $data)) {
-            return $this->db->insert_id();
-        }
-        return false;
     }
 
     //-- edit function
@@ -134,9 +127,9 @@ class setting_model extends CI_Model {
         return $query;
     }
 
-     function get_single_printer_info($id){
+     function get_single_store_info($id){
         $this->db->select('*');
-        $this->db->from('printers');
+        $this->db->from('store');
         $this->db->where('id',$id);
         $query = $this->db->get();
         $query = $query->row();  
@@ -166,9 +159,9 @@ class setting_model extends CI_Model {
         $query = $query->result_array();  
         return $query;
     }
-     function get_all_printers(){
+     function get_all_store(){
         $this->db->select('*');
-        $this->db->from('printers');
+        $this->db->from('store');
         $this->db->order_by('id','DESC');
         $query = $this->db->get();
         $query = $query->result_array();  
@@ -296,59 +289,7 @@ class setting_model extends CI_Model {
             else {
                 echo "Failed! to upload image" ;
             }
-    }
-
-    public function getAllSetting()
-    {   
-        $this->db->select('s.*');
-       // $this->db->select('c.name as category, c.id as category_id');
-       // $this->db->select('cu.name as customer, cu.id as customer_id');
-        $this->db->from('setting s');
-       // $this->db->join('category c','c.id = s.category_id','LEFT');
-       // $this->db->join('customer cu','cu.id = s.customer_id','LEFT');
-        $query=$this->db->get('setting');
-        if($query->num_rows() >0){
-            return $query->row();
-        }
-        return FALSE;
-
-    }
-
-    public function getAllCategories() {
-        //$this->db->order_by('code');
-        $q = $this->db->get('category');
-        if ($q->num_rows() > 0) {
-            foreach (($q->result()) as $row) {
-                $data[] = $row;
-            }
-            return $data;
-        }
-        return FALSE;
-    }
-
-    public function getAllCustomers() {
-        $q = $this->db->get('customer');
-        if ($q->num_rows() > 0) {
-            foreach (($q->result()) as $row) {
-                $data[] = $row;
-            }
-            return $data;
-        }
-        return FALSE;
-    }
-    
-
-    public function updateSetting($data)
-    {
-        /*if($this->db->update('setting',$data,array('id'=>1)))
-        {
-            return true;
-        }*/
-        if($this->db->update('setting',$data))
-        {
-            return true;
-        }
-        return false;
+            
     }
 
 }

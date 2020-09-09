@@ -635,7 +635,7 @@
                         </li>
 
                         <li>
-                            <a class="has-arrow waves-effect waves-dark" href="<?php echo base_url('admin/product/all_product_list') ?>" aria-expanded="false"><i class="fa fa-folder sidebar-icon"></i><span class="hide-menu">Categories</span></a>
+                            <a class="has-arrow waves-effect waves-dark" href="<?php echo base_url('admin/category/all_category_list') ?>" aria-expanded="false"><i class="fa fa-folder sidebar-icon"></i><span class="hide-menu">Categories</span></a>
                             <ul aria-expanded="false" class="collapse">
 
                                 <?php if ($this->session->userdata('role') == 'admin'): ?>
@@ -714,21 +714,63 @@
 
 
 
+
                          <li>
-                            <a class="has-arrow waves-effect waves-dark" href="<?php echo base_url('admin/setting/all_setting_list') ?>" aria-expanded="false"><i class="fa fa-cogs"></i><span class="hide-menu">Settings</span></a>
+                            <a class="has-arrow waves-effect waves-dark" href="<?php echo base_url('admin/setting') ?>" aria-expanded="false"><i class="fa fa-cogs"></i><span class="hide-menu">Settings</span></a>
                             <ul aria-expanded="false" class="collapse">
 
                                 <?php if ($this->session->userdata('role') == 'admin'): ?>
-                                    <li><a href="<?php echo base_url('admin/setting/all_setting_list') ?>"><i class="fa fa-angle-right"></i> Stores</a></li>
+                                    <li><a href="<?php echo base_url('admin/setting/updateSetting') ?>"><i class="fa fa-angle-right"></i>Settings </a></li>
                                 
                                 <?php else: ?>
                                     <?php if(check_power(1)):?>
-                                        <li><a href="<?php echo base_url('admin/setting') ?>"><i class="fa fa-angle-right"></i> Stores </a></li>
-                                     
+                                        <li><a href="<?php echo base_url('admin/setting') ?>"><i class="fa fa-angle-right"></i> Settings </a></li>
+                                         
                                     <?php endif; ?>
                                 <?php endif ?>
 
+                                <?php if ($this->session->userdata('role') == 'admin'): ?>
+                                    <li><a href="<?php echo base_url('admin/store/all_store_list') ?>"><i class="fa fa-angle-right"></i> Stores</a></li>
                                 
+                                <?php else: ?>
+                                    <?php if(check_power(1)):?>
+                                        <li><a href="<?php echo base_url('admin/store') ?>"><i class="fa fa-angle-right"></i> Stores </a></li>
+                                     
+                                    <?php endif; ?>
+                                <?php endif ?>
+                               
+
+                                
+                            </ul>
+                        </li>
+
+                                                <li>
+                            <a class="has-arrow waves-effect waves-dark" href="<?php echo base_url('admin/report') ?>" aria-expanded="false"><i class="fa fa-bar-chart-o"></i><span class="hide-menu">Reports</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                 <!--?php if ($this->session->userdata('role') == 'admin'): ?>
+                                    <li><a href="<?php echo base_url('admin/report/daily') ?>"><i class="fa fa-angle-right"></i>Daily Sales</a></li>
+                            
+                                <!--?php endif ?-->
+
+                                <?php if ($this->session->userdata('role') == 'admin'): ?>
+                                    <li><a href="<?php echo base_url('admin/report/all_monthly_sale_list') ?>"><i class="fa fa-angle-right"></i>Monthly Sales</a></li>
+                            
+                                <?php endif ?>
+
+
+
+                                <?php if ($this->session->userdata('role') == 'admin'): ?>
+                                    <li><a href="<?php echo base_url('admin/report/all_sale_report_list') ?>"><i class="fa fa-angle-right"></i>Sale Report</a></li>
+                                    
+                                <?php endif ?>
+                                <?php if ($this->session->userdata('role') == 'admin'): ?>
+                                    <li><a href="<?php echo base_url('admin/report/all_sale_details_report_list') ?>"><i class="fa fa-angle-right"></i>Sale Details Report</a></li>
+                                    
+                                <?php endif ?>
+
+
+                               
+         
                             </ul>
                         </li>
 
