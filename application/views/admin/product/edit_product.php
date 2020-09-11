@@ -55,7 +55,7 @@
                                     <div class="form-group row">
                                         <label class="control-label text-right col-md-3">Product Code <span class="text-danger"></span></label>
                                         <div class="col-md-9 controls">
-                                            <input type="text" name="code" class="form-control" required data-validation-required-message="Product code is required">
+                                            <input type="text" name="code" class="form-control" required data-validation-required-message="Product code is required" value="<?php echo $product->code; ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -70,10 +70,18 @@
                                         <label class="control-label text-right col-md-3">Category </label>
                                         <div class="col-md-9 controls">
                                             <div class="form-group has-success">
-                                                <select class="form-control category-select" name="category" aria-invalid="false">
-                                                    <option value="0">Select</option>
+
+                                                <select class="form-control form-control-line" name="category_id">
+
                                                     <?php foreach ($category as $ca): ?>
-                                                        <option value="<?php echo $ca['id']; ?>"><?php echo $ca['name']; ?></option>
+                                                        <?php 
+                                                            if($ca['id'] == $category->id){
+                                                                $selec = 'selected';
+                                                            }else{
+                                                                $selec = '';
+                                                            }
+                                                        ?>
+                                                        <option <?php echo $selec; ?> value="<?php echo $ca['id']; ?>"><?php echo $ca['name']; ?></option>
                                                     <?php endforeach ?>
                                                 </select>
                                             </div>
@@ -88,21 +96,7 @@
                                     <div class="form-group row">
                                         <label class="control-label text-right col-md-3">Price <span class="text-danger"></span></label>
                                         <div class="col-md-9 controls">
-                                            <input type="text" name="price" class="form-control" required data-validation-required-message="Price is required">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-
-
-
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                        <label class="control-label text-right col-md-3">Quantity<span class="text-danger"></span></label>
-                                        <div class="col-md-9 controls">
-                                            <input type="text" name="quantity" class="form-control" required data-validation-required-message="Quantity is required">
+                                            <input type="text" name="price" class="form-control" required data-validation-required-message="Price is required" value="<?php echo $product->price; ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -115,11 +109,20 @@
                             
                             <hr>
                             <div class="row">
-                                <div class="col-md-9">
+                                <div class="col-md-12">
                                     <div class="form-group row">
                                         <label class="control-label text-right col-md-3"></label>
                                         <div class="controls">
                                             <button type="submit" class="btn btn-success">Update</button>
+                                       
+                                            <!--button type="submit" class="btn btn-inverse" data-dismiss="modal" value="cancel">Cancel</button-->  
+
+                                            <button type="reset" class="btn btn-default waves-effect"  value="cancel" onclick="window.history.back()">Cancel</button>
+
+                                            <!--a href="<?php echo base_url('admin/customer/delete/'.$customer['id']) ?>" class="btn btn-danger"> Delete</a-->
+                                            <!--button type="cancel" class="btn btn-inverse" value="cancel" onclick="javascript:window.location='admin/product/all_product_list';">Cancel</button-->
+
+                                            <!--button type="cancel" onclick="window.location='all_product_list';return false;">Cancel</button-->    
                                         </div>
                                     </div>
                                 </div>
