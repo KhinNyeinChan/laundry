@@ -32,7 +32,7 @@
         <div class="col-lg-12">
             <div class="card card-outline-info">
                 <div class="card-header">
-                    <h4 class="m-b-0 text-white"> Edit User <a href="<?php echo base_url('admin/user/all_user_list') ?>" class="btn btn-info pull-right"><i class="fa fa-list"></i> All Users </a></h4>
+                    <h4 class="m-b-0 text-white"> Edit User <a href="<?php echo base_url('admin/user/all_user_list') ?>" class="btn btn-info pull-right"><i class="fa fa-list"></i> List Users </a></h4>
 
                 </div>
                 <div class="card-body">
@@ -42,7 +42,7 @@
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                        <label class="control-label text-right col-md-3">First Name <span class="text-danger"></span></label>
+                                        <label class="control-label text-right col-md-3">Name <span class="text-danger"></span></label>
                                         <div class="col-md-9 controls">
                                             <input type="text" name="name" class="form-control" value="<?php echo $user->name; ?>">
                                         </div>
@@ -51,44 +51,13 @@
                                 <!--/span-->
                             </div>
 
-                           
-
 
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                        <label class="control-label text-right col-md-3">Phone </label>
+                                        <label class="control-label text-right col-md-3">Phone</label>
                                         <div class="col-md-9 controls">
-                                            
-                                             <input type="text" name="phone" class="form-control" value="<?php echo $user->phone; ?>" data-validation-containsnumber-regex="(\d)+" data-validation-required-message=" Enter Valid Phone Number">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                        <label class="control-label text-right col-md-3">Country</label>
-                                        <div class="col-md-9 controls">
-                                            <div class="form-group has-success">
-                                                <select class="form-control form-control-line" name="country">
-
-                                                    <?php foreach ($country as $cn): ?>
-                                                        <?php 
-                                                            if($cn['id'] == $user->country){
-                                                                $selec = 'selected';
-                                                            }else{
-                                                                $selec = '';
-                                                            }
-                                                        ?>
-                                                        <option <?php echo $selec; ?> value="<?php echo $cn['id']; ?>"><?php echo $cn['name']; ?></option>
-                                                    <?php endforeach ?>
-
-                                                </select>
-                                            </div>
+                                            <input type="text" name="phone" class="form-control" value="<?php echo $user->phone; ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -168,7 +137,6 @@
                                             <button type="submit" class="btn btn-success">Update</button>
 
                                             <button type="reset" class="btn btn-default waves-effect"  value="cancel" onclick="window.history.back()">Cancel</button>
-                                            
                                         </div>
                                     </div>
                                 </div>

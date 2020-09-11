@@ -1,8 +1,8 @@
 <?php
-class report_model extends CI_Model {
+class expense_model extends CI_Model {
 
     //-- insert function
-	public function insert($data,$table){
+    public function insert($data,$table){
         $this->db->insert($table,$data);        
         return $this->db->insert_id();
     }
@@ -126,9 +126,9 @@ class report_model extends CI_Model {
         $query = $query->row();  
         return $query;
     }
-        function get_single_sale_info($id){
+        function get_single_expense_info($id){
         $this->db->select('*');
-        $this->db->from('sale');
+        $this->db->from('expense');
         $this->db->where('id',$id);
         $query = $this->db->get();
         $query = $query->row();  
@@ -150,7 +150,6 @@ class report_model extends CI_Model {
     function get_all_user(){
         $this->db->select('u.*');
         $this->db->select('c.name as country, c.id as country_id');
-
         $this->db->from('user u');
         $this->db->join('country c','c.id = u.country','LEFT');
         $this->db->order_by('u.id','DESC');
@@ -159,24 +158,13 @@ class report_model extends CI_Model {
         return $query;
     }
 
-     function get_all_sale(){
+     function get_all_expense(){
 
-        $this->db->select('*');
-        //$this->db->select('c.name as category, c.id as category_id');
-        $this->db->from('sale');
-        //$this->db->join('category c','c.id = p.category_id','LEFT');
-        $this->db->order_by('id','DESC');
-        $query = $this->db->get();
-        $query = $query->result_array();  
-        return $query;
-    }
-    function get_all_salereport(){
-
-        $this->db->select('*');
-        //$this->db->select('u.name as user, u.id as user_id');
-        $this->db->from('sale');
-        //$this->db->join('user u','u.id = s.user_id','LEFT');
-        $this->db->order_by('id','DESC');
+        $this->db->select('e.*');
+        $this->db->select('ec.name as expense_category, ec.id as expense_category_id');
+        $this->db->from('expense e');
+        $this->db->join('expense_category ec','ec.id = e.expense_category','LEFT');
+        $this->db->order_by('e.id','DESC');
         $query = $this->db->get();
         $query = $query->result_array();  
         return $query;
@@ -210,21 +198,21 @@ class report_model extends CI_Model {
         return $query;
     }
 
- function get_sale_report_total(){
+ function get_expense_total(){
         $this->db->select('*');
         $this->db->select('count(*) as total');
-        $this->db->select('(SELECT count(sale.id)
-                            FROM sale 
+        $this->db->select('(SELECT count(expense.id)
+                            FROM expense 
                             )');
                             
 
-        $this->db->select('(SELECT count(sale.id)
-                            FROM sale 
+        $this->db->select('(SELECT count(expense.id)
+                            FROM expense 
                             
                             )');
 
     
-        $this->db->from('sale');
+        $this->db->from('expense');
         $query = $this->db->get();
         $query = $query->row();  
         return $query;
@@ -322,31 +310,6 @@ class report_model extends CI_Model {
                 echo "Failed! to upload image" ;
             }
             
-    }
-    public function select_sales($customer,$start_date,$end_date,$user)
-    {
-        $query = $this->db->query("SELECT * FROM sale");
-        if($customer) { $this->db->where('customer_id', $customer); }
-        if($user) { $this->db->where('created_by', $user); }
-        if($start_date) { $this->db->where('pay_date >=', $start_date); }
-        if($end_date) { $this->db->where('pay_date <=', $end_date); }
-
-       
-        $query = $query->result_array();  
-        return $query;
-    }
-
-    public function select_detailsale($start_date,$end_date)
-    {
-        $query = $this->db->query("SELECT * FROM sale");
-        //if($customer) { $this->db->where('customer_id', $customer); }
-       // if($user) { $this->db->where('created_by', $user); }
-        if($start_date) { $this->db->where('pay_date >=', $start_date); }
-        if($end_date) { $this->db->where('pay_date <=', $end_date); }
-
-       
-        $query = $query->result_array();  
-        return $query;
     }
 
 }

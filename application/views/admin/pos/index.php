@@ -710,7 +710,7 @@
                         }else if(res_id == 5){
                             dataHtml +='<img src="<?php echo base_url() ?>assets/images/laundry/other.svg" alt="washicon" class="img-thumbnail" style="width:100%;height:50%;"><br>';
                         }else{
-                            dataHtml +='<img src="<?php echo base_url() ?>assets/images/laundry/dry.svg" alt="washicon" class="img-thumbnail" style="width:100%;height:50%;"><br>';
+                            dataHtml +='<img src="<?php echo base_url() ?>assets/images/laundry/other.svg" alt="washicon" class="img-thumbnail" style="width:100%;height:50%;"><br>';
                         }
 
                         dataHtml += '<span style="width:150%;">'+res_name+'</span>';

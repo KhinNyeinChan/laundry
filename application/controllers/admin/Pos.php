@@ -134,29 +134,33 @@ class Pos extends CI_Controller {
         echo json_encode($discount_data);
     } 
 
-    //hold order
-    public function holdOrder(){
+    //print order
+    public function printOrder(){
         $data = array(
-            'holdOrderData' => $this->input->post("holdOrderData")
+            'printOrderData' => $this->input->post("printOrderData")
         );
-        $data = json_decode($data['holdOrderData']);
+        $data = json_decode($data['printOrderData']);
         $customerId = $data->customer->id;
         $customerName = $data->customer->name;
         $endDate = $data->pickupDate;
         $totalItem = $data->totalItem;
         $totalQty = $data->totalQty;
-        $status = 'Hold';
+        $payment_status = 'unpaid';
+        $refNote = $data->refNote;
+        $order_status ='received';
         $createdBy = $this->session->userdata('id');
         $orderData = array(
             "customer_id" => $customerId,
             "end_date" => $endDate,
             "total_qty" => $totalQty,
             "total_item" => $totalItem,
-            "status" => $status,
+            "payment_status" => $payment_status,
             "created_by" => $createdBy,
-            "customer_name" => $customerName
+            "customer_name" => $customerName,
+            "ref_note" => $refNote,
+            "order_status" => $order_status
         );
-        $orderID = $this->common_model->insert($orderData,"order");
+        $orderID = $this->common_model->insert($orderData,'orders');
         if($orderID != NULL){
             $orderItemArray = $data->orderItemArray;
             for ($i=0; $i < count($orderItemArray); $i++) { 
@@ -167,12 +171,96 @@ class Pos extends CI_Controller {
                     'quantity' => $element->quantity,
                     'product_code' => $element->product->code,
                     'product_name'=> $element->product->name,
-                    'status' => $status
+                    'status' => $order_status
                 );
-                $this->common_model->insert($orderItemData,'order_item');
+                $this->common_model->insert($orderItemData,'order_items');
             }
         }
         echo json_encode($data);
+    }
+
+    public function submitPayment(){
+        $data = array(
+            'paymentOrderData' => $this->input->post("paymentOrderData")
+        );
+        $data = json_decode($data['paymentOrderData']);
+        $customerId = $data->customer->id;
+        $customerName = $data->customer->name;
+        $endDate = $data->pickupDate;
+        $totalItem = $data->totalItem;
+        $totalQty = $data->totalQty;
+        $refNote = $data->refNote;
+        $order_status ='received';
+        $total = $data->totalAmount;
+        $totalPayable = $data->totalPayable;
+        $discount = $data->discount;
+        $totalPaying = $data->totalPaying;
+        $balance = $data->balance;
+        $payingBy = $data->payingBy;
+        $paymentNote = $data->paymentNote;
+        $saleNote = $data->saleNote;
+        $paymentStatus = $data->paymentStatus;
+        $createdBy = $this->session->userdata('id');
+        $store_id = "1";
+        $orderData = array(
+            "customer_id" => $customerId,
+            "end_date" => $endDate,
+            "total_qty" => $totalQty,
+            "total_item" => $totalItem,
+            "payment_status" => $paymentStatus,
+            "created_by" => $createdBy,
+            "customer_name" => $customerName,
+            "ref_note" => $refNote,
+            "order_status" => $order_status
+        );
+        $orderID = $this->common_model->insert($orderData,'orders');
+        if($orderID != NULL){
+            $orderItemArray = $data->orderItemArray;
+            for ($i=0; $i < count($orderItemArray); $i++) { 
+                $element = $orderItemArray[$i];
+                $orderItemData = array(
+                    'order_id' => $orderID,
+                    'product_id' => $element->product->id,
+                    'quantity' => $element->quantity,
+                    'product_code' => $element->product->code,
+                    'product_name'=> $element->product->name,
+                    'status' => $order_status
+                );
+                $this->common_model->insert($orderItemData,'order_items');
+            }
+        }
+        $saleData = array(
+            "order_id" => $orderID,
+            "customer_id" => $customerId,
+            "customer_name" => $customerName,
+            "total" => $total,
+            "discount" => $discount,
+            "grand_total" => $totalPayable,
+            "total_item" => $totalItem,
+            "total_quantity" => $totalQty,
+            "paid" => $totalPaying,
+            "created_by" => $createdBy,
+            "status" => $paymentStatus,
+            "store_id" => $store_id,
+            "note" => $saleNote
+        );
+        $saleId = $this->common_model->insert($saleData, 'sale');
+        if($saleId != null){
+            $paymentData = array(
+                "sale_id" => $saleId,
+                "customer_id" => $customerId,
+                "paid_by" => $payingBy,
+                "amount" => $totalPayable,
+                "created_by" => $createdBy,
+                "pos_paid" => $totalPaying,
+                "pos_balance" => $balance,
+                "store_id" => $store_id,
+                "status" => $paymentStatus,
+                "note" => $paymentNote
+            );
+        }
+        $this->common_model->insert($paymentData, 'payment');
+        echo json_encode($paymentData);
     }
 
 }

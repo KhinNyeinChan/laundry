@@ -26,7 +26,7 @@ class Auth extends CI_Controller {
                 foreach($query as $row){
                     $data = array(
                         'id' => $row->id,
-                        'name' => $row->first_name,
+                        'name' => $row->name,
                         'email' =>$row->email,
                         'role' =>$row->role,
                         'is_login' => TRUE

@@ -83,8 +83,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Mobile</th>
-                                    <th>Country</th>
+                                    <th>Phone</th>
                                     <th>Status</th>
                                     <th>Role</th>
                                     <th>Joining Date</th>
@@ -95,7 +94,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Mobile</th>
+                                    <th>Phone</th>
                                     <th>Gender</th>
                                     <th>Status</th>
                                     <th>Role</th>
@@ -109,9 +108,9 @@
                                 
                                 <tr>
 
-                                    <td><?php echo $user['first_name'].' '.$user['last_name']; ?></td>
+                                    <td><?php echo $user['name']; ?></td>
                                     <td><?php echo $user['email']; ?></td>
-                                    <td><?php echo $user['mobile']; ?></td>
+                                    <td><?php echo $user['phone']; ?></td>
                                     <td><?php echo $user['country']; ?></td>
 
                                     <td>
