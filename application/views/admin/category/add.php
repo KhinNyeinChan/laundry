@@ -1,5 +1,6 @@
 
 
+
 <!-- Container fluid  -->
 
 <div class="container-fluid">
@@ -45,7 +46,7 @@
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                        <label class="control-label text-right col-md-3"> Code <span class="text-danger"></span></label>
+                                        <label class="control-label text-right col-md-3">Code <span class="text-danger">*</span></label>
                                         <div class="col-md-9 controls">
                                             <input type="text" name="code" class="form-control" required data-validation-required-message="Code is required">
                                         </div>
@@ -53,19 +54,20 @@
                                 </div>
                                 <!--/span-->
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                        <label class="control-label text-right col-md-3">Name <span class="text-danger"></span></label>
+                                        <label class="control-label text-right col-md-3">Name <span class="text-danger">*</span></label>
                                         <div class="col-md-9 controls">
-                                            <input type="text" name="name" class="form-control" required data-validation-required-message=" Name is required">
+                                            <input type="text" name="name" class="form-control" required data-validation-required-message="Name is required">
                                         </div>
                                     </div>
                                 </div>
                                 <!--/span-->
                             </div>
- 
+
+
                             <!-- CSRF token -->
                             <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" />
 
@@ -77,6 +79,8 @@
                                         <label class="control-label text-right col-md-3"></label>
                                         <div class="controls">
                                             <button type="submit" class="btn btn-success">Save Category</button>
+
+                                            <button type="reset" class="btn btn-default waves-effect" data-dismiss="modal" value="Reset">Cancel</button>
                                         </div>
                                     </div>
                                 </div>
