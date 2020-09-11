@@ -36,7 +36,7 @@
                               <div class="row">
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                        <label class="control-label text-right col-md-3">Name <span class="text-danger"></span></label>
+                                        <label class="control-label text-right col-md-3">Name <span class="text-danger">*</span></label>
                                         <div class="col-md-9 controls">
                                             <input type="text" name="name" class="form-control" required data-validation-required-message="Name is required">
                                         </div>
@@ -48,19 +48,18 @@
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                        <label class="control-label text-right col-md-3">Product Code <span class="text-danger"></span></label>
+                                        <label class="control-label text-right col-md-3">Product Code <span class="text-danger">*</span></label>
                                         <div class="col-md-9 controls">
                                             <input type="text" name="code" class="form-control" required data-validation-required-message="Product code is required">
                                         </div>
                                     </div>
                                 </div>
-                                <!--/span-->
                             </div>
 
                                  <div class="row">
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                        <label class="control-label text-right col-md-3">Category </label>
+                                        <label class="control-label text-right col-md-3">Category <span class="text-danger">*</span></label>
                                         <div class="col-md-9 controls">
                                             <div class="form-group has-success">
                                                 <select class="form-control category-select" name="category_id" aria-invalid="false
@@ -76,26 +75,15 @@
                                 </div>
                                 <!--/span-->
                             </div>
-
+                        </div>
 
                                 <div class="row">
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                        <label class="control-label text-right col-md-3">Price <span class="text-danger"></span></label>
+                                        <label class="control-label text-right col-md-3">Price <span class="text-danger">*</span></label>
                                         <div class="col-md-9 controls">
-                                            <input type="text" name="price" class="form-control" required data-validation-required-message="Price is required">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                        <label class="control-label text-right col-md-3">Quantity<span class="text-danger"></span></label>
-                                        <div class="col-md-9 controls">
-                                            <input type="text" name="quantity" class="form-control" required data-validation-required-message="Quantity is required">
+                                            <input type="text" name="price" class="form-control"
+                                            required data-validation-containsnumber-regex="(\d)+" data-validation-containsnumber-message="No Characters Allowed, Only Digit" required data-validation-required-message="Price is required">
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +91,6 @@
                             </div>
 
                             <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" />
-
                             
                             <hr>
                             <div class="row">
@@ -112,6 +99,9 @@
                                         <label class="control-label text-right col-md-3"></label>
                                         <div class="controls">
                                             <button type="submit" class="btn btn-success">Save Product</button>
+
+                                            <button type="reset" class="btn btn-default waves-effect" data-dismiss="modal" value="Reset">Cancel</button>
+
                                         </div>
                                     </div>
                                 </div>
