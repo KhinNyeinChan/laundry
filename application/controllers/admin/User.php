@@ -2,7 +2,7 @@
 
 class User extends CI_Controller {
 
-	public function __construct(){
+    public function __construct(){
         parent::__construct();
         check_login_user();
        $this->load->model('common_model');
@@ -26,12 +26,12 @@ class User extends CI_Controller {
         if ($_POST) {
 
             $data = array(
-                'first_name' => $_POST['first_name'],
-                'last_name' => $_POST['last_name'],
+                'name' => $_POST['name'],
+               // 'last_name' => $_POST['last_name'],
                 'email' => $_POST['email'],
                 'password' => md5($_POST['password']),
-                'mobile' => $_POST['mobile'],
-                'country' => $_POST['country'],
+                'phone' => $_POST['phone'],
+                
                 'status' => $_POST['status'],
                 'role' => $_POST['role'],
                 'created_at' => current_datetime()
@@ -84,11 +84,15 @@ class User extends CI_Controller {
         if ($_POST) {
 
             $data = array(
-                'first_name' => $_POST['first_name'],
-                'last_name' => $_POST['last_name'],
-                'mobile' => $_POST['mobile'],
-                'country' => $_POST['country'],
+                 'name' => $_POST['name'],
+               // 'last_name' => $_POST['last_name'],
+                'email' => $_POST['email'],
+                'password' => md5($_POST['password']),
+                'phone' => $_POST['phone'],
+                
+                'status' => $_POST['status'],
                 'role' => $_POST['role']
+             
             );
             $data = $this->security->xss_clean($data);
 
