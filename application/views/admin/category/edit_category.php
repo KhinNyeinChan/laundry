@@ -51,10 +51,10 @@
                                 <!--/span-->
                             </div>
 
-                                <div class="row">
+                            <div class="row">
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                        <label class="control-label text-right col-md-3">Name<span class="text-danger"></span></label>
+                                        <label class="control-label text-right col-md-3">Name <span class="text-danger"></span></label>
                                         <div class="col-md-9 controls">
                                             <input type="text" name="name" class="form-control" value="<?php echo $category->name; ?>">
                                         </div>
@@ -62,7 +62,6 @@
                                 </div>
                                 <!--/span-->
                             </div>
-
 
                             <!-- CSRF token -->
                             <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" />
@@ -75,6 +74,9 @@
                                         <label class="control-label text-right col-md-3"></label>
                                         <div class="controls">
                                             <button type="submit" class="btn btn-success">Update</button>
+
+                                            <button type="reset" class="btn btn-default waves-effect"  value="cancel" onclick="window.history.back()">Cancel</button>
+
                                         </div>
                                     </div>
                                 </div>
