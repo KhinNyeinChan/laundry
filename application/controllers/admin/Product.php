@@ -29,8 +29,8 @@ class Product extends CI_Controller {
                 'name' => $_POST['name'],
                 'code' => $_POST['code'],
                 'category_id' => $_POST['category_id'],
-                'price' => $_POST['price'],
-                'quantity' => $_POST['quantity']
+                'price' => $_POST['price']
+                
                 //'created_at' => current_datetime()
             );
 
@@ -85,8 +85,8 @@ class Product extends CI_Controller {
                 'name' => $_POST['name'],
                 'code' => $_POST['code'],
                 'category_id' => $_POST['category_id'],
-                'price' => $_POST['price'],
-                'quantity' => $_POST['quantity']
+                'price' => $_POST['price']
+                
             );
             $data = $this->security->xss_clean($data);
 
