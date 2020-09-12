@@ -47,7 +47,7 @@
                                     <!-- <th>Start Date</th>
                                     <th>End Date</th> -->
                                     <th>Order No.</th>
-                                    <th>Customer</th>
+                                    <!-- <th>Customer</th> -->
                                     <th>Product Code</th>
                                     <th>Product Name</th>
                                     <th>Status</th>
@@ -60,7 +60,7 @@
                                     <!-- <th>Start Date</th>
                                     <th>End Date</th> -->
                                     <th>Order No.</th>
-                                    <th>Customer</th>
+                                    <!-- <th>Customer</th> -->
                                     <th>Product Code</th>
                                     <th>Product Name</th>
                                     <th>Status</th>
@@ -74,7 +74,7 @@
                                 <tr>
                                     
                                     <td><?php echo $orderdetail['order_id']; ?></td>
-                                    <td><?php echo $orderdetail['customer_name']; ?></td>
+                                    <!-- <td><?php //echo $orderdetail['customer_name']; ?></td> -->
                                     <td><?php echo $orderdetail['product_code']; ?></td>
                                     <td><?php echo $orderdetail['product_name']; ?></td>
                                     <td><?php echo $orderdetail['status']; ?></td>
