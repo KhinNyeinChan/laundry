@@ -66,7 +66,7 @@
                                     <th>Product Code</th>
                                     <th>Category</th>
                                     <th>Price</th>
-                                    <th>Quantity</th>
+                                   
                                     <!--th>Joining Date</th-->
                                     <th>Action</th>
                                 </tr>
@@ -77,7 +77,7 @@
                                     <th>Product Code</th>
                                     <th>Category</th>
                                     <th>Price</th>
-                                    <th>Quantity</th>
+                                  
                                     <!--th>Joining Date</th---> 
                                     <th>Action</th>
                                 </tr>
@@ -92,7 +92,7 @@
                                     <td><?php echo $product['code']; ?></td>
                                     <td><?php echo $product['category']; ?></td>
                                     <td><?php echo $product['price']; ?></td>
-                                    <td><?php echo $product['quantity']; ?></td>
+                                   
                                     
                                     <!--td>
                                         <?php if ($product['status'] == 0): ?>
