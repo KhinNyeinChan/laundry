@@ -119,7 +119,7 @@
                                         <div class="controls">
                                             <button type="submit" name="submit" value="validate" class="btn btn-success">Save customer</button>
 
-                                            <button type="reset" class="btn btn-default waves-effect" data-dismiss="modal" value="Reset">Cancel</button>
+                                            <button type="reset" class="btn btn-default waves-effect"  value="cancel" onclick="window.history.back()">Cancel</button>
                                         </div>
                                     </div>
                                 </div>
