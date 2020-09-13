@@ -136,7 +136,7 @@
                                         <label class="control-label text-right col-md-3"></label>
                                         <div class="controls">
                                             <button type="submit" class="btn btn-success">Update</button>
-                                            <button type="reset" class="btn btn-outline-success" onclick="window.history.back()" value="cancel">Cancel </button>
+                                             <button type="reset" class="btn btn-default waves-effect"  value="cancel" onclick="window.history.back()">Cancel</button>
                                         </div>
                                     </div>
                                 </div>
