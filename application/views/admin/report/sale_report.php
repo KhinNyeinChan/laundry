@@ -122,63 +122,42 @@
                                     <th>Date</th>
                                     <th>Customer</th>
                                     <th>Total</th>
-                                    <th>Tax</th>
-                                  
                                     <th>Discount</th>
                                     <th>Grand Total</th>
-                                    <th>Paid</th>
+                                    <th>Paid</th>  
                                     <th>Balance</th>
-                                   
                                     <th>Status</th>    
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>Sale No</th>
-                                    
+                                    <th>Sale No</th> 
                                     <th>Date</th>
                                     <th>Customer</th>
-                                    <th>Total</th>
-                                    <th>Tax</th>
-                                  
+                                    <th>Total</th>   
                                     <th>Discount</th>
                                     <th>Grand Total</th>
                                     <th>Paid</th>
                                     <th>Balance</th>
-                                   
                                     <th>Status</th>   
                                 </tr>
                             </tfoot>
                             
                             <tbody>
-                           
-                            <?php foreach ($salereport as $sale): ?>
-                                
-                                <tr>
-
-                                    <td><?php echo $sale['id']; ?></td>
-                                   
-                                    <td><?php echo $sale['pay_date']; ?></td>
-                                    <td><?php echo $sale['customer_name']; ?></td>
-                                    <td><?php echo $sale['total']; ?></td>
-                                    <td><?php echo $sale['tax']; ?></td>
-                                    
-                                    <td><?php echo $sale['discount']; ?></td>
-                                    <td><?php echo $sale['grand_total']; ?></td>
-                                    <td><?php echo $sale['paid']; ?></td>
-                                    <td><?php echo $sale['balance']; ?></td>
-                                    <td><?php echo $sale['status']; ?></td>
-                                   
-                                   
-
-                                    
-                                </tr>
-
-                           
-                            <?php endforeach ?>
-                            
+                                <?php foreach ($salereport as $sale): ?>     
+                                    <tr>
+                                        <td><?php echo $sale['id']; ?></td>   
+                                        <td><?php echo $sale['date']; ?></td>
+                                        <td><?php echo $sale['customer_name']; ?></td>
+                                        <td><?php echo $sale['total']; ?></td> 
+                                        <td><?php echo $sale['discount']; ?></td>
+                                        <td><?php echo $sale['grand_total']; ?></td>
+                                        <td><?php echo $sale['paid']; ?></td>
+                                        <td><?php echo $sale['balance']; ?></td>
+                                        <td><?php echo $sale['status']; ?></td>   
+                                    </tr>
+                                <?php endforeach ?>
                             </tbody>
-
 
                         </table>
                     </div>
