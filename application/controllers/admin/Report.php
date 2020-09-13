@@ -8,7 +8,7 @@ class Report extends CI_Controller {
        $this->load->model('report_model');
        $this->load->model('login_model');
        $this->load->model('common_model');
-     $this->load->model('customer_model');
+       $this->load->model('customer_model');
     }
 
 
@@ -18,7 +18,7 @@ class Report extends CI_Controller {
         $data['page_title'] = 'Reports';
        
         $data['main_content'] = $this->load->view('admin/report/sale_report', $data, TRUE);
-         $data['main_content'] = $this->load->view('admin/report/sale_details_report', $data, TRUE);
+        $data['main_content'] = $this->load->view('admin/report/sale_details_report', $data, TRUE);
         
         $this->load->view('admin/index', $data);
     }
@@ -37,7 +37,7 @@ class Report extends CI_Controller {
     }
     public function all_sale_details_report_list()
     {
-        $data['detailreport'] = $this->report_model->get_all_salereport();
+        $data['detailreport'] = $this->common_model->select('sale_items');
        // $data['category'] = $this->product_model->select('category');
         $data['count'] = $this->report_model->get_sale_report_total();
         //$data['main_content'] = $this->load->view('admin/sale/listsale', $data, TRUE);
