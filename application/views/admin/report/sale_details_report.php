@@ -133,11 +133,11 @@
                                     <td><?php echo $sale['product_code']; ?></td>
                                     <td><?php echo $sale['product_name']; ?></td>
                                     <td><?php echo $sale['quantity']; ?></td>
-                                    <td><?php echo $sale['price']; ?></td>
-                                    <td><?php echo $sale['amount']; ?></td>
-                                    <td><?php echo $sale['status']; ?></td>
+                                    <td><?php echo $sale['total']; ?></td>
+                                    <td><?php echo $sale['subtotal']; ?></td>
+                                    <td><?php echo $sale['payment_status']; ?></td>
                                     <td><?php echo $sale['customer_name']; ?></td>
-                                    <td><?php echo $sale['pay_date']; ?></td>
+                                    <td><?php echo $sale['date']; ?></td>
                                     
                                 </tr>
 
