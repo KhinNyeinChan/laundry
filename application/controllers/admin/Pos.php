@@ -245,6 +245,26 @@ class Pos extends CI_Controller {
             "note" => $saleNote
         );
         $saleId = $this->common_model->insert($saleData, 'sale');
+        if(saleId != null){
+            $orderItemArray = $data->orderItemArray;
+            for ($i=0; $i < count($orderItemArray); $i++) { 
+                $element = $orderItemArray[$i];
+                $saleItemData = array(
+                    "sale_id" => $saleId,
+                    "customer_id" => $customerId,
+                    "customer_name" => $customerName,
+                    "payment_status" => $paymentStatus,
+                    "note" => $refNote,
+                    "product_id" => $element->product->id,
+                    "quantity" => $element->quantity,
+                    "product_code" => $element->product->code,
+                    "product_name" => $element->product->name,
+                    "total" => $element->product->price,
+                    "subtotal" => $element->subTotal
+                );
+                $this->common_model->insert($saleItemData, 'sale_items');
+            }
+        }
         if($saleId != null){
             $paymentData = array(
                 "sale_id" => $saleId,
@@ -260,7 +280,7 @@ class Pos extends CI_Controller {
             );
         }
         $this->common_model->insert($paymentData, 'payment');
-        echo json_encode($paymentData);
+        echo json_encode($data);
     }
 
 }
