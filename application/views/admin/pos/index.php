@@ -606,6 +606,7 @@
     }
 
     document.getElementById("submitPayment").onclick = () =>{
+        event.preventDefault();
         const customerId = document.getElementById("selectedCustomer").value;
         const customersArray = <?php echo json_encode($customers) ?>;
         const customer = customersArray.filter(cust => cust.id == customerId)[0];
@@ -653,7 +654,7 @@
         var xhttpRequest = new XMLHttpRequest();
         xhttpRequest.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
-                console.log(JSON.parse(this.responseText));
+                console.log(this.responseText);
                 cancelOrder();
                 document.getElementById("selectedCustomer").value = "";
                 document.getElementById("pickupDate").value = "";
@@ -662,6 +663,7 @@
                 document.getElementById("total-payable").innerHTML = 0;
                 document.getElementById("count").innerHTML = "0(0)";
                 document.getElementById("total").innerHTML = 0;
+                window.location.href = "<?php echo base_url() ?>admin/invoice";
             }
         };
         xhttpRequest.open("POST","<?php echo base_url() ?>admin/pos/submitPayment",true);
