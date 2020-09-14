@@ -70,7 +70,7 @@
                                     <th>Reference</th>
                                     <th>Amount</th>
                                     <th>Note</th>
-                                    <th>ID</th>
+                                    <!-- <th>ID</th> -->
                                     <th>Expense Category</th>
                                     <th>Attachment</th>
                                     <th>Action</th>
@@ -82,7 +82,7 @@
                                     <th>Reference</th>
                                     <th>Amount</th>
                                     <th>Note</th>
-                                    <th>ID</th>
+                                    <!-- <th>ID</th> -->
                                     <th>Expense Category</th>
                                     <th>Attachment</th>
                                     <th>Action</th>
@@ -98,7 +98,7 @@
                                     <td><?php echo $expense['reference']; ?></td>
                                     <td><?php echo $expense['amount']; ?></td>
                                     <td><?php echo $expense['note']; ?></td>
-                                    <td><?php echo $expense['id']; ?></td>
+                                    <!-- <td><?php// echo $expense['id']; ?></td> -->
                                     <td><?php echo $expense['expense_category']; ?></td>
                                     <td><?php echo $expense['attachment']; ?></td>
 
