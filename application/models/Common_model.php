@@ -350,5 +350,29 @@ class Common_model extends CI_Model {
             
     }
 
+    //-- select by orderId to get saleId
+    function get_saleId($id){
+        $query=$this->db->query("select id from sale where order_id = $id ");
+	    return $query->result_array();
+    } 
 
+    //-- select by saleId
+    function select_by_saleId($id,$table){
+        $this->db->select();
+        $this->db->from($table);
+        $this->db->where('sale_id', $id);
+        $query = $this->db->get();
+        $query = $query->result_array();  
+        return $query;
+    } 
+
+    //-- select by orderId
+    function select_by_orderId($id,$table){
+        $this->db->select();
+        $this->db->from($table);
+        $this->db->where('order_id', $id);
+        $query = $this->db->get();
+        $query = $query->result_array();  
+        return $query;
+    } 
 }
