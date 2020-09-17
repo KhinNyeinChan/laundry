@@ -1,8 +1,8 @@
 
 <div class="container-fluid">
-    <div class="row ">
+    <div class="row m-b-0">
         <!--left column-->
-        <div class="col-12 col-sm-7 py-1 bg-white shadow-lg mb-4 bg-white"> 
+        <div class="col-12 col-sm-7 pt-1 bg-white shadow-lg bg-white"> 
 
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-12">
@@ -64,7 +64,7 @@
 
 
         <!--right column-->
-        <div class="col-12 col-sm-5 py-1 px-2 " > 
+        <div class="col-12 col-sm-5 px-2 " > 
             <form action="<?php echo site_url('');?>" method="post">
 
                 <div class="row">
@@ -85,16 +85,11 @@
 
                 <!-- pick up date -->
                 <div class="row">
-                    <div class="col-lg-2 col-md-2 col-sm-2 py-2"><h5 class=" text-inverse font-weight-bold px-2">Pick up</h5></div>
-                    <div class="col-lg-5 col-md-5 col-sm-5">
+                    <div class="col-lg-3 col-md-3 col-sm-3 py-2"><h5 class=" text-inverse font-weight-bold px-2">Pick up</h5></div>
+                    <div class="col-lg-9 col-md-9 col-sm-9">
                         <div class="input-group mb-1">  
-                            <input type="date" class="form-control" id="pickupDate"  />
+                            <input type="datetime-local" class="form-control" id="pickupDate"  />
                         </div>     
-                    </div>  
-                    <div class="col-lg-5 col-md-5 col-sm-5">
-                        <div class="input-group mb-1">  
-                            <input type="time" class="form-control" name="end-time"  id="pickupTime">
-                        </div>   
                     </div>      
                 </div> 
 
@@ -124,8 +119,8 @@
                 
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-condensed table-hover list-table" style="margin:0;">
+                        <div class="table-responsive" style="height: 290px;overflow: scroll-y;">
+                            <table class="table table-striped table-condensed table-hover" style="margin:0;">
                                 <thead>
                                     <tr class="text-white font-20 font-weight-bold" style="background-color:#8080ff;">
                                         <th>Product</th>
@@ -143,7 +138,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row m-t-0">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="table-responsive">
                         <table class="table table-condensed totals bg-light-info" style="margin-bottom:5px;font-weight:bold;font-size:18px;">
@@ -519,7 +514,6 @@
         const customersArray = <?php echo json_encode($customers) ?>;
         const customer = customersArray.filter(cust => cust.id == customerId)[0];
         const pickupDate = document.getElementById("pickupDate").value;
-        const pickupTime = document.getElementById("pickupTime").value;
         const refNote = document.getElementById("refNote").value;
         let totalQty = 0;
         let totalItem = orderItemArray.length;
@@ -529,7 +523,6 @@
         const printOrderObj = {
             customer,
             pickupDate,
-            pickupTime,
             refNote,
             orderItemArray,
             totalQty,
@@ -556,10 +549,6 @@
         document.getElementById("totalPayable").innerHTML = totalPayable;
         document.getElementById("quick-payable").innerHTML = totalPayable;
     }
-
-    // function formatNumber(num){
-    //     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-    // }
 
     const cashCount = document.getElementsByClassName("count");
     const cashBtn = document.getElementsByClassName("money");
@@ -611,7 +600,6 @@
         const customersArray = <?php echo json_encode($customers) ?>;
         const customer = customersArray.filter(cust => cust.id == customerId)[0];
         const pickupDate = document.getElementById("pickupDate").value;
-        const pickupTime = document.getElementById("pickupTime").value;
         const refNote = document.getElementById("refNote").value;
         const totalPayable = document.getElementById("total-payable").innerHTML;
         const discount = document.getElementById("ds_con").innerHTML;
@@ -636,7 +624,6 @@
         const paymentOrderObj = {
             customer,
             pickupDate,
-            pickupTime,
             refNote,
             orderItemArray,
             totalQty,
@@ -658,12 +645,11 @@
                 cancelOrder();
                 document.getElementById("selectedCustomer").value = "";
                 document.getElementById("pickupDate").value = "";
-                document.getElementById("pickupTime").value = "";
                 document.getElementById("refNote").value = "";
                 document.getElementById("total-payable").innerHTML = 0;
                 document.getElementById("count").innerHTML = "0(0)";
                 document.getElementById("total").innerHTML = 0;
-                window.location.href = "<?php echo base_url() ?>admin/invoice";
+                window.location.href = "<?php echo base_url() ?>admin/invoice/printInvoice/"+this.responseText;
             }
         };
         xhttpRequest.open("POST","<?php echo base_url() ?>admin/pos/submitPayment",true);
