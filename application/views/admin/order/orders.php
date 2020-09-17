@@ -64,6 +64,8 @@
                                     <th>User</th>
                                     <th>Total Qty</th>
                                     <th>Total Items</th>
+                                    <th>Payment Status</th>
+                                    <th>Order Status</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -75,6 +77,8 @@
                                     <th>User</th>
                                     <th>Total Qty</th>
                                     <th>Total Items</th>
+                                    <th>Payment Status</th>
+                                    <th>Order Status</th>
                                 </tr>
                             </tfoot>
                             
@@ -91,6 +95,12 @@
                                     <td><?php echo $order['created_by']; ?></td>
                                     <td><?php echo $order['total_qty']; ?></td>
                                     <td><?php echo $order['total_item']; ?></td>
+                                    <td><?php echo $order['payment_status']; ?></td>
+                                    <td class="text-nowrap"><button type="submit" class="btn btn-success" id="update_ostatus" data-toggle="modal" data-target="#update-ostatus<?php echo $order['id'];?>" href="#" data-toggle="tooltip" data-original-title="Update Order Status"><?php echo $order['order_status']; ?></button></td>
+                                   <!--  <td class="text-nowrap"><?php echo $order['order_status']; ?>
+                                        <a id="update_ostatus" data-toggle="modal" data-target="#update-ostatus<?php echo $order['id'];?>" href="#" data-toggle="tooltip" data-original-title="Update Order Status"><i class="fa fa-user text-success m-10"></i></a>
+                                    </td>
+ -->
                                  </tr>  
                             <?php endforeach ?>
                             <!-- <?php endif; ?>
@@ -135,3 +145,33 @@ setInterval(function () {
   else    window.location.reload(); 
 }, 7200000);
 </script>
+
+<?php foreach ($orders as $order): ?>
+<div id="update-ostatus<?= $order['id'] ?>" class="modal fade" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">Update Order Status</h4>
+       <button type="button" class="close" data-dismiss="modal">&times;</button>  
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <?php echo validation_errors(); ?>
+       <?php echo form_open('admin/order/update_ostatus/'.$order['id']); ?>
+            <div class="form-body">
+                <div class="form-groupv">
+                <label class="control-label">Order Status</label>
+                <input type="text" name="ostatus" id="ostatus" value="<?= $order['order_status'] ?>" class="form-control" palceholder="Order Status" required>
+                </div>
+                <div class="form-actions">
+                    <br>
+                    <button type="submit" class="btn btn-success">Update</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+<?php endforeach ?>
+
