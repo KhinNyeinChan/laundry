@@ -257,6 +257,73 @@ class Common_model extends CI_Model {
     }
 
 
+    //Adding Sale through payment button
+    //Copied From iwavepos
+    public function addSale($data, $items, $payment = array(), $did = NULL) {
+
+        if($this->db->insert('sale', $data)) {
+            $sale_id = $this->db->insert_id();
+
+            foreach ($items as $item) {
+                $item['sale_id'] = $sale_id;
+                if($this->db->insert('sale_items', $item)) {
+                    if ($item['product_id'] > 0 && $product = $this->site->getProductByID($item['product_id'])) {
+                        if ($product->type == 'standard') {
+                            $this->db->update('product_store_qty', array('quantity' => ($product->quantity - $item['quantity'] - $item['foc'])), array('product_id' => $product->id, 'store_id' => $data['store_id']));
+                         } elseif ($product->type == 'combo') {
+                            $combo_items = $this->getComboItemsByPID($product->id);
+                             foreach ($combo_items as $combo_item) {
+                                $cpr = $this->site->getProductByID($combo_item->id);
+                                 //if($cpr->type == 'standard') {
+                               if(($cpr->type == 'standard') || ($cpr->type == 'Raw')) {
+                                     $qty = $combo_item->qty * $item['quantity'];
+                                    $this->db->update('product_store_qty', array('quantity' => ($cpr->quantity-$qty)), array('product_id' => $cpr->id, 'store_id' => $data['store_id']));
+                                 }
+                             }
+                         }
+                    }
+                }
+            }
+
+            if($did) {
+                $this->db->delete('suspended_sales', array('id' => $did));
+                $this->db->delete('suspended_items', array('suspend_id' => $did));
+            }
+            $msg = array();
+            if(! empty($payment)) {
+                if ($payment['paid_by'] == 'stripe') {
+                    $card_info = array("number" => $payment['cc_no'], "exp_month" => $payment['cc_month'], "exp_year" => $payment['cc_year'], "cvc" => $payment['cc_cvv2'], 'type' => $payment['cc_type']);
+                    $result = $this->stripe($payment['amount'], $card_info);
+                    if (!isset($result['error']) && !empty($result['transaction_id'])) {
+                        $payment['transaction_id'] = $result['transaction_id'];
+                        $payment['date'] = $result['created_at'];
+                        $payment['amount'] = $result['amount'];
+                        $payment['currency'] = $result['currency'];
+                        unset($payment['cc_cvv2']);
+                        $payment['sale_id'] = $sale_id;
+                        $this->db->insert('payments', $payment);
+                    } else {
+                        $this->db->update('sales', ['paid' => 0, 'status' => 'due'], ['id' => $sale_id]);
+                        $msg[] = lang('payment_failed');
+                        $msg[] = '<p class="text-danger">' . $result['code'] . ': ' . $result['message'] . '</p>';
+                    }
+                } else {
+                    if ($payment['paid_by'] == 'gift_card') {
+                        $gc = $this->getGiftCardByNO($payment['gc_no']);
+                        $this->db->update('gift_cards', array('balance' => ($gc->balance-$payment['amount'])), array('card_no' => $payment['gc_no']));
+                    }
+                    unset($payment['cc_cvv2']);
+                    $payment['sale_id'] = $sale_id;
+                    $this->db->insert('payments', $payment);
+                }
+            }
+
+            return array('sale_id' => $sale_id, 'message' => $msg);
+            }
+
+        return false;
+    }
+
     //-- image upload function with resize option
     function upload_image($max_size){
             
