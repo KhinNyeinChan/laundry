@@ -171,6 +171,20 @@ class Order extends CI_Controller {
             $this->session->set_flashdata('msg', 'Assign Add Successfully');
             redirect(base_url('admin/order/all_order_item'));
  }
+
+  //-- update products info
+    public function update_ostatus($id)
+    {
+       //$this->form_validation->set_rules('name' , 'Name' , 'required');
+
+            $data = array(
+                'order_status' => $this->input->post('ostatus'),
+            );
+            $data = $this->security->xss_clean($data);
+            $order_id = $this->Order_model->update($data, $id, 'orders');
+            $this->session->set_flashdata('msg', 'Update Order Status Successfully');
+            redirect(base_url('admin/order/all_order_list'));
+ }
     public function all_order_list()
     {
         $data['orders'] = $this->Order_model->get_all_order();
