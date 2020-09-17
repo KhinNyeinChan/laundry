@@ -16,7 +16,7 @@ class Sale extends CI_Controller {
         $data['page_title'] = 'Sale';
        // $data['category'] = $this->product_model->select('category');
         $data['main_content'] = $this->load->view('admin/sale/listsale', $data, TRUE);
-         $data['main_content'] = $this->load->view('admin/sale/openbill', $data, TRUE);
+        //$data['main_content'] = $this->load->view('admin/sale/openbill', $data, TRUE);
         
         $this->load->view('admin/index', $data);
     }
@@ -74,7 +74,7 @@ class Sale extends CI_Controller {
        // $data['category'] = $this->product_model->select('category');
         $data['count'] = $this->sale_model->get_sale_total();
         $data['main_content'] = $this->load->view('admin/sale/listsale', $data, TRUE);
-        $data['main_content'] = $this->load->view('admin/sale/openbill', $data, TRUE);
+        // $data['main_content'] = $this->load->view('admin/sale/openbill', $data, TRUE);
         $this->load->view('admin/index', $data);
     }
 
