@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url() ?>assets/images/favicon.png">
-    <title>Metrovic Admin</title>
+    <title><?= $page_title ?></title>
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url() ?>assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- chartist CSS -->
@@ -929,9 +929,9 @@
 
                 
             <!-- footer -->
-            
-            <footer class="footer">
-                &copy; <?php echo date ('Y'); ?> FC Laundry
+          
+            <footer class="footer mt-0">
+                &copy; <?php //echo date ('Y'); ?> FC Laundry
             </footer>
             
             <!-- End footer -->
