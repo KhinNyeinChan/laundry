@@ -13,7 +13,7 @@ class Product extends CI_Controller {
     public function index()
     {
         $data = array();
-        $data['page_title'] = 'Product';
+        $data['page_title'] = 'Add Product';
         $data['category'] = $this->product_model->select('category');
         $data['main_content'] = $this->load->view('admin/product/add', $data, TRUE);
         
@@ -69,6 +69,7 @@ class Product extends CI_Controller {
 
     public function all_product_list()
     {
+        $data['page_title'] = 'Products';
         $data['products'] = $this->product_model->get_all_product();
         $data['category'] = $this->product_model->select('category');
         $data['count'] = $this->product_model->get_product_total();
@@ -96,6 +97,7 @@ class Product extends CI_Controller {
 
         }
 
+        $data['page_title'] = 'Update Product';
         $data['product'] = $this->product_model->get_single_product_info($id);
         $data['category'] = $this->product_model->select('category');
         $data['main_content'] = $this->load->view('admin/product/edit_product', $data, TRUE);

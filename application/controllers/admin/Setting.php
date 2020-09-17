@@ -54,6 +54,7 @@ class Setting extends CI_Controller {
 
         // $cust_id = $_POST['customer_id'];
         // $cat_id = $_POST['category_id'];
+        $data['page_title'] = 'Update Setting';
         $data['settings'] = $this->setting_model->getAllSetting();
         $data['customers'] = $this->setting_model->getAllCustomers();
          $data['categories'] = $this->setting_model->getAllCategories();

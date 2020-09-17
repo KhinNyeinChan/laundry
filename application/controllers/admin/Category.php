@@ -13,7 +13,7 @@ class Category extends CI_Controller {
     public function index()
     {
         $data = array();
-        $data['page_title'] = 'Category';
+        $data['page_title'] = 'Add Category';
         $data['main_content'] = $this->load->view('admin/category/add', $data, TRUE);
         
         $this->load->view('admin/index', $data);
@@ -64,6 +64,7 @@ class Category extends CI_Controller {
 
     public function all_category_list()
     {
+        $data['page_title'] = 'Categories';
         $data['categories'] = $this->category_model->get_all_category();
         $data['count'] = $this->category_model->get_category_total();
         $data['main_content'] = $this->load->view('admin/category/categories', $data, TRUE);
@@ -88,6 +89,7 @@ class Category extends CI_Controller {
 
         }
 
+        $data['page_title'] = 'Update Category';
         $data['category'] = $this->category_model->get_single_category_info($id);
         $data['main_content'] = $this->load->view('admin/category/edit_category', $data, TRUE);
         $this->load->view('admin/index', $data);

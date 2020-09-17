@@ -15,7 +15,7 @@ class Report extends CI_Controller {
     public function index()
     {
         $data = array();
-        $data['page_title'] = 'Reports';
+        $data['page_title'] = 'Report';
        
         $data['main_content'] = $this->load->view('admin/report/sale_report', $data, TRUE);
         $data['main_content'] = $this->load->view('admin/report/sale_details_report', $data, TRUE);
@@ -27,6 +27,7 @@ class Report extends CI_Controller {
 
     public function all_sale_report_list()
     {
+        $data['page_title'] = 'Sale Report';
         $data['salereport'] = $this->report_model->get_all_salereport();
         $data['customer'] = $this->customer_model->select('customer');
         $data['user'] = $this->common_model->select('user');
@@ -37,6 +38,7 @@ class Report extends CI_Controller {
     }
     public function all_sale_details_report_list()
     {
+        $data['page_title'] = 'Sale Details Report';
         $data['detailreport'] = $this->common_model->select('sale_items');
        // $data['category'] = $this->product_model->select('category');
         $data['count'] = $this->report_model->get_sale_report_total();
@@ -84,6 +86,7 @@ class Report extends CI_Controller {
         $end_date = $this->input->get('end_date') ? $this->input->get('end_date') : NULL;
         $user = $this->input->get('user') ? $this->input->get('user') : NULL;
 
+        $data['page_title'] = 'Sale Report';
         $data['salereport'] = $this->report_model->select_sales($customer,$start_date,$end_date,$user);
         $data['main_content'] = $this->load->view('admin/report/sale_report', $data, TRUE);
         $this->load->view('admin/index', $data);
@@ -95,6 +98,7 @@ class Report extends CI_Controller {
         $end_date = $this->input->get('end_date') ? $this->input->get('end_date') : NULL;
        // $user = $this->input->get('user') ? $this->input->get('user') : NULL;
 
+       $data['page_title'] = 'Sale Details Report';
         $data['detailreport'] = $this->report_model->select_detailsale($start_date,$end_date);
         $data['main_content'] = $this->load->view('admin/report/sale_details_report', $data, TRUE);
         $this->load->view('admin/index', $data);

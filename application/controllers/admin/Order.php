@@ -13,8 +13,7 @@ class Order extends CI_Controller {
     public function index()
     {
         $data = array();
-        $data['page_title'] = 'Order';
-
+        $data['page_title'] = 'Orders';
         $data['main_content'] = $this->load->view('admin/order/orders', $data, TRUE);
         $this->load->view('admin/index', $data);
     }
@@ -154,7 +153,7 @@ class Order extends CI_Controller {
               //$order_items_id = $this->Order_model->saverecords($data2, 'order_items');
               $order_id = $this->Order_model->saverecords($data1,$data2); 
               $this->session->set_flashdata('msg', 'Order added Successfully');
-                redirect(base_url('admin/order/all_order_list'));
+              redirect(base_url('admin/order/all_order_list'));
         }
 }
 
@@ -173,6 +172,7 @@ class Order extends CI_Controller {
  }
     public function all_order_list()
     {
+        $data['page_title'] = 'Orders';
         $data['orders'] = $this->Order_model->get_all_order();
         $data['main_content'] = $this->load->view('admin/order/orders', $data, TRUE);
         $this->load->view('admin/index', $data);
@@ -180,6 +180,7 @@ class Order extends CI_Controller {
 
     public function all_order_item()
     {
+        $data['page_title'] = 'Order Details';
         $data['orderdetails'] = $this->Order_model->get_all_order_item();
         $data['main_content'] = $this->load->view('admin/order/orderdetail', $data, TRUE);
         $this->load->view('admin/index', $data);

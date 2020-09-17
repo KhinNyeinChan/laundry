@@ -13,7 +13,7 @@ class Store extends CI_Controller {
     public function index()
     {
         $data = array();
-        $data['page_title'] = 'Store';
+        $data['page_title'] = 'Add Store';
         $data['main_content'] = $this->load->view('admin/store/add', $data, TRUE);
         
         $this->load->view('admin/index', $data);
@@ -74,6 +74,7 @@ class Store extends CI_Controller {
 
     public function all_store_list()
     {
+        $data['page_title'] = 'Store';
         $data['stores'] = $this->store_model->get_all_store();
         //$data['count'] = $this->common_model->get_category_total();
         $data['main_content'] = $this->load->view('admin/store/stores', $data, TRUE);
@@ -108,6 +109,7 @@ class Store extends CI_Controller {
 
         }
 
+        $data['page_title'] = 'Update Store';
         $data['store'] = $this->store_model->get_single_store_info($id);
         $data['main_content'] = $this->load->view('admin/store/edit_store', $data, TRUE);
         $this->load->view('admin/index', $data);

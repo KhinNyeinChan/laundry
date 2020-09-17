@@ -13,7 +13,7 @@ class User extends CI_Controller {
     public function index()
     {
         $data = array();
-        $data['page_title'] = 'User';
+        $data['page_title'] = 'Add User';
         $data['country'] = $this->common_model->select('country');
         $data['power'] = $this->common_model->get_all_power('user_power');
         $data['main_content'] = $this->load->view('admin/user/add', $data, TRUE);
@@ -71,6 +71,7 @@ class User extends CI_Controller {
 
     public function all_user_list()
     {
+        $data['page_title'] = 'Users';
         $data['users'] = $this->common_model->get_all_user();
         $data['country'] = $this->common_model->select('country');
         $data['count'] = $this->common_model->get_user_total();
@@ -115,6 +116,7 @@ class User extends CI_Controller {
 
         }
 
+        $data['page_title'] = 'Update User';
         $data['user'] = $this->common_model->get_single_user_info($id);
         $data['user_role'] = $this->common_model->get_user_role($id);
         $data['power'] = $this->common_model->select('user_power');
@@ -159,7 +161,8 @@ class User extends CI_Controller {
 
 
     public function power()
-    {   
+    { 
+        $data['page_title'] = 'User Power'; 
         $data['powers'] = $this->common_model->get_all_power('user_power');
         $data['main_content'] = $this->load->view('admin/user/user_power', $data, TRUE);
         $this->load->view('admin/index', $data);

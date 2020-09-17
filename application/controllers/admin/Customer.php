@@ -13,7 +13,7 @@ class Customer extends CI_Controller {
     public function index()
     {
         $data = array();
-        $data['page_title'] = 'Customer';
+        $data['page_title'] = 'Add Customer';
        // $data['country'] = $this->common_model->select('country');
        // $data['power'] = $this->common_model->get_all_power('user_power');
         $data['main_content'] = $this->load->view('admin/customer/add', $data, TRUE);
@@ -64,6 +64,7 @@ class Customer extends CI_Controller {
 
     public function all_customer_list()
     {
+        $data['page_title'] = 'Customers';
         $data['customers'] = $this->customer_model->get_all_customer();
         $data['count'] = $this->customer_model->get_customer_total();
         $data['main_content'] = $this->load->view('admin/customer/customers', $data, TRUE);
@@ -90,6 +91,7 @@ class Customer extends CI_Controller {
 
         }
 
+        $data['page_title'] = 'Update Customer';
         $data['customer'] = $this->customer_model->get_single_customer_info($id);
         $data['main_content'] = $this->load->view('admin/customer/edit_customer', $data, TRUE);
         $this->load->view('admin/index', $data);

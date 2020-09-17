@@ -13,7 +13,7 @@ class Expense extends CI_Controller {
     public function index()
     {
         $data = array();
-        $data['page_title'] = 'Expense';
+        $data['page_title'] = 'Add Expense';
         $data['expense_category'] = $this->expense_model->select('expense_category');
         $data['expenses'] = $this->expense_model->get_all_expense();
         $data['main_content'] = $this->load->view('admin/expense/add', $data, TRUE);
@@ -72,6 +72,7 @@ class Expense extends CI_Controller {
 
     public function all_expense_list()
     {
+        $data['page_title'] = 'Expenses';
         $data['expenses'] = $this->expense_model->get_all_expense();
         $data['expense_category'] = $this->expense_model->select('expense_category');
         $data['count'] = $this->expense_model->get_expense_total();
@@ -115,6 +116,7 @@ class Expense extends CI_Controller {
 
         }
 
+        $data['page_title'] = 'Update Expense';
         $data['expense'] = $this->expense_model->get_single_expense_info($id);
         $data['expense_category'] = $this->expense_model->select('expense_category');
         $data['main_content'] = $this->load->view('admin/expense/edit_expense', $data, TRUE);

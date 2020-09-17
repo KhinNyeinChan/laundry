@@ -13,7 +13,7 @@ class Expense_Category extends CI_Controller {
     public function index()
     {
         $data = array();
-        $data['page_title'] = 'Expense_Category';
+        $data['page_title'] = 'Add Expense Category';
         $data['main_content'] = $this->load->view('admin/expense_category/add', $data, TRUE);
         
         $this->load->view('admin/index', $data);
@@ -63,6 +63,7 @@ class Expense_Category extends CI_Controller {
 
     public function all_expense_category_list()
     {
+        $data['page_title'] = 'Expense Categories';
         $data['expense_categories'] = $this->expense_category_model->get_all_expense_category();
         $data['count'] = $this->expense_category_model->get_expense_category_total();
         $data['main_content'] = $this->load->view('admin/expense_category/expense_categories', $data, TRUE);
@@ -86,6 +87,7 @@ class Expense_Category extends CI_Controller {
 
         }
 
+        $data['page_title'] = 'Update Expense Category';
         $data['expense_category'] = $this->expense_category_model->get_single_expense_category_info($id);
         $data['main_content'] = $this->load->view('admin/expense_category/edit_expense_category', $data, TRUE);
         $this->load->view('admin/index', $data);
