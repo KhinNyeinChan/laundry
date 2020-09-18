@@ -515,10 +515,14 @@
         const customer = customersArray.filter(cust => cust.id == customerId)[0];
         const pickupDate = document.getElementById("pickupDate").value;
         const refNote = document.getElementById("refNote").value;
+        const discount = document.getElementById("ds_con").innerHTML;
+        const totalPayable = document.getElementById("total-payable").innerHTML;
         let totalQty = 0;
+        let totalAmount = 0;
         let totalItem = orderItemArray.length;
         for(let i = 0; i<orderItemArray.length; i++){
             totalQty += orderItemArray[i].quantity;
+            totalAmount += orderItemArray[i].subTotal;
         }
         const printOrderObj = {
             customer,
@@ -526,11 +530,22 @@
             refNote,
             orderItemArray,
             totalQty,
-            totalItem
+            totalItem,
+            totalAmount,
+            discount,
+            totalPayable
         };
         xhttpRequest.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
-                console.log(JSON.parse(this.responseText));
+                console.log(this.responseText);
+                cancelOrder();
+                document.getElementById("selectedCustomer").value = "";
+                document.getElementById("pickupDate").value = "";
+                document.getElementById("refNote").value = "";
+                document.getElementById("total-payable").innerHTML = 0;
+                document.getElementById("count").innerHTML = "0(0)";
+                document.getElementById("total").innerHTML = 0;
+                window.location.href = "<?php echo base_url() ?>admin/invoice/printOrderInvoice/"+this.responseText;
             }
         };
         xhttpRequest.open("POST","<?php echo base_url() ?>admin/pos/printOrder",true);
