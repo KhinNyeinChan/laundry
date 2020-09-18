@@ -145,6 +145,9 @@ class Pos extends CI_Controller {
         $endDate = $data->pickupDate;
         $totalItem = $data->totalItem;
         $totalQty = $data->totalQty;
+        $totalAmount = $data->totalAmount;
+        $discount = $data->discount;
+        $subtotal = $data->totalPayable;
         $payment_status = 'unpaid';
         $refNote = $data->refNote;
         $order_status ='received';
@@ -158,7 +161,10 @@ class Pos extends CI_Controller {
             "created_by" => $createdBy,
             "customer_name" => $customerName,
             "ref_note" => $refNote,
-            "order_status" => $order_status
+            "order_status" => $order_status,
+            "total" => $totalAmount,
+            "discount" => $discount,
+            "subtotal" => $subtotal
         );
         $orderID = $this->common_model->insert($orderData,'orders');
         if($orderID != NULL){
@@ -171,12 +177,13 @@ class Pos extends CI_Controller {
                     'quantity' => $element->quantity,
                     'product_code' => $element->product->code,
                     'product_name'=> $element->product->name,
+                    'product_price' =>$element->product->price,
                     'status' => $order_status
                 );
                 $this->common_model->insert($orderItemData,'order_items');
             }
         }
-        echo json_encode($data);
+        echo json_encode($orderID);
     }
 
     public function submitPayment(){
@@ -212,7 +219,10 @@ class Pos extends CI_Controller {
             "created_by" => $createdBy,
             "customer_name" => $customerName,
             "ref_note" => $refNote,
-            "order_status" => $order_status
+            "order_status" => $order_status,
+            "total" => $total,
+            "discount" => $discount,
+            "subtotal" => $totalPayable
         );
         $orderID = $this->common_model->insert($orderData,'orders');
         if($orderID != NULL){
@@ -225,6 +235,7 @@ class Pos extends CI_Controller {
                     'quantity' => $element->quantity,
                     'product_code' => $element->product->code,
                     'product_name'=> $element->product->name,
+                    'product_price' =>$element->product->price,
                     'status' => $order_status
                 );
                 $this->common_model->insert($orderItemData,'order_items');
