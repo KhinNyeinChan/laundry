@@ -170,6 +170,12 @@
                         <div class="col-3 text-right">Change</div>
                         <div class="col-3 text-right"><?= number_format($payment['pos_balance']) ?></div>
                     </div>
+                    <div class="row">
+                        <div class="col-3"></div>
+                        <div class="col-3"></div>
+                        <div class="col-3 text-right">Status</div>
+                        <div class="col-3 text-right"><?= $payment['status'] ?></div>
+                    </div>
                     <div class="row text-center mt-2">
                     <?php foreach($store as $st) : ?>
                         <div class="alert alert-success col-12"><?= $st['receipt_footer'] ?></div>
