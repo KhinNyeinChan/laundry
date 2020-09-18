@@ -23,4 +23,14 @@ class Invoice extends CI_Controller {
         $data['sale'] = $this->common_model->select_by_orderId($orderId,'sale')[0];
         $this->load->view('admin/invoice',$data);
     }
+
+    public function printOrderInvoice($orderId){
+        $data = array();
+        $data['store'] = $this->common_model->select('store');
+        $data['orders'] = $this->common_model->select_option($orderId,'orders')[0];
+        $customerId = $this->common_model->get_customerId($orderId);
+        $data['customer'] = $this->common_model->select_option($customerId[0]['customer_id'],'customer')[0];
+        $data['products'] = $this->common_model->select_by_orderId($orderId,'order_items');
+        $this->load->view('admin/printOrderInvoice',$data);
+    }
 }
