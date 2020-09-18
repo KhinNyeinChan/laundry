@@ -423,6 +423,12 @@ class Common_model extends CI_Model {
 	    return $query->result_array();
     } 
 
+    //-- select by Id to get customerId
+    function get_customerId($id){
+        $query=$this->db->query("select customer_id from orders where id = $id ");
+	    return $query->result_array();
+    } 
+
     //-- select by saleId
     function select_by_saleId($id,$table){
         $this->db->select();
@@ -442,4 +448,5 @@ class Common_model extends CI_Model {
         $query = $query->result_array();  
         return $query;
     } 
+    
 }
