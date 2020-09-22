@@ -170,6 +170,31 @@ class sale_model extends CI_Model {
         return $query;
     }
 
+    function get_all_openbill(){
+
+        $this->db->select('*');
+        //$this->db->select('c.name as category, c.id as category_id');
+        $this->db->from('orders');
+        // $this->db->where('name !=', $name);
+        $where = "payment_status='unpaid' OR payment_status='partial' OR payment_status='due'";
+        $this->db->where($where);
+        //$this->db->join('category c','c.id = p.category_id','LEFT');
+        $this->db->order_by('id','DESC');
+        $query = $this->db->get();
+        $query = $query->result_array();  
+        return $query;
+    }
+
+    function get_all_order_item(){
+        $this->db->select('t.*');
+        $this->db->select('o.customer_name as cname,o.start_date as sdate,o.end_date as edate');
+        $this->db->from('order_items t');
+        $this->db->join('orders o','o.id = t.order_id','LEFT');
+        //$this->db->order_by('id','DESC');
+        $query = $this->db->get();
+        $query = $query->result_array();  
+        return $query;
+    }
     //-- count active, inactive and total user
     function get_user_total(){
         $this->db->select('*');
