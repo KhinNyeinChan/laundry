@@ -94,9 +94,9 @@
                                     <td><?php echo $order['start_date']; ?></td>
                                     <td><?php echo $order['end_date']; ?></td>
                                     <td><?php echo $order['customer_name']; ?></td>
-                                    <td><?php echo $order['note']; ?></td>
+                                    <td><?php echo $order['ref_note']; ?></td>
                                     <td><?php echo $order['total_item']; ?></td>
-                                    <!-- <td><?php echo $order['grand_total']; ?></td> -->
+                                    <td><?php echo $order['subtotal']; ?></td> 
                                     
                                     <td class="text-nowrap">
 
