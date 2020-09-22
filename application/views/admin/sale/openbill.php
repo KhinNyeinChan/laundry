@@ -46,13 +46,13 @@
                 <div class="card-body">
 
                 <!--?php if ($this->session->userdata('role') == 'admin'): ?>
-                    <a href="<?php echo base_url('admin/sale') ?>" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Opened Bills</a> &nbsp;
+                    <a href="<?php echo base_url('admin/sale') ?>" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Opened Bills</a-->
 
                 <!--?php else: ?-->
                     <!-- check logged user role permissions -->
 
-                    <!--?php if(check_power(1)):?>
-                        <a href="<?php echo base_url('admin/sale') ?>" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Opened Bills</a>
+                    <!--?php if(check_power(1)):?-->
+                        <!--a href="<?php echo base_url('admin/sale') ?>" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Opened Bills</a-->
                     <!--?php endif; ?-->
                 <!--?php endif ?-->
                 
@@ -61,93 +61,69 @@
                         <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>Sale No</th>
                                     <th>Order No</th>
-                                    <th>Date</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
                                     <th>Customer</th>
-                                    <th>Total</th>
-                                    <th>Tax</th>
-                                    <th>Rounding</th>
-                                    <th>Discount</th>
+                                    <th>Reference Note</th>
+                                    <th>Total Items</th>
                                     <th>Grand Total</th>
-                                    <th>Paid</th>
-                                    <th>Status</th>
-                                    <th>Note/Member</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>Sale No</th>
                                     <th>Order No</th>
-                                    <th>Date</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
                                     <th>Customer</th>
-                                    <th>Total</th>
-                                    <th>Tax</th>
-                                    <th>Rounding</th>
-                                    <th>Discount</th>
+                                    <th>Reference Note</th>
+                                    <th>Total Items</th>
                                     <th>Grand Total</th>
-                                    <th>Paid</th>
-                                    <th>Status</th>
-                                    <th>Note/Member</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
                             
                             <tbody>
-                            <?php foreach ($openbill as $sale): ?>
+                            <?php if(is_array($openbill)): ?>
+                            <?php foreach ($openbill as $order): ?>
                                 
                                 <tr>
 
-                                    <!--td><?php echo $product['name']; ?></td-->
-                                    <!--td><?php echo $product['code']; ?></td-->
-                                    <!--td><?php echo $product['category']; ?></td-->
-                                    <!--td><?php echo $product['price']; ?></td-->
-                                    <!--td><?php echo $product['quantity']; ?></td-->
+                                    <td><?php echo $order['id']; ?></td>
+                                    <td><?php echo $order['start_date']; ?></td>
+                                    <td><?php echo $order['end_date']; ?></td>
+                                    <td><?php echo $order['customer_name']; ?></td>
+                                    <td><?php echo $order['note']; ?></td>
+                                    <td><?php echo $order['total_item']; ?></td>
+                                    <!-- <td><?php echo $order['grand_total']; ?></td> -->
                                     
-                                    <!--td>
-                                        <?php if ($product['status'] == 0): ?>
-                                            <div class="label label-table label-danger">Inactive</div>
-                                        <?php else: ?>
-                                            <div class="label label-table label-success">Active</div>
-                                        <?php endif ?>
-                                    </td-->
-                                   
-
                                     <td class="text-nowrap">
 
                                         <?php if ($this->session->userdata('role') == 'admin'): ?>
-                                            <a href="<?php echo base_url('admin/sale/update/'.$sale['id']) ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-success m-r-10"></i> </a>
+                                            <a href="<?php echo base_url('admin/pos/'.$order['id']) ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-th m-r-10"></i> </a>
 
-                                            <a id="delete" data-toggle="modal" data-target="#confirm_delete_<?php echo $product['id'];?>" href="#"  data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash text-danger m-r-10"></i> </a>
+                                            <a id="delete" data-toggle="modal" data-target="#confirm_delete_<?php echo $order['id'];?>" href="#"  data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash text-danger m-r-10"></i> </a>
 
 
                                         <?php else: ?>
 
                                             <!-- check logged user role permissions -->
 
-                                            <!--?php if(check_power(2)):?>
-                                                <a href="<?php echo base_url('admin/product/update/'.$product['id']) ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-success m-r-10"></i> </a>
+                                            <?php if(check_power(2)):?>
+                                                <a href="<?php echo base_url('admin/pos/'.$order['id']) ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-th m-r-10"></i> </a>
                                             <?php endif; ?>
                                             <?php if(check_power(3)):?>
-                                                <a href="<?php echo base_url('admin/product/delete/'.$product['id']) ?>" onClick="return doconfirm();" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash text-danger m-r-10"></i> </a>
+                                                <a href="<?php echo base_url('admin/open_bill/delete/'.$order['id']) ?>" onClick="return doconfirm();" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash text-danger m-r-10"></i> </a>
                                             <?php endif; ?>
 
-                                        <!--?php endif ?-->
-
-                                        
-                                        
-                                        <!--?php if ($product['status'] == 1): ?>
-                                            <a href="<?php echo base_url('admin/product/deactive/'.$product['id']) ?>" data-toggle="tooltip" data-original-title="Deactive"> <i class="fa fa-close text-danger m-r-10"></i> </a>
-                                        <!--?php else: ?>
-                                            <a href="<?php echo base_url('admin/product/active/'.$product['id']) ?>" data-toggle="tooltip" data-original-title="Active"> <i class="fa fa-check text-info m-r-10"></i> </a>
-                                        <!--?php endif ?-->
+                                        <?php endif ?>
                                         
                                     </td>
                                 </tr>
 
                             <?php endforeach ?>
-
+                            <?php endif; ?>
                             </tbody>
 
 
@@ -162,11 +138,11 @@
 </div>
 
 
-
-<?php foreach ($openbill as $sale): ?>
+<?php if(is_array($openbill)): ?>
+<?php foreach ($openbill as $order): ?>
  
  
-<div class="modal fade" id="confirm_delete_<?php echo $sale['id'];?>">
+<div class="modal fade" id="confirm_delete_<?php echo $order['id'];?>">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -182,7 +158,7 @@
                 
                 Are you sure want to delete? <br> <hr>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a href="<?php echo base_url('admin/sale/delete/'.$sale['id']) ?>" class="btn btn-danger"> Delete</a>
+                <a href="<?php echo base_url('admin/sale/delete/'.$order['id']) ?>" class="btn btn-danger"> Delete</a>
                 
             </div>
 
@@ -195,3 +171,4 @@
 
 
 <?php endforeach ?>
+<?php endif; ?>
