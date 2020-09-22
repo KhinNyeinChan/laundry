@@ -71,6 +71,7 @@ class Sale extends CI_Controller {
 
     public function all_sale_list()
     {
+        $data['page_title'] = 'Sale';
         $data['listsale'] = $this->sale_model->get_all_sale();
        // $data['category'] = $this->product_model->select('category');
         $data['count'] = $this->sale_model->get_sale_total();
@@ -80,6 +81,7 @@ class Sale extends CI_Controller {
     }
     public function all_openBill_list()
     {
+        $data['page_title'] = 'Opened Bills';
         $data['openbill'] = $this->sale_model->get_all_openbill();
        // $data['category'] = $this->product_model->select('category');
         //$data['count'] = $this->sale_model->get_openbill_total();
@@ -107,6 +109,7 @@ class Sale extends CI_Controller {
 
         }
 
+        $data['page_title'] = 'Edit Sale Product';
         $data['product'] = $this->product_model->get_single_product_info($id);
         $data['category'] = $this->product_model->select('category');
         $data['main_content'] = $this->load->view('admin/product/edit_product', $data, TRUE);
