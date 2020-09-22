@@ -679,11 +679,11 @@
 
                                 <?php if ($this->session->userdata('role') == 'admin'): ?>
                                     <li><a href="<?php echo base_url('admin/sale/all_sale_list') ?>"><i class="fa fa-angle-right"></i> List Sales</a></li>
-                                    <li><a href="<?php echo base_url('admin/sale') ?>"><i class="fa fa-angle-right"></i> List Opened Bills </a></li>
+                                    <li><a href="<?php echo base_url('admin/sale/all_openBill_list') ?>"><i class="fa fa-angle-right"></i> List Opened Bills </a></li>
                                 
                                 <?php else: ?>
                                     <?php if(check_power(1)):?>
-                                        <li><a href="<?php echo base_url('admin/sale') ?>"><i class="fa fa-angle-right"></i> List Opened Bills </a></li>
+                                        <li><a href="<?php echo base_url('admin/sale/all_openBill_list') ?>"><i class="fa fa-angle-right"></i> List Opened Bills </a></li>
                                     
                                     <?php endif; ?>
                                 <?php endif ?>
