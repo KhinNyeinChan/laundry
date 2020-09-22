@@ -6,6 +6,7 @@ class Sale extends CI_Controller {
         parent::__construct();
         check_login_user();
        $this->load->model('sale_model');
+       $this->load->model('product_model');
        $this->load->model('login_model');
     }
 
