@@ -78,7 +78,15 @@ class Sale extends CI_Controller {
         // $data['main_content'] = $this->load->view('admin/sale/openbill', $data, TRUE);
         $this->load->view('admin/index', $data);
     }
-
+    public function all_openBill_list()
+    {
+        $data['openbill'] = $this->sale_model->get_all_sale();
+       // $data['category'] = $this->product_model->select('category');
+        $data['count'] = $this->sale_model->get_sale_total();
+        //$data['main_content'] = $this->load->view('admin/sale/listsale', $data, TRUE);
+        $data['main_content'] = $this->load->view('admin/sale/openbill', $data, TRUE);
+        $this->load->view('admin/index', $data);
+    }
     //-- update products info
     public function update($id)
     {
