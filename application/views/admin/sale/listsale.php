@@ -66,8 +66,6 @@
                                     <th>Date</th>
                                     <th>Customer</th>
                                     <th>Total</th>
-                                    <th>Tax</th>
-                                    <th>Rounding</th>
                                     <th>Discount</th>
                                     <th>Grand Total</th>
                                     <th>Paid</th>
@@ -83,8 +81,6 @@
                                     <th>Date</th>
                                     <th>Customer</th>
                                     <th>Total</th>
-                                    <th>Tax</th>
-                                    <th>Rounding</th>
                                     <th>Discount</th>
                                     <th>Grand Total</th>
                                     <th>Paid</th>
@@ -99,12 +95,18 @@
                                 
                                 <tr>
 
-                                    <!--td><?php echo $product['name']; ?></td-->
-                                    <!--td><?php echo $product['code']; ?></td-->
-                                    <!--td><?php echo $product['category']; ?></td-->
-                                    <!--td><?php echo $product['price']; ?></td-->
-                                    <!--td><?php echo $product['quantity']; ?></td-->
-                                    
+                                    <td><?php echo $sale['id']; ?></td>
+                                    <td><?php echo $sale['order_id']; ?></td>
+                                    <td><?php echo $sale['date']; ?></td>
+                                    <td><?php echo $sale['customer_name']; ?></td>
+                                    <td><?php echo $sale['total']; ?></td>
+                                    <!-- <td><?php echo $sale['total_tax']; ?></td> -->
+                                    <!-- <td><?php echo $sale['rounding']; ?></td> -->
+                                    <td><?php echo $sale['discount']; ?></td>
+                                    <td><?php echo $sale['grand_total']; ?></td>
+                                    <td><?php echo $sale['paid']; ?></td>
+                                    <td><?php echo $sale['status']; ?></td>
+                                    <td><?php echo $sale['note']; ?></td>
                                     <!--td>
                                         <?php if ($product['status'] == 0): ?>
                                             <div class="label label-table label-danger">Inactive</div>
