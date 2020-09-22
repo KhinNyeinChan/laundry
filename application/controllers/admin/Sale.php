@@ -80,9 +80,9 @@ class Sale extends CI_Controller {
     }
     public function all_openBill_list()
     {
-        $data['openbill'] = $this->sale_model->get_all_sale();
+        $data['openbill'] = $this->sale_model->get_all_openbill();
        // $data['category'] = $this->product_model->select('category');
-        $data['count'] = $this->sale_model->get_sale_total();
+        //$data['count'] = $this->sale_model->get_openbill_total();
         //$data['main_content'] = $this->load->view('admin/sale/listsale', $data, TRUE);
         $data['main_content'] = $this->load->view('admin/sale/openbill', $data, TRUE);
         $this->load->view('admin/index', $data);
