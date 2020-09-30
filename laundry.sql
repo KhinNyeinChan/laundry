@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2020 at 06:28 AM
+-- Generation Time: Sep 30, 2020 at 06:28 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 5.6.32
 
@@ -944,6 +944,159 @@ INSERT INTO `sale` (`id`, `order_id`, `date`, `customer_id`, `customer_name`, `c
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sale_items`
+--
+
+CREATE TABLE `sale_items` (
+  `id` int(11) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `sale_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `total` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `subtotal` int(11) NOT NULL,
+  `product_code` varchar(100) NOT NULL,
+  `product_name` varchar(100) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `customer_name` varchar(100) NOT NULL,
+  `payment_status` varchar(100) NOT NULL,
+  `note` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `sale_items`
+--
+
+INSERT INTO `sale_items` (`id`, `date`, `sale_id`, `product_id`, `total`, `quantity`, `subtotal`, `product_code`, `product_name`, `customer_id`, `customer_name`, `payment_status`, `note`) VALUES
+(1, '2020-09-13 23:49:36', 48, 8, 2000, 1, 2000, 'w30', 'Wash 30 kg', 8, 'ggg', 'paid', ''),
+(2, '2020-09-13 23:53:40', 49, 8, 2000, 1, 2000, 'w30', 'Wash 30 kg', 6, 'sadf', 'paid', ''),
+(3, '2020-09-13 23:53:40', 49, 2, 1500, 1, 1500, 'w15', 'Wash 15 kg', 6, 'sadf', 'paid', ''),
+(4, '2020-09-13 23:56:49', 50, 9, 2500, 1, 2500, 'w50', 'Wash 50 kg', 1, 'zzz', 'partial', ''),
+(5, '2020-09-14 21:01:21', 51, 1, 1000, 1, 1000, 'w8', 'Wash 8 kg', 1, 'zzz', 'partial', ''),
+(6, '2020-09-14 21:01:21', 51, 8, 2000, 1, 2000, 'w30', 'Wash 30 kg', 1, 'zzz', 'partial', ''),
+(7, '2020-09-14 21:33:18', 52, 9, 2500, 1, 2500, 'w50', 'Wash 50 kg', 1, 'zzz', 'paid', ''),
+(8, '2020-09-14 21:33:18', 52, 10, 5000, 1, 5000, 'w100', 'Wash 100 kg', 1, 'zzz', 'paid', ''),
+(9, '2020-09-14 21:38:44', 53, 4, 1500, 1, 1500, 'd15', 'Dry 15 kg', 3, 'khin nyein chan', 'paid', ''),
+(10, '2020-09-14 21:38:44', 53, 11, 3000, 1, 3000, 'd30', 'Dry 30 Kg', 3, 'khin nyein chan', 'paid', ''),
+(11, '2020-09-14 21:40:59', 54, 10, 5000, 1, 5000, 'w100', 'Wash 100 kg', 8, 'ggg', 'paid', ''),
+(12, '2020-09-14 21:41:54', 55, 10, 5000, 1, 5000, 'w100', 'Wash 100 kg', 9, 'Ay Sea', 'partial', ''),
+(13, '2020-09-14 21:49:01', 56, 2, 1500, 1, 1500, 'w15', 'Wash 15 kg', 9, 'Ay Sea', 'partial', ''),
+(14, '2020-09-14 22:06:45', 57, 8, 2000, 1, 2000, 'w30', 'Wash 30 kg', 2, 'nnvn', 'paid', ''),
+(15, '2020-09-14 22:09:18', 58, 10, 5000, 1, 5000, 'w100', 'Wash 100 kg', 5, 'xfv', 'paid', ''),
+(16, '2020-09-14 22:12:37', 59, 11, 3000, 1, 3000, 'd30', 'Dry 30 Kg', 1, 'zzz', 'paid', ''),
+(17, '2020-09-14 22:17:56', 60, 4, 1500, 1, 1500, 'd15', 'Dry 15 kg', 8, 'ggg', 'paid', ''),
+(18, '2020-09-14 22:41:10', 61, 7, 50, 3, 150, 'oth', 'Other', 7, 'knc', 'paid', ''),
+(19, '2020-09-14 22:46:51', 62, 10, 5000, 1, 5000, 'w100', 'Wash 100 kg', 1, 'zzz', 'paid', ''),
+(20, '2020-09-14 22:46:51', 62, 9, 2500, 1, 2500, 'w50', 'Wash 50 kg', 1, 'zzz', 'paid', ''),
+(21, '2020-09-14 22:47:37', 63, 10, 5000, 1, 5000, 'w100', 'Wash 100 kg', 8, 'ggg', 'paid', ''),
+(22, '2020-09-14 22:47:37', 63, 9, 2500, 1, 2500, 'w50', 'Wash 50 kg', 8, 'ggg', 'paid', ''),
+(23, '2020-09-14 22:56:23', 64, 5, 50, 5, 250, 'ir', 'Iron', 6, 'sadf', 'paid', ''),
+(24, '2020-09-14 22:58:13', 65, 1, 1000, 3, 3000, 'w8', 'Wash 8 kg', 3, 'khin nyein chan', 'paid', ''),
+(25, '2020-09-14 23:04:36', 66, 1, 1000, 1, 1000, 'w8', 'Wash 8 kg', 5, 'xfv', 'paid', ''),
+(26, '2020-09-14 23:04:36', 66, 2, 1500, 1, 1500, 'w15', 'Wash 15 kg', 5, 'xfv', 'paid', ''),
+(27, '2020-09-14 23:10:28', 67, 1, 1000, 1, 1000, 'w8', 'Wash 8 kg', 9, 'Ay Sea', 'paid', ''),
+(28, '2020-09-14 23:10:28', 67, 2, 1500, 1, 1500, 'w15', 'Wash 15 kg', 9, 'Ay Sea', 'paid', ''),
+(29, '2020-09-14 23:31:41', 68, 1, 1000, 1, 1000, 'w8', 'Wash 8 kg', 5, 'xfv', 'paid', ''),
+(30, '2020-09-14 23:31:41', 68, 2, 1500, 1, 1500, 'w15', 'Wash 15 kg', 5, 'xfv', 'paid', ''),
+(31, '2020-09-14 23:47:11', 69, 9, 2500, 3, 7500, 'w50', 'Wash 50 kg', 1, 'zzz', 'paid', ''),
+(32, '2020-09-15 11:12:55', 70, 1, 1000, 1, 1000, 'w8', 'Wash 8 kg', 2, 'nnvn', 'paid', ''),
+(33, '2020-09-15 11:12:55', 70, 9, 2500, 1, 2500, 'w50', 'Wash 50 kg', 2, 'nnvn', 'paid', ''),
+(34, '2020-09-15 21:06:51', 71, 1, 1000, 1, 1000, 'w8', 'Wash 8 kg', 9, 'Ay Sea', 'paid', ''),
+(35, '2020-09-15 21:06:51', 71, 8, 2000, 1, 2000, 'w30', 'Wash 30 kg', 9, 'Ay Sea', 'paid', ''),
+(36, '2020-09-16 18:48:01', 72, 1, 1000, 1, 1000, 'w8', 'Wash 8 kg', 9, 'Ay Sea', 'paid', ''),
+(37, '2020-09-16 18:48:01', 72, 2, 1500, 1, 1500, 'w15', 'Wash 15 kg', 9, 'Ay Sea', 'paid', ''),
+(38, '2020-09-16 18:48:01', 72, 4, 1500, 1, 1500, 'd15', 'Dry 15 kg', 9, 'Ay Sea', 'paid', ''),
+(39, '2020-09-16 18:48:01', 72, 3, 1000, 1, 1000, 'd8', 'Dry 8 kg', 9, 'Ay Sea', 'paid', ''),
+(40, '2020-09-16 20:28:18', 73, 1, 1000, 1, 1000, 'w8', 'Wash 8 kg', 5, 'xfv', 'paid', ''),
+(41, '2020-09-16 20:28:18', 73, 3, 1000, 1, 1000, 'd8', 'Dry 8 kg', 5, 'xfv', 'paid', ''),
+(42, '2020-09-16 20:28:18', 73, 5, 50, 6, 300, 'ir', 'Iron', 5, 'xfv', 'paid', ''),
+(43, '2020-09-16 20:28:19', 73, 6, 50, 1, 50, 'std', 'Softener', 5, 'xfv', 'paid', ''),
+(44, '2020-09-16 20:40:35', 74, 8, 2000, 1, 2000, 'w30', 'Wash 30 kg', 9, 'Ay Sea', 'paid', ''),
+(45, '2020-09-16 20:40:35', 74, 11, 3000, 1, 3000, 'd30', 'Dry 30 Kg', 9, 'Ay Sea', 'paid', ''),
+(46, '2020-09-16 20:40:35', 74, 5, 50, 5, 250, 'ir', 'Iron', 9, 'Ay Sea', 'paid', ''),
+(47, '2020-09-16 22:45:21', 75, 1, 1000, 1, 1000, 'w8', 'Wash 8 kg', 8, 'ggg', 'paid', ''),
+(48, '2020-09-16 22:45:21', 75, 9, 2500, 1, 2500, 'w50', 'Wash 50 kg', 8, 'ggg', 'paid', ''),
+(49, '2020-09-16 22:46:18', 76, 9, 2500, 1, 2500, 'w50', 'Wash 50 kg', 2, 'nnvn', 'paid', ''),
+(50, '2020-09-16 22:46:18', 76, 10, 5000, 1, 5000, 'w100', 'Wash 100 kg', 2, 'nnvn', 'paid', ''),
+(51, '2020-09-16 22:47:44', 77, 5, 50, 3, 150, 'ir', 'Iron', 3, 'khin nyein chan', 'paid', ''),
+(52, '2020-09-16 22:56:45', 78, 1, 1000, 1, 1000, 'w8', 'Wash 8 kg', 9, 'Ay Sea', 'paid', ''),
+(53, '2020-09-16 22:56:45', 78, 2, 1500, 1, 1500, 'w15', 'Wash 15 kg', 9, 'Ay Sea', 'paid', ''),
+(54, '2020-09-16 22:56:45', 78, 3, 1000, 1, 1000, 'd8', 'Dry 8 kg', 9, 'Ay Sea', 'paid', ''),
+(55, '2020-09-16 22:56:45', 78, 4, 1500, 1, 1500, 'd15', 'Dry 15 kg', 9, 'Ay Sea', 'paid', ''),
+(56, '2020-09-16 22:56:45', 78, 5, 50, 7, 350, 'ir', 'Iron', 9, 'Ay Sea', 'paid', ''),
+(57, '2020-09-16 22:56:46', 78, 6, 50, 2, 100, 'std', 'Softener', 9, 'Ay Sea', 'paid', ''),
+(58, '2020-09-18 11:06:37', 79, 8, 2000, 1, 2000, 'w30', 'Wash 30 kg', 5, 'xfv', 'paid', ''),
+(59, '2020-09-18 11:06:37', 79, 11, 3000, 1, 3000, 'd30', 'Dry 30 Kg', 5, 'xfv', 'paid', ''),
+(60, '2020-09-18 11:06:37', 79, 5, 50, 10, 500, 'ir', 'Iron', 5, 'xfv', 'paid', ''),
+(61, '2020-09-18 11:06:37', 79, 6, 50, 2, 100, 'std', 'Softener', 5, 'xfv', 'paid', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setting`
+--
+
+CREATE TABLE `setting` (
+  `id` int(11) NOT NULL,
+  `logo` varchar(255) DEFAULT NULL,
+  `site_name` varchar(55) DEFAULT NULL,
+  `phone` int(20) DEFAULT NULL,
+  `dateformat` varchar(20) NOT NULL,
+  `timeformat` varchar(20) NOT NULL,
+  `default_email` varchar(100) NOT NULL,
+  `protocol` varchar(20) NOT NULL,
+  `smtp_host` varchar(255) NOT NULL,
+  `smtp_user` varchar(100) NOT NULL,
+  `smtp_pass` varchar(255) NOT NULL,
+  `smtp_port` varchar(10) NOT NULL,
+  `smtp_crypto` varchar(5) NOT NULL,
+  `mailpath` varchar(55) NOT NULL,
+  `currency_prefix` varchar(3) NOT NULL,
+  `default_tax_rate` varchar(20) NOT NULL,
+  `display_product` varchar(20) NOT NULL,
+  `default_category` varchar(50) NOT NULL,
+  `default_discount` varchar(20) NOT NULL,
+  `auto_print` varchar(10) NOT NULL,
+  `after_sale_page` varchar(10) NOT NULL,
+  `service_charges` varchar(20) NOT NULL,
+  `rows_per_page` varchar(20) NOT NULL,
+  `rounding` varchar(20) NOT NULL,
+  `pro_limit` varchar(10) NOT NULL,
+  `default_customer` varchar(20) NOT NULL,
+  `decimals` varchar(10) NOT NULL,
+  `qty_decimals` varchar(10) NOT NULL,
+  `sac` varchar(10) NOT NULL,
+  `decimals_sep` varchar(2) NOT NULL,
+  `thousands_sep` varchar(2) NOT NULL,
+  `display_symbol` varchar(10) NOT NULL,
+  `symbol` varchar(55) NOT NULL,
+  `focus_add_item` varchar(55) NOT NULL,
+  `add_customer` varchar(55) NOT NULL,
+  `toggle_category_slider` varchar(55) NOT NULL,
+  `cancel_sale` varchar(55) NOT NULL,
+  `suspend_sale` varchar(55) NOT NULL,
+  `print_order` varchar(55) NOT NULL,
+  `print_bill` varchar(55) NOT NULL,
+  `finalize_sale` varchar(55) NOT NULL,
+  `today_sale` varchar(55) NOT NULL,
+  `open_hold_bills` varchar(55) NOT NULL,
+  `close_register` varchar(55) NOT NULL,
+  `printer` varchar(50) NOT NULL,
+  `receipt_printer` varchar(55) NOT NULL,
+  `order_printers` varchar(55) NOT NULL,
+  `cash_drawer_codes` varchar(55) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `setting`
+--
+
+INSERT INTO `setting` (`id`, `logo`, `site_name`, `phone`, `dateformat`, `timeformat`, `default_email`, `protocol`, `smtp_host`, `smtp_user`, `smtp_pass`, `smtp_port`, `smtp_crypto`, `mailpath`, `currency_prefix`, `default_tax_rate`, `display_product`, `default_category`, `default_discount`, `auto_print`, `after_sale_page`, `service_charges`, `rows_per_page`, `rounding`, `pro_limit`, `default_customer`, `decimals`, `qty_decimals`, `sac`, `decimals_sep`, `thousands_sep`, `display_symbol`, `symbol`, `focus_add_item`, `add_customer`, `toggle_category_slider`, `cancel_sale`, `suspend_sale`, `print_order`, `print_bill`, `finalize_sale`, `today_sale`, `open_hold_bills`, `close_register`, `printer`, `receipt_printer`, `order_printers`, `cash_drawer_codes`) VALUES
+(8, '', 'Laundry', 99999999, 'dd-mm-yyyy', 'H:I:S', 'Thae@mail.com', '', '', '', '', '', '', '', 'MMK', '5%', '0', '4', '15%', '', 'pos', '5%', '25', '', '', '11', '2', '1', '', '1', '0', '', '', '', '', '', '', '', '', '', '', '', '', '', '1', '', '', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `store`
 --
 
@@ -1154,6 +1307,12 @@ ALTER TABLE `sale`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `sale_items`
+--
+ALTER TABLE `sale_items`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `store_product_items`
 --
 ALTER TABLE `store_product_items`
@@ -1234,6 +1393,12 @@ ALTER TABLE `product`
 --
 ALTER TABLE `sale`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+
+--
+-- AUTO_INCREMENT for table `sale_items`
+--
+ALTER TABLE `sale_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `store_product_items`
