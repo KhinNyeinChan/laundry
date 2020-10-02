@@ -176,7 +176,7 @@ class sale_model extends CI_Model {
         //$this->db->select('c.name as category, c.id as category_id');
         $this->db->from('orders');
         // $this->db->where('name !=', $name);
-        $where = "payment_status='unpaid' OR payment_status='partial' OR payment_status='due'";
+        $where = "payment_status='unpaid' OR payment_status='partial'";
         $this->db->where($where);
         //$this->db->join('category c','c.id = p.category_id','LEFT');
         $this->db->order_by('id','DESC');
@@ -336,5 +336,12 @@ class sale_model extends CI_Model {
             }
             
     }
+
+    //update by sale_id
+    function edit_by_saleId($action, $id, $table){
+        $this->db->where('sale_id',$id);
+        $this->db->update($table,$action);
+        return;
+    } 
 
 }
