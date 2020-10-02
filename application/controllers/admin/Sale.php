@@ -38,9 +38,12 @@ class Sale extends CI_Controller {
     {
         $data['page_title'] = 'Opened Bills';
         $data['openbill'] = $this->sale_model->get_all_openbill();
-       // $data['category'] = $this->product_model->select('category');
-        //$data['count'] = $this->sale_model->get_openbill_total();
-        //$data['main_content'] = $this->load->view('admin/sale/listsale', $data, TRUE);
+        $data['sales'] = $this->common_model->select('sale');
+        $data['saleItems'] = $this->common_model->select('sale_items');
+        $data['stores'] = $this->common_model->select('store');
+        $data['customers'] = $this->common_model->select('customer');
+        $data['orderItems'] = $this->common_model->select('order_items');
+        $data['payments'] = $this->common_model->select('payment');
         $data['main_content'] = $this->load->view('admin/sale/openbill', $data, TRUE);
         $this->load->view('admin/index', $data);
     }
@@ -102,4 +105,134 @@ class Sale extends CI_Controller {
     //     $this->load->view('admin/printOrderInvoice',$data);
     // }
 
+    //to store opened bill data for unpaid
+    public function submitUnpaidBill(){
+        $data = array(
+            'openedBillData' => $this->input->post('openedBillData')
+        );
+        $data = json_decode($data['openedBillData']);
+        $orderId = $data->filterOrder->id;
+        $customerId = $data->customer->id;
+        $customerName = $data->customer->name;
+        $customerPhone = $data->customer->phone;
+        $total = $data->filterOrder->total;
+        $discount = $data->filterOrder->discount;
+        $grandTotal = $data->filterOrder->subtotal;
+        $totalItem = $data->filterOrder->total_item;
+        $totalQty = $data->filterOrder->total_qty;
+        $paid = $data->totalPaying;
+        $createdBy = $this->session->userdata('name');
+        $paymentStatus = "paid";
+        $storeId = "1";
+        $saleNote =$data->saleNote;
+        $balance = $data->balance;
+        $payingBy = $data->payingBy;
+        $paymentNote = $data->paymentNote;
+        $saleData = array(
+            "order_id" => $orderId,
+            "customer_id" => $customerId,
+            "customer_name" => $customerName,
+            "customer_phone" => $customerPhone,
+            "total" => $total,
+            "discount" => $discount,
+            "grand_total" => $grandTotal,
+            "total_item" => $totalItem,
+            "total_quantity" => $totalQty,
+            "paid" => $paid,
+            "created_by" => $createdBy,
+            "status" => $paymentStatus,
+            "store_id" => $storeId,
+            "note" => $saleNote,
+            "balance" => $balance
+        );
+        $saleId = $this->common_model->insert($saleData, 'sale');
+        $refNote = $data->filterOrder->ref_note;
+        if($saleId != null){
+            $orderItemArray = $data->filterOrderItem;
+            for ($i=0; $i < count($orderItemArray); $i++) { 
+                $element = $orderItemArray[$i];
+                $saleItemData = array(
+                    "sale_id" => $saleId,
+                    "customer_id" => $customerId,
+                    "customer_name" => $customerName,
+                    "payment_status" => $paymentStatus,
+                    "note" => $refNote,
+                    "product_id" => $element->product_id ,
+                    "quantity" => $element->quantity ,
+                    "product_code" => $element->product_code,
+                    "product_name" => $element->product_name,
+                    "total" => $element->product_price,
+                    "subtotal" => $element->subtotal 
+                );
+                $this->common_model->insert($saleItemData, 'sale_items');
+            }
+        }
+        if($saleId != null){
+            $paymentData = array(
+                "sale_id" => $saleId,
+                "customer_id" => $customerId,
+                "paid_by" => $payingBy,
+                "amount" => $grandTotal,
+                "created_by" => $createdBy,
+                "pos_paid" => $paid,
+                "pos_balance" => $balance,
+                "store_id" => $storeId,
+                "status" => $paymentStatus,
+                "note" => $paymentNote
+            );
+            $this->common_model->insert($paymentData, 'payment');
+        }
+        $updateOpenedData = array(
+            "payment_status" => $paymentStatus
+        );
+        $this->common_model->edit_option($updateOpenedData, $orderId, 'orders');
+        echo ($orderId);
+    }
+
+    //to store opened bill data for partial
+    public function submitPartialBill(){
+        $data = array(
+            'openedPartialBillData' => $this->input->post('openedPartialBillData')
+        );
+        $data = json_decode($data['openedPartialBillData']);
+        $orderId = $data->filterOrder->id;
+        $totalPaying = $data->totalPaying;
+        $paymentStatus = "paid";
+        $saleNote =$data->saleNote;
+        $balance = $data->balance;
+        $payingBy = $data->payingBy;
+        $paymentNote = $data->paymentNote;
+        $saleId = $data->saleId;
+
+        $updateOrderData = array(
+            "payment_status" => $paymentStatus
+        );
+        $this->common_model->edit_option($updateOrderData, $orderId, 'orders');
+
+        $updateSaleData = array(
+            "status" => $paymentStatus,
+            "paid" => $totalPaying,
+            "note" => $saleNote,
+            "balance" => $balance
+        );
+        $this->common_model->edit_option($updateSaleData, $saleId, 'sale');
+
+        $saleItemArray = $data->filterSaleItem;
+        for ($i=0; $i < count($saleItemArray); $i++) { 
+            $updateSaleItemData = array(
+                "payment_status" => $paymentStatus
+            );
+            $this->sale_model->edit_by_saleId($updateSaleItemData, $saleId, 'sale_items');
+        }
+
+        $updatePaymentData = array(
+            "status" => $paymentStatus,
+            "pos_paid" => $totalPaying,
+            "pos_balance" => $balance,
+            "note" => $paymentNote,
+            "paid_by" => $payingBy
+        );
+        $this->sale_model->edit_by_saleId($updatePaymentData, $saleId, 'payment');
+        echo ($orderId);
+    }
 }
