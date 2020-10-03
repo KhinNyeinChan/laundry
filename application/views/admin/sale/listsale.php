@@ -121,16 +121,20 @@
                                     <td class="text-nowrap">
 
                                         <?php if ($this->session->userdata('role') == 'admin'): ?>
-                                           <!--  Add View Sale Button -->
+                                    
+                                            <span data-toggle="modal" data-target="#view-modal">
+                                            <button type="button" class="btn btn-success btn-xs" id="btn_viewSale" data-target="#view-sale<?php echo $sale['id'];?>" href="#" data-toggle="tooltip" data-original-title="View Sale">View</button>
+                                            </span>
 
-                                           <!-- <button type="submit" class="btn btn-success" id="update_ostatus" data-toggle="modal" data-target="#update-ostatus<?php echo $order['id'];?>" href="#" data-toggle="tooltip" data-original-title="Update Order Status"><?php echo $order['order_status']; ?></button>
- -->
-                                            <button type="button" class="btn btn-success btn-xs" id="btn_viewSale" data-toggle="modal" data-target="#view-sale<?php echo $sale['id'];?>" href="#" data-toggle="tooltip" data-original-title="View Sale">View</button>
-                            
                                             <!--  Add View Sale Button -->
                                             <a href="<?php echo base_url('admin/sale/update/'.$sale['id']) ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-success m-r-10"></i> </a>
 
-                                            <a id="delete" data-toggle="modal" data-target="#confirm_delete_<?php echo $sale['id'];?>" href="#"  data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash text-danger m-r-10"></i> </a>
+
+                                             <span data-toggle="modal" data-target="#confirm_delete_<?php echo $sale['id'];?>">
+                                                <a id="delete" href="#" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash text-danger m-r-10"></i> </a>
+                                            </span>
+
+                                            <!-- <a id="delete" data-toggle="modal" data-target="#confirm_delete_<?php echo $sale['id'];?>" href="#"  data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash text-danger m-r-10"></i> </a> -->
 
                                        <?php endif?>
 
@@ -153,7 +157,9 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h4 class="modal-title"></h4>
+        <h4 class="modal-title text-danger">Confirm Delete!</h4>
+       <!--  <div class="modal-header">Confirm Delete!</h4> -->
+
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
