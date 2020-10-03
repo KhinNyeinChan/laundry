@@ -107,9 +107,10 @@
 
                                         <?php if ($this->session->userdata('role') == 'admin'): ?>
                                             <a href="<?php echo base_url('admin/product/update/'.$product['id']) ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-success m-r-10"></i> </a>
-
-                                            <a id="delete" data-toggle="modal" data-target="#confirm_delete_<?php echo $product['id'];?>" href="#"  data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash text-danger m-r-10"></i> </a>
-
+                                            
+                                            <span data-toggle="modal" data-target="#confirm_delete_<?php echo $product['id'];?>">
+                                            <a id="delete" href="#"  data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash text-danger m-r-10"></i> </a>
+                                            </span>
 
                                         <?php else: ?>
 
