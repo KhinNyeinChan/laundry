@@ -131,8 +131,9 @@
                                     <td><?php echo $row['power_id']; ?></td>
                                     
                                     <td class="text-nowrap">
-                                    
-                                        <a data-toggle="modal" data-target="#editModal_<?php echo $row['id'];?>" href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-success m-r-10"></i> </a>
+                                        <span data-toggle="modal" data-target="#editModal_<?php echo $row['id'];?>">
+                                        <a  href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-success m-r-10"></i> </a>
+                                        </span>
 
                                         <a id="delete" href="<?php echo base_url('admin/user/delete_power/'.$row['id']) ?>"  data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash text-danger m-r-10"></i> </a>
                                         
