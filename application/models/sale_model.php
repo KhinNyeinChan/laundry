@@ -243,6 +243,40 @@ class sale_model extends CI_Model {
         return $query;
     }
 
+    //Copied From Common_model
+    //-- select by orderId to get saleId
+    function get_saleId($id){
+        $query=$this->db->query("select id from sale where order_id = $id ");
+        return $query->result_array();
+    } 
+
+    //-- select by Id to get customerId
+    function get_customerId($id){
+        $query=$this->db->query("select customer_id from orders where id = $id ");
+        return $query->result_array();
+    } 
+
+    //-- select by saleId
+    function select_by_saleId($id,$table){
+        $this->db->select();
+        $this->db->from($table);
+        $this->db->where('sale_id', $id);
+        $query = $this->db->get();
+        $query = $query->result_array();  
+        return $query;
+    } 
+
+    //-- select by orderId
+    function select_by_orderId($id,$table){
+        $this->db->select();
+        $this->db->from($table);
+        $this->db->where('order_id', $id);
+        $query = $this->db->get();
+        $query = $query->result_array();  
+        return $query;
+    } 
+     //Copied From Common_model
+
 
     //-- image upload function with resize option
     function upload_image($max_size){

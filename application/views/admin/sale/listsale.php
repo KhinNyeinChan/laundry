@@ -70,7 +70,8 @@
                                     <th>Grand Total</th>
                                     <th>Paid</th>
                                     <th>Status</th>
-                                    <th>Note/Member</th>
+                                    <th>Note/
+                                    Member</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -85,7 +86,8 @@
                                     <th>Grand Total</th>
                                     <th>Paid</th>
                                     <th>Status</th>
-                                    <th>Note/Member</th>
+                                    <th>Note/
+                                    Member</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
@@ -119,40 +121,27 @@
                                     <td class="text-nowrap">
 
                                         <?php if ($this->session->userdata('role') == 'admin'): ?>
+                                    
+                                            <span data-toggle="modal" data-target="#view-modal">
+                                            <button type="button" class="btn btn-success btn-xs" id="btn_viewSale" data-target="#view-sale<?php echo $sale['id'];?>" href="#" data-toggle="tooltip" data-original-title="View Sale">View</button>
+                                            </span>
+
+                                            <!--  Add View Sale Button -->
                                             <a href="<?php echo base_url('admin/sale/update/'.$sale['id']) ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-success m-r-10"></i> </a>
 
-                                            <a id="delete" data-toggle="modal" data-target="#confirm_delete_<?php echo $sale['id'];?>" href="#"  data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash text-danger m-r-10"></i> </a>
 
+                                             <span data-toggle="modal" data-target="#confirm_delete_<?php echo $sale['id'];?>">
+                                                <a id="delete" href="#" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash text-danger m-r-10"></i> </a>
+                                            </span>
 
-                                        <?php else: ?>
+                                            <!-- <a id="delete" data-toggle="modal" data-target="#confirm_delete_<?php echo $sale['id'];?>" href="#"  data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash text-danger m-r-10"></i> </a> -->
 
-                                            <!-- check logged user role permissions -->
+                                       <?php endif?>
 
-                                            <!--?php if(check_power(2)):?>
-                                                <a href="<?php echo base_url('admin/product/update/'.$product['id']) ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-success m-r-10"></i> </a>
-                                            <?php endif; ?>
-                                            <?php if(check_power(3)):?>
-                                                <a href="<?php echo base_url('admin/product/delete/'.$product['id']) ?>" onClick="return doconfirm();" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash text-danger m-r-10"></i> </a>
-                                            <?php endif; ?>
-
-                                        <!--?php endif ?-->
-
-                                        
-                                        
-                                        <!--?php if ($product['status'] == 1): ?>
-                                            <a href="<?php echo base_url('admin/product/deactive/'.$product['id']) ?>" data-toggle="tooltip" data-original-title="Deactive"> <i class="fa fa-close text-danger m-r-10"></i> </a>
-                                        <!--?php else: ?>
-                                            <a href="<?php echo base_url('admin/product/active/'.$product['id']) ?>" data-toggle="tooltip" data-original-title="Active"> <i class="fa fa-check text-info m-r-10"></i> </a>
-                                        <!--?php endif ?-->
-                                        
                                     </td>
                                 </tr>
-
                             <?php endforeach ?>
-
                             </tbody>
-
-
                         </table>
                     </div>
                 </div>
@@ -160,20 +149,17 @@
         </div>
     </div>
         <!-- End Page Content -->
-
 </div>
 
-
-
-<?php foreach ($listsale as $sale): ?>
- 
- 
+<?php foreach ($listsale as $sale): ?> 
 <div class="modal fade" id="confirm_delete_<?php echo $sale['id'];?>">
   <div class="modal-dialog">
     <div class="modal-content">
 
       <div class="modal-header">
-        <h4 class="modal-title"></h4>
+        <h4 class="modal-title text-danger">Confirm Delete!</h4>
+       <!--  <div class="modal-header">Confirm Delete!</h4> -->
+
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
@@ -187,13 +173,127 @@
                 <a href="<?php echo base_url('admin/sale/delete/'.$sale['id']) ?>" class="btn btn-danger"> Delete</a>
                 
             </div>
-
       </div>
-
-
     </div>
   </div>
 </div>
+<!-- View Sale Modal -->
+<div id="view-sale<?= $sale['id'] ?>" class="modal fade" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>View Sale</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>  
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container printableArea">
+                    <div class="text-center col-md-12">
+                        <?php foreach($store as $st){
+                            echo '<p>'.$st['name'];
+                            echo '<br>';
+                            echo $st['address1'].'<br>'.$st['address2'];
+                            echo $st['city'].'<br>'.$st['phone'];
+                            echo '</p>';
+                            echo '<p>'.$st['receipt_header'].'</p><br>';
+                        }
+                        ?>
+                    </div>
+                    
+                    <div class="col-md-12">
+                        <p class="text-left">
+                            Date : <!-- <?= $date['start_date'] ?>  --><br>
+                            Sales Person : <!-- <?= $sale['created_by'] ?>  -->  <br>
+                            Order No : <!-- <?= $sale['order_id'] ?>  --> <br>
+                            Customer Name : <!-- <?= $sale['customer_name'] ?> -->  <br>
+                            Customer Phone : <!-- <?= $sale['customer_phone'] ?> -->  <br>
+                            Pick up Date : <!-- <?= $date['end_date'] ?>  --> 
+                        </p>                                                                                              
+                    </div>
 
+                    <div class="col-md-12">
+                        <div class="table-responsive m-t-40" style="clear: both;">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Description</th>
+                                        <th class="text-right">Quantity</th>
+                                        <th class="text-right">Total</th>
+                                        <th class="text-right">SubTotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <!-- <?php foreach($sale_items as $saleItem) : ?>
+                                    <tr>
+                                        <td> <?= $saleItem['product_name'] ?>[</td>
+                                        <td class="text-right"><?= number_format($saleItem['quantity']) ?></td>
+                                        <td class="text-right"> <?= number_format($saleItem['total']) ?></td>
+                                        <td class="text-right"><?= number_format($saleItem['subtotal']) ?></td>
+                                    </tr>
+                                    <?php endforeach; ?> -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
-<?php endforeach ?>
+                    <hr>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-3"></div>
+                            <div class="col-3"></div>
+                            <div class="col-3 text-right">Total</div>
+                            <div class="col-3 text-right"><?= number_format($sale['total']) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3"></div>
+                            <div class="col-3"></div>
+                            <div class="col-3 text-right">Discount</div>
+                            <div class="col-3 text-right"><?= number_format($sale['discount']) ?></div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-3"></div>
+                            <div class="col-3"></div>
+                            <div class="col-3 text-right">Net Amount</div>
+                            <div class="col-3 text-right"><!-- <?= number_format($payment['amount']) ?> --></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3"></div>
+                            <div class="col-3"></div>
+                            <div class="col-3 text-right">Paid Amount</div>
+                            <div class="col-3 text-right"><!-- <?= number_format($payment['pos_paid']) ?> --></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3"></div>
+                            <div class="col-3"></div>
+                            <div class="col-3 text-right">Change</div>
+                            <div class="col-3 text-right"><!-- <?= number_format($payment['pos_balance']) ?> --></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3"></div>
+                            <div class="col-3"></div>
+                            <div class="col-3 text-right">Status</div>
+                            <div class="col-3 text-right"><!-- <?= $payment['status'] ?> --></div>
+                        </div>
+                        <div class="row text-center mt-2">
+                            <?php foreach($store as $st) : ?>
+                                <div class="alert alert-success col-12"><?= $st['receipt_footer'] ?> </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="clearfix"></div>
+                    <hr>
+                    <div class="text-right">
+                        <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
+                        <button id="print" class="btn btn-default btn-outline" type="button"> <span><i class="fa fa-print"></i> Print</span> </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php endforeach; ?>

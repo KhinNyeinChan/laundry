@@ -81,7 +81,9 @@
                                     <td><?php echo $orderdetail['assign_to']; ?></td>
 
                                     <td class="text-nowrap">
-                                        <a id="add_assign" data-toggle="modal" data-target="#assign-modal<?php echo $orderdetail['id'];?>" href="#" data-toggle="tooltip" data-original-title="Add Assign"><i class="fa fa-user text-success m-10"></i></a>
+                                    <span data-toggle="modal" data-target="#view-modal">
+                                        <a id="add_assign" data-target="#assign-modal<?php echo $orderdetail['id'];?>" href="#" data-toggle="tooltip" data-original-title="Add Assign"><i class="fa fa-user text-success m-10"></i></a>
+                                    </span>
                                     </td>
                                 </tr>
 

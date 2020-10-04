@@ -96,7 +96,11 @@
                                     <td><?php echo $order['total_qty']; ?></td>
                                     <td><?php echo $order['total_item']; ?></td>
                                     <td><?php echo $order['payment_status']; ?></td>
-                                    <td class="text-nowrap"><button type="submit" class="btn btn-success" id="update_ostatus" data-toggle="modal" data-target="#update-ostatus<?php echo $order['id'];?>" href="#" data-toggle="tooltip" data-original-title="Update Order Status"><?php echo $order['order_status']; ?></button></td>
+                                    <td class="text-nowrap">
+                                        <span data-toggle="modal" data-target="#view-modal">
+                                        <button type="submit" class="btn btn-success" id="update_ostatus" data-target="#update-ostatus<?php echo $order['id'];?>" href="#" data-toggle="tooltip" data-original-title="Update Status"><?php echo $order['order_status']; ?></button>
+                                    </span>
+                                    </td>
                                    <!--  <td class="text-nowrap"><?php echo $order['order_status']; ?>
                                         <a id="update_ostatus" data-toggle="modal" data-target="#update-ostatus<?php echo $order['id'];?>" href="#" data-toggle="tooltip" data-original-title="Update Order Status"><i class="fa fa-user text-success m-10"></i></a>
                                     </td>
