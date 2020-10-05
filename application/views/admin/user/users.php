@@ -133,9 +133,9 @@
 
                                         <?php if ($this->session->userdata('role') == 'admin'): ?>
                                             <a href="<?php echo base_url('admin/user/update/'.$user['id']) ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-success m-r-10"></i> </a>
-
-                                            <a id="delete" data-toggle="modal" data-target="#confirm_delete_<?php echo $user['id'];?>" href="#"  data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash text-danger m-r-10"></i> </a>
-
+                                            <span data-toggle="modal" data-target="#confirm_delete_<?php echo $user['id'];?>">
+                                            <a id="delete"  href="#"  data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash text-danger m-r-10"></i> </a>
+                                            </span>
 
                                         <?php else: ?>
 
@@ -198,7 +198,7 @@
                 
                 Are you sure want to delete? <br> <hr>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a href="<?php echo base_url('admin/user/delete/'.$user['id']) ?>" class="btn btn-danger"> Delete</a>
+                <a href="<?php echo base_url('admin/user/delete/'.$user['id']) ?>" class="btn btn-danger">Delete</a>
                 
             </div>
 
