@@ -29,6 +29,9 @@ class Sale extends CI_Controller {
         $data['listsale'] = $this->sale_model->get_all_sale();
        // $data['category'] = $this->product_model->select('category');
         $data['store'] = $this->sale_model->select('store');
+        $data['orders'] = $this->sale_model->select('orders');
+        $data['sale_items'] = $this->sale_model->select('sale_items');
+        $data['payments'] = $this->sale_model->select('payment');
         $data['count'] = $this->sale_model->get_sale_total();
         $data['main_content'] = $this->load->view('admin/sale/listsale', $data, TRUE);
         // $data['main_content'] = $this->load->view('admin/sale/openbill', $data, TRUE);
