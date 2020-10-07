@@ -19,7 +19,7 @@ class Pos extends CI_Controller {
        // $data['category_products'] = $this->common_model->getProductByCategoryID(1);
        // $data['product_item'] = $this->common_model->deleteStoreItems(1);
        // $data['product_item'] = array();
-        $data['discountpercent'] = $this->common_model->select('discount')[0];
+        $data['discountpercent'] = $this->common_model->select('discount');
         $data['customers'] = $this->common_model->select('customer');
 
         $data['temp_category'] = ["Wash","Dry","Iron"];
@@ -175,6 +175,7 @@ class Pos extends CI_Controller {
                     'order_id' => $orderID,
                     'product_id' => $element->product->id,
                     'quantity' => $element->quantity,
+                    'subtotal' => $element->subTotal,
                     'product_code' => $element->product->code,
                     'product_name'=> $element->product->name,
                     'product_price' =>$element->product->price,
@@ -233,6 +234,7 @@ class Pos extends CI_Controller {
                     'order_id' => $orderID,
                     'product_id' => $element->product->id,
                     'quantity' => $element->quantity,
+                    'subtotal' => $element->subTotal,
                     'product_code' => $element->product->code,
                     'product_name'=> $element->product->name,
                     'product_price' =>$element->product->price,
@@ -255,7 +257,8 @@ class Pos extends CI_Controller {
             "created_by" => $createdBy,
             "status" => $paymentStatus,
             "store_id" => $store_id,
-            "note" => $saleNote
+            "note" => $saleNote,
+            "balance" => $balance
         );
         $saleId = $this->common_model->insert($saleData, 'sale');
         if($saleId != null){

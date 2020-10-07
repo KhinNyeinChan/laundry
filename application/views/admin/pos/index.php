@@ -622,7 +622,7 @@
         const balance = document.getElementById("balance").innerHTML;
         const payingBy = document.getElementById("payBy").value;
         const paymentNote = document.getElementById("paynote").value;
-        const saleNote = document.getElementById("note").innerHTML;
+        const saleNote = document.getElementById("note").value;
         let totalQty = 0;
         let totalAmount = 0;
         let paymentStatus = "";

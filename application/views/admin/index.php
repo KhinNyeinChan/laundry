@@ -779,7 +779,7 @@
                             <a class="waves-effect waves-dark" href="<?php echo base_url('admin/dashboard/backup') ?>" aria-expanded="false"><i class="fa fa-cloud-download"></i><span class="hide-menu">Backup Database</span></a>
                         </li>
 
-                        <li>
+                        <!-- <li>
                             <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Forms</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="<?php echo base_url('admin/form/general') ?>"><i class="fa fa-angle-right"></i> Form Basic Layout </a></li>
@@ -787,8 +787,8 @@
                                 <li><a href="<?php echo base_url('admin/form/material') ?>"><i class="fa fa-angle-right"></i> Form Material</a></li>
                                 <li><a href="<?php echo base_url('admin/form/validation') ?>"><i class="fa fa-angle-right"></i> Form Validation</a></li>
                             </ul>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Tables</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="<?php echo base_url('admin/table/basic') ?>"><i class="fa fa-angle-right"></i> Basic Tables</a></li>
@@ -796,9 +796,9 @@
                                 <li><a href="<?php echo base_url('admin/table/datatable') ?>"><i class="fa fa-angle-right"></i> Data Tables</a></li>
                                 <li><a href="<?php echo base_url('admin/table/editable') ?>"><i class="fa fa-angle-right"></i> Editable Table</a></li>
                             </ul>
-                        </li>
+                        </li> -->
 
-                        <li>
+                        <!-- <li>
                             <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Ui Elements</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="<?php echo base_url('admin/ui/cards') ?>"><i class="fa fa-angle-right"></i> Cards</a></li>
@@ -812,9 +812,9 @@
                                 <li><a href="<?php echo base_url('admin/ui/typography') ?>"><i class="fa fa-angle-right"></i> Typography</a></li>
                                 <li><a href="<?php echo base_url('admin/ui/bootstrap_ui') ?>"><i class="fa fa-angle-right"></i> Bootstrap Ui</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                         
-                        <li>
+                        <!-- <li>
                             <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-book-open-variant"></i><span class="hide-menu">Sample Pages</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="<?php echo base_url('admin/pages/blank') ?>"><i class="fa fa-angle-right"></i> Blank page</a></li>
@@ -826,30 +826,30 @@
                                 <li><a href="<?php echo base_url('admin/pages/invoice') ?>"><i class="fa fa-angle-right"></i> Invoice</a></li>
                                 <li><a href="<?php echo base_url('admin/pages/error') ?>"><i class="fa fa-angle-right"></i> Error Pages</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                         
 
-                        <li>
+                        <!-- <li>
                             <a class="waves-effect waves-dark" href="<?php echo base_url('admin/ui/mail') ?>" aria-expanded="false"><i class="mdi mdi-email"></i><span class="hide-menu">Inbox</span></a>
-                        </li>
+                        </li> -->
                         
-                        <li>
+                        <!-- <li>
                             <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-map-marker"></i><span class="hide-menu">Maps</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="<?php echo base_url('admin/ui/google_map') ?>"><i class="fa fa-angle-right"></i> Google Maps</a></li>
                                 <li><a href="<?php echo base_url('admin/ui/vector_map') ?>"><i class="fa fa-angle-right"></i> Vector Maps</a></li>
                             </ul>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <a class="waves-effect waves-dark" href="<?php echo base_url('admin/ui/widget') ?>" aria-expanded="false"><i class="mdi mdi-widgets"></i><span class="hide-menu">Widgets</span></a>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file-chart"></i><span class="hide-menu">Charts</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="<?php echo base_url('admin/ui/morris_chart') ?>"><i class="fa fa-angle-right"></i> Morris Chart</a></li>
                                 <li><a href="<?php echo base_url('admin/ui/js_chart') ?>"><i class="fa fa-angle-right"></i> Chartjs</a></li>
                             </ul>
-                        </li>
+                        </li> -->
 
                         <li>
                             <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Apps</span></a>
@@ -864,7 +864,7 @@
                         <li class="nav-small-cap">EXTRA COMPONENTS</li> -->
                         
                         
-                        <li>
+                        <!-- <li>
                             <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-arrange-send-backward"></i><span class="hide-menu">Multi level dd</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="#">item 1.1</a></li>
@@ -880,7 +880,7 @@
                                 </li>
                                 <li><a href="#">item 1.4</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
