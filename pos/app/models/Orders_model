@@ -1,0 +1,46 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+
+class Categories_model extends CI_Model
+{
+
+    public function __construct() {
+        parent::__construct();
+    }
+
+	//mod by Nyi Nyi on 18th Jan 2018 for JSON
+	public function getAllOrders() {
+        $q = $this->db->get('orders');
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
+if ($this->db->delete('orders', array('id' => $id)) &&
+            $this->db->delete('order_items', array('order_id' => $id))) {
+            return true;
+        }
+        return FALSE;
+    public function updateCategory($id, $data = NULL) {
+        if ($this->db->update('orders', $data, array('id' => $id))) {
+            return true;
+        }
+        return false;
+    }
+
+      public function deleteOrder($id) {
+        if ($this->db->delete('orders', array('id' => $id))) {
+            return true;
+        }
+        return FALSE;
+    }
+     public function updateStatus($id, $status) {
+        if ($this->db->update('order_items', array('status' => $status), array('id' => $id))) {
+            return true;
+        }
+        return false;
+    }
+
+}

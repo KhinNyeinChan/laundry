@@ -1,0 +1,1096 @@
+#
+# TABLE STRUCTURE FOR: tec_brands
+#
+
+DROP TABLE IF EXISTS `tec_brands`;
+
+CREATE TABLE `tec_brands` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# TABLE STRUCTURE FOR: tec_categories
+#
+
+DROP TABLE IF EXISTS `tec_categories`;
+
+CREATE TABLE `tec_categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(20) NOT NULL,
+  `name` varchar(55) NOT NULL,
+  `image` varchar(100) DEFAULT 'no_image.png',
+  `printer_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('1', 'MC', 'Main Course', 'no_image.png', '1');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('2', 'RO', 'Roasted', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('3', 'AP', 'Appetizer', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('4', 'SP', 'Soup', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('5', 'SD', 'Salad', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('6', 'SM', 'Set Menu', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('7', 'FV', 'Fried Vegetable', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('8', 'SDK', 'Soft Drink', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('9', 'WH', 'Whisky', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('10', 'BR', 'Brendy', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('11', 'CC', 'Classic Cocktail', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('12', 'MS', 'Milk Shake and Smoothies', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('13', 'MT', 'MockTail', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('14', 'LDK', 'Long Drink', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('15', 'SCK', 'Signature Cocktail', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('16', 'BE', 'Beer', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('17', 'SH', 'Shooter', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('18', 'LR', 'Layer', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('19', 'CF', 'Coffee', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('20', 'VA', 'Vodka', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('21', 'RM', 'Rum', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('22', 'GN', 'Gin', 'no_image.png', '0');
+INSERT INTO `tec_categories` (`id`, `code`, `name`, `image`, `printer_id`) VALUES ('23', 'TA', 'Tequila', 'no_image.png', '0');
+
+
+#
+# TABLE STRUCTURE FOR: tec_combo_items
+#
+
+DROP TABLE IF EXISTS `tec_combo_items`;
+
+CREATE TABLE `tec_combo_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `item_code` varchar(20) NOT NULL,
+  `quantity` decimal(12,4) NOT NULL,
+  `price` decimal(25,2) DEFAULT NULL,
+  `cost` decimal(25,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# TABLE STRUCTURE FOR: tec_customers
+#
+
+DROP TABLE IF EXISTS `tec_customers`;
+
+CREATE TABLE `tec_customers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(55) NOT NULL,
+  `cf1` varchar(255) NOT NULL,
+  `cf2` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `store_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_customers` (`id`, `name`, `cf1`, `cf2`, `phone`, `email`, `store_id`) VALUES ('1', 'Walk_in_Client', '', '', '', '', NULL);
+INSERT INTO `tec_customers` (`id`, `name`, `cf1`, `cf2`, `phone`, `email`, `store_id`) VALUES ('2', 't1', '', '', '', '', NULL);
+
+
+#
+# TABLE STRUCTURE FOR: tec_expenses
+#
+
+DROP TABLE IF EXISTS `tec_expenses`;
+
+CREATE TABLE `tec_expenses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `reference` varchar(50) NOT NULL,
+  `amount` decimal(25,2) NOT NULL,
+  `note` varchar(1000) DEFAULT NULL,
+  `created_by` varchar(55) NOT NULL,
+  `attachment` varchar(55) DEFAULT NULL,
+  `store_id` int(11) NOT NULL DEFAULT '1',
+  `ecategory_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# TABLE STRUCTURE FOR: tec_expenses_category
+#
+
+DROP TABLE IF EXISTS `tec_expenses_category`;
+
+CREATE TABLE `tec_expenses_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# TABLE STRUCTURE FOR: tec_gift_cards
+#
+
+DROP TABLE IF EXISTS `tec_gift_cards`;
+
+CREATE TABLE `tec_gift_cards` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `card_no` varchar(20) NOT NULL,
+  `value` decimal(25,2) NOT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `balance` decimal(25,2) NOT NULL,
+  `expiry` date DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `store_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `card_no` (`card_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# TABLE STRUCTURE FOR: tec_groups
+#
+
+DROP TABLE IF EXISTS `tec_groups`;
+
+CREATE TABLE `tec_groups` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_groups` (`id`, `name`, `description`) VALUES ('1', 'admin', 'Administrator');
+INSERT INTO `tec_groups` (`id`, `name`, `description`) VALUES ('2', 'manager', 'Manager');
+INSERT INTO `tec_groups` (`id`, `name`, `description`) VALUES ('3', 'staff', 'Staff');
+INSERT INTO `tec_groups` (`id`, `name`, `description`) VALUES ('4', 'waiter', 'Waiter');
+
+
+#
+# TABLE STRUCTURE FOR: tec_login_attempts
+#
+
+DROP TABLE IF EXISTS `tec_login_attempts`;
+
+CREATE TABLE `tec_login_attempts` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `ip_address` varbinary(16) NOT NULL,
+  `login` varchar(100) NOT NULL,
+  `time` int(11) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# TABLE STRUCTURE FOR: tec_order_items
+#
+
+DROP TABLE IF EXISTS `tec_order_items`;
+
+CREATE TABLE `tec_order_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `product_code` varchar(50) NOT NULL,
+  `product_name` varchar(50) NOT NULL,
+  `reason` varchar(50) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `responsible_person` varchar(50) NOT NULL,
+  `modified_time` datetime NOT NULL,
+  `modified_by` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# TABLE STRUCTURE FOR: tec_orders
+#
+
+DROP TABLE IF EXISTS `tec_orders`;
+
+CREATE TABLE `tec_orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `start_date` datetime NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `customer_name` varchar(20) NOT NULL,
+  `created_by` varchar(30) NOT NULL,
+  `total_items` int(11) NOT NULL,
+  `total_quantity` int(11) NOT NULL,
+  `table_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# TABLE STRUCTURE FOR: tec_payments
+#
+
+DROP TABLE IF EXISTS `tec_payments`;
+
+CREATE TABLE `tec_payments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `sale_id` int(11) DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `transaction_id` varchar(50) DEFAULT NULL,
+  `paid_by` varchar(20) NOT NULL,
+  `cheque_no` varchar(20) DEFAULT NULL,
+  `cc_no` varchar(20) DEFAULT NULL,
+  `cc_holder` varchar(25) DEFAULT NULL,
+  `cc_month` varchar(2) DEFAULT NULL,
+  `cc_year` varchar(4) DEFAULT NULL,
+  `cc_type` varchar(20) DEFAULT NULL,
+  `amount` decimal(25,2) NOT NULL,
+  `currency` varchar(3) DEFAULT NULL,
+  `created_by` int(11) NOT NULL,
+  `attachment` varchar(55) DEFAULT NULL,
+  `note` varchar(1000) DEFAULT NULL,
+  `pos_paid` decimal(25,2) DEFAULT '0.00',
+  `pos_balance` decimal(25,2) DEFAULT '0.00',
+  `gc_no` varchar(20) DEFAULT NULL,
+  `reference` varchar(50) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `store_id` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_payments` (`id`, `date`, `sale_id`, `customer_id`, `transaction_id`, `paid_by`, `cheque_no`, `cc_no`, `cc_holder`, `cc_month`, `cc_year`, `cc_type`, `amount`, `currency`, `created_by`, `attachment`, `note`, `pos_paid`, `pos_balance`, `gc_no`, `reference`, `updated_by`, `updated_at`, `store_id`) VALUES ('1', '2019-07-03 08:43:28', '1', '2', NULL, 'cash', '', '', '', '', '', '', '880.00', NULL, '1', NULL, '', '880.00', '0.00', '', NULL, NULL, NULL, '1');
+INSERT INTO `tec_payments` (`id`, `date`, `sale_id`, `customer_id`, `transaction_id`, `paid_by`, `cheque_no`, `cc_no`, `cc_holder`, `cc_month`, `cc_year`, `cc_type`, `amount`, `currency`, `created_by`, `attachment`, `note`, `pos_paid`, `pos_balance`, `gc_no`, `reference`, `updated_by`, `updated_at`, `store_id`) VALUES ('2', '2019-07-12 11:09:32', '2', '1', NULL, 'cash', '', '', '', '', '', '', '12000.00', NULL, '1', NULL, '', '12000.00', '0.00', '', NULL, NULL, NULL, '1');
+INSERT INTO `tec_payments` (`id`, `date`, `sale_id`, `customer_id`, `transaction_id`, `paid_by`, `cheque_no`, `cc_no`, `cc_holder`, `cc_month`, `cc_year`, `cc_type`, `amount`, `currency`, `created_by`, `attachment`, `note`, `pos_paid`, `pos_balance`, `gc_no`, `reference`, `updated_by`, `updated_at`, `store_id`) VALUES ('3', '2019-07-12 11:09:55', '3', '1', NULL, 'cash', '', '', '', '', '', '', '13000.00', NULL, '1', NULL, '', '15000.00', '2000.00', '', NULL, NULL, NULL, '1');
+INSERT INTO `tec_payments` (`id`, `date`, `sale_id`, `customer_id`, `transaction_id`, `paid_by`, `cheque_no`, `cc_no`, `cc_holder`, `cc_month`, `cc_year`, `cc_type`, `amount`, `currency`, `created_by`, `attachment`, `note`, `pos_paid`, `pos_balance`, `gc_no`, `reference`, `updated_by`, `updated_at`, `store_id`) VALUES ('4', '2019-07-12 11:10:00', '3', '1', NULL, 'cash', '', '', '', '', '', 'Visa', '0.00', NULL, '1', NULL, '', '0.00', '0.00', '', '', NULL, NULL, '1');
+
+
+#
+# TABLE STRUCTURE FOR: tec_printers
+#
+
+DROP TABLE IF EXISTS `tec_printers`;
+
+CREATE TABLE `tec_printers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(55) NOT NULL,
+  `type` varchar(25) NOT NULL,
+  `profile` varchar(25) NOT NULL,
+  `char_per_line` tinyint(3) unsigned DEFAULT NULL,
+  `path` varchar(255) DEFAULT NULL,
+  `ip_address` varbinary(45) DEFAULT NULL,
+  `port` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_printers` (`id`, `title`, `type`, `profile`, `char_per_line`, `path`, `ip_address`, `port`) VALUES ('1', 'RP', 'network', 'default', '48', '', '192.168.100.50', '9100');
+
+
+#
+# TABLE STRUCTURE FOR: tec_product_store_qty
+#
+
+DROP TABLE IF EXISTS `tec_product_store_qty`;
+
+CREATE TABLE `tec_product_store_qty` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `quantity` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `price` decimal(25,2) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_id` (`product_id`),
+  KEY `store_id` (`store_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_product_store_qty` (`id`, `product_id`, `store_id`, `quantity`, `price`) VALUES ('1', '1', '1', '-1.00', '800.00');
+INSERT INTO `tec_product_store_qty` (`id`, `product_id`, `store_id`, `quantity`, `price`) VALUES ('2', '2', '1', '0.00', '700.00');
+INSERT INTO `tec_product_store_qty` (`id`, `product_id`, `store_id`, `quantity`, `price`) VALUES ('3', '3', '1', '0.00', '800.00');
+INSERT INTO `tec_product_store_qty` (`id`, `product_id`, `store_id`, `quantity`, `price`) VALUES ('4', '207', '1', '0.00', '600.00');
+INSERT INTO `tec_product_store_qty` (`id`, `product_id`, `store_id`, `quantity`, `price`) VALUES ('5', '208', '1', '20.00', '800.00');
+
+
+#
+# TABLE STRUCTURE FOR: tec_product_trigger
+#
+
+DROP TABLE IF EXISTS `tec_product_trigger`;
+
+CREATE TABLE `tec_product_trigger` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` datetime(6) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `old_price` varchar(25) NOT NULL,
+  `new_price` varchar(25) NOT NULL,
+  `old_cost` varchar(25) NOT NULL,
+  `new_cost` varchar(25) NOT NULL,
+  `old_quantity` int(11) NOT NULL,
+  `new_quantity` int(11) NOT NULL,
+  `action` varchar(25) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_product_trigger` (`id`, `date`, `user_id`, `product_id`, `old_price`, `new_price`, `old_cost`, `new_cost`, `old_quantity`, `new_quantity`, `action`) VALUES ('1', '2019-07-12 10:12:13.000000', '1', '207', '0', '500.00', '0', '200.00', '0', '0', 'INSERT');
+INSERT INTO `tec_product_trigger` (`id`, `date`, `user_id`, `product_id`, `old_price`, `new_price`, `old_cost`, `new_cost`, `old_quantity`, `new_quantity`, `action`) VALUES ('2', '2019-07-12 10:12:52.000000', '1', '207', '500.00', '600.00', '200.00', '300.00', '0', '0', 'UPDATE');
+INSERT INTO `tec_product_trigger` (`id`, `date`, `user_id`, `product_id`, `old_price`, `new_price`, `old_cost`, `new_cost`, `old_quantity`, `new_quantity`, `action`) VALUES ('3', '2019-07-12 10:12:52.000000', '1', '207', '0', '0', '0', '0', '0', '0', 'UPDATE');
+INSERT INTO `tec_product_trigger` (`id`, `date`, `user_id`, `product_id`, `old_price`, `new_price`, `old_cost`, `new_cost`, `old_quantity`, `new_quantity`, `action`) VALUES ('4', '2019-07-12 10:15:08.000000', '1', '207', '600.00', '0', '300.00', '0', '0', '0', 'DELETE');
+INSERT INTO `tec_product_trigger` (`id`, `date`, `user_id`, `product_id`, `old_price`, `new_price`, `old_cost`, `new_cost`, `old_quantity`, `new_quantity`, `action`) VALUES ('5', '2019-07-12 10:15:52.000000', '1', '208', '0', '800.00', '0', '500.00', '0', '0', 'INSERT');
+INSERT INTO `tec_product_trigger` (`id`, `date`, `user_id`, `product_id`, `old_price`, `new_price`, `old_cost`, `new_cost`, `old_quantity`, `new_quantity`, `action`) VALUES ('6', '2019-07-12 10:19:05.000000', '1', '208', '0', '0', '0', '0', '0', '10', 'UPDATE');
+INSERT INTO `tec_product_trigger` (`id`, `date`, `user_id`, `product_id`, `old_price`, `new_price`, `old_cost`, `new_cost`, `old_quantity`, `new_quantity`, `action`) VALUES ('7', '2019-07-12 10:55:30.000000', '1', '208', '800.00', '800.00', '500.00', '500.00', '0', '0', 'UPDATE');
+INSERT INTO `tec_product_trigger` (`id`, `date`, `user_id`, `product_id`, `old_price`, `new_price`, `old_cost`, `new_cost`, `old_quantity`, `new_quantity`, `action`) VALUES ('8', '2019-07-12 10:55:30.000000', '1', '208', '800.00', '800.00', '500.00', '500.00', '0', '0', 'UPDATE');
+INSERT INTO `tec_product_trigger` (`id`, `date`, `user_id`, `product_id`, `old_price`, `new_price`, `old_cost`, `new_cost`, `old_quantity`, `new_quantity`, `action`) VALUES ('9', '2019-07-12 11:12:40.000000', '1', '208', '0', '0', '0', '0', '10', '20', 'UPDATE');
+
+
+#
+# TABLE STRUCTURE FOR: tec_products
+#
+
+DROP TABLE IF EXISTS `tec_products`;
+
+CREATE TABLE `tec_products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(50) NOT NULL,
+  `name` char(255) NOT NULL,
+  `category_id` int(11) NOT NULL DEFAULT '1',
+  `price` decimal(25,2) NOT NULL,
+  `image` varchar(255) DEFAULT 'no_image.png',
+  `tax` varchar(20) DEFAULT NULL,
+  `cost` decimal(25,2) DEFAULT NULL,
+  `tax_method` tinyint(1) DEFAULT '1',
+  `quantity` decimal(15,2) DEFAULT '0.00',
+  `barcode_symbology` varchar(20) NOT NULL DEFAULT 'code39',
+  `type` varchar(20) NOT NULL DEFAULT 'standard',
+  `details` varchar(255) DEFAULT '0.00',
+  `alert_quantity` decimal(10,2) DEFAULT '0.00',
+  `brand_id` int(11) DEFAULT NULL,
+  `unit_id` int(11) DEFAULT NULL,
+  `is_serialized` varchar(25) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `code` (`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=209 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('1', 'MC0001', 'Traditional Hot & Sour (Chicken)', '1', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('2', 'MC0002', 'Traditional Hot & Sour (Sea Food)', '1', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('3', 'MC0003', 'Traditional Hot & Sour (Pork)', '1', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('4', 'MC0004', 'Dry Eel Deep Fried (Spicy)', '1', '5000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('5', 'MC0005', 'Dry Chicken Deep Fried (Spicy)', '1', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('6', 'MC0006', 'Thai Basial With Chicken', '1', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('7', 'MC0007', 'Kachin Style Chicken Curry', '1', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('8', 'MC0008', 'Pork Tomato Curry', '1', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('9', 'MC0009', 'Chicken Tomato Curry', '1', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('10', 'MC0010', 'Traditional Chicken Curry (Spicy)', '1', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('11', 'MC0011', 'Kayha Chicken Curry', '1', '5000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('12', 'MC0012', 'Kayaha Pork Currry', '1', '5000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('13', 'MC0013', 'Maka Chicken Curry', '1', '5000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('14', 'MC0014', 'Maka Pork Curry', '1', '5000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('15', 'MC0015', 'Crispy Chicken Basil', '1', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('16', 'MC0016', 'Crispy Pork Ginger', '1', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('17', 'MC0017', 'Crispy Chicken Ginger', '1', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('18', 'MC0018', 'Crispy Chicken Lime', '1', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('19', 'MC0019', 'Crispy Pork Lime', '1', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('20', 'RO0001', 'Lady Finger', '2', '200.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('21', 'RO0002', 'Potato', '2', '200.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('22', 'RO0003', 'Quail Egg', '2', '400.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('23', 'RO0004', 'Chicken Satay', '2', '1000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('24', 'RO0005', 'Pork Satay', '2', '1000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('25', 'RO0006', 'Broccoli', '2', '300.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('26', 'RO0007', 'Grailled Seabass', '2', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('27', 'RO0008', 'Roast Chicken Butt', '2', '500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('28', 'RO0009', 'Eringi', '2', '500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('29', 'RO0010', 'Roast Chicken Wings', '2', '800.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('30', 'AP0001', 'Dreep Fried Chicken Wings', '3', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('31', 'AP0002', 'Prawn Tempura', '3', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('32', 'AP0003', 'Fish Finger', '3', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('33', 'AP0004', 'Fried Calamari', '3', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('34', 'AP0005', 'Deep Fried Pork Rib', '3', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('35', 'AP0006', 'Special Potato', '3', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('36', 'AP0007', 'Kayah Pork Sauscage', '3', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('37', 'AP0008', 'Demoso Gril Pork', '3', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('38', 'AP0009', 'Mutton Lemongress Pounding', '3', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('39', 'AP0010', 'Kayah Potato Pounding', '3', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('40', 'SP0001', 'Tom Yan Soup (Chicken)', '4', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('41', 'SP0002', 'Tom Yan Soup (Pork)', '4', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('42', 'SP0003', 'Tom Yan Soup (Seafoods)', '4', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('43', 'SP0004', 'Fish Head Soup', '4', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('44', 'SP0005', 'Egg Sagor', '4', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('45', 'SP0006', 'Pork Ribwith Mustard Soup', '4', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('46', 'SP0007', 'Marrow Soup (Hot & Sour) Chicken', '4', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('47', 'SP0008', 'Marrow Soup (Hot & Sour) Pork', '4', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('48', 'SP0009', 'Papaya Soup (Hot & Sour) Chicken', '4', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('49', 'SP0010', 'Papaya Soup (Hot & Sour) Pork', '4', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('50', 'SP0011', 'Kayah Traditional Soup', '4', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('51', 'SP0012', 'Kayah Chicken Soup', '4', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('52', 'SP0013', 'Kayah Ferman Cucuember Soup', '4', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('53', 'SP0014', 'Freman Mushroon Soup', '4', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('54', 'SP0015', 'Kayah Pumokim Soup', '4', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('55', 'SD0001', 'Watercress Salad', '5', '2500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('56', 'SD0002', 'Mixed Garden Salad', '5', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('57', 'SD0003', 'Seafood Salad', '5', '5000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('58', 'SD0004', 'Chicken Salad', '5', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('59', 'SD0005', 'Glass Noddle Salad (Chicken)', '5', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('60', 'SD0006', 'Glass Noddle Salad (Pork)', '5', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('61', 'SD0007', 'Glass Noddle Salad (Seafood)', '5', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('62', 'SD0008', 'Ferman Cucuember Salad', '5', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('63', 'SD0009', 'Bamboo Shoot Salad', '5', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('64', 'SD0010', 'Bean Sprout Salad', '5', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('65', 'SD0011', 'Grailled Pork Salad', '5', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('66', 'SD0012', 'Chicken Lemon Gress Salad', '5', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('67', 'SM0001', 'Burmese Fried Rice (Chicken)', '6', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('68', 'SM0002', 'Burmese Fried Rice (Pork)', '6', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('69', 'SM0003', 'Burmese Fried Rice (Seafoods)', '6', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('70', 'SM0004', 'Annyer Fried Rice (Chicken)', '6', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('71', 'SM0005', 'Annyer Fried Rice (Pork)', '6', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('72', 'SM0006', 'Annyer Fried Rice (Seafoods)', '6', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('73', 'SM0007', 'Thai Fried Rice (Chicken)', '6', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('74', 'SM0008', 'Thai Fried Rice (Pork)', '6', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('75', 'SM0009', 'Thai Fried Rice (Seafoods)', '6', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('76', 'SM0010', 'Fried Noddle (Chicken)', '6', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('77', 'SM0011', 'Fried Noddle (Pork)', '6', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('78', 'SM0012', 'Fried Noddle (Seafoods)', '6', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('79', 'SM0013', 'Fried Rice Noddle (Chicken)', '6', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('80', 'SM0014', 'Fried Rice Noddle (Pork)', '6', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('81', 'SM0015', 'Fried Rice Noddle (Seafoods)', '6', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('82', 'SM0016', 'Steam Rice', '6', '500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('83', 'FV0001', 'Fried Mixed Vegetable (Chicken)', '7', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('84', 'FV0002', 'Fried Mixed Vegetable (Pork)', '7', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('85', 'FV0003', 'Fried Mixed Vegetable (Seafoods)', '7', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('86', 'FV0004', 'Fried CauliFlower With Egg', '7', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('87', 'FV0005', 'Fried Water Cress (Plane)', '7', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('88', 'FV0006', 'Fried Water Cress (Hot & Sour)', '7', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('89', 'FV0007', 'Fried Water Cress (Mushroom)', '7', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('90', 'FV0008', 'Fried Chiness Cabbage With Egg', '7', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('91', 'FV0009', 'Fried Shrimp With Asparagus', '7', '4500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('92', 'SDK0001', 'Coke', '8', '1000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('93', 'SDK0002', 'Sprite', '8', '1000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('94', 'SDK0003', 'Red Bull', '8', '1000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('95', 'SDK0004', 'Soda', '8', '1000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('96', 'SDK0005', 'Tonic', '8', '1000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('97', 'SDK0006', 'Sunkist', '8', '1000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('98', 'SDK0007', 'Ginger Ale', '8', '1000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('99', 'SDK0008', 'Ph7', '8', '500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('100', 'WH0001', 'Red Lable (30ml)', '9', '2000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('101', 'WH0002', 'Red Lable (1000ml)', '9', '30000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('102', 'WH0003', 'Black Lable (30ml)', '9', '2500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('103', 'WH0004', 'Black Lable (1000ml)', '9', '45000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('104', 'WH0005', 'Double Bleek (30ml)', '9', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('105', 'WH0006', 'Double Bleek (1000ml)', '9', '53000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('106', 'WH0007', 'Gold Lable (30ml)', '9', '35000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('107', 'WH0008', 'Gold Lable (1000ml)', '9', '67000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('108', 'WH0009', 'Ballentine Finest (30ml)', '9', '0.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('109', 'WH0010', 'Ballentine Finest (1000ml)', '9', '0.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('110', 'WH0011', 'Chives 12 Years (30ml)', '9', '2500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('111', 'WH0012', 'Chives 12 Years (1000ml)', '9', '45000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('112', 'WH0013', 'Joek Daniel\'s (30ml)', '9', '2500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('113', 'WH0014', 'Joek Daniel\'s (1000ml)', '9', '45000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('114', 'WH0015', 'GlenFiddich 12 Years (30ml)', '9', '0.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('115', 'WH0016', 'GlenFiddich 12 Years (1000ml)', '9', '0.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('116', 'BR0001', 'Bardinet (30ml)', '10', '2000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('117', 'BR0002', 'Bardinet (1000ml)', '10', '32000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('118', 'CC0001', 'Margarita', '11', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('119', 'CC0002', 'Blue Margarita', '11', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('120', 'CC0003', 'Cosmopolitan', '11', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('121', 'CC0004', 'Whisky Sour', '11', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('122', 'CC0005', 'Midori Sour', '11', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('123', 'CC0006', 'Ameratto Sour', '11', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('124', 'CC0007', 'Longisland Iced Tea', '11', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('125', 'CC0008', 'Ak47', '11', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('126', 'CC0009', 'BullFrog', '11', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('127', 'CC0010', 'Mgito', '11', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('128', 'CC0011', 'Sexonthebeach', '11', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('129', 'CC0012', 'Tequila Sunrise', '11', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('130', 'MS0001', 'Strawberry Milkshake', '12', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('131', 'MS0002', 'Chocolate Milkshake', '12', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('132', 'MS0003', 'Mango Smoothies', '12', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('133', 'MS0004', 'Honey Smoothies', '12', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('134', 'MS0005', 'Passion Smoothies', '12', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('135', 'MK0001', 'Cinderella', '13', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('136', 'MK0002', 'Ipanema', '13', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('137', 'MK0003', 'LimeFroze with Honey', '13', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('138', 'MK0004', 'Lemon Island', '13', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('139', 'MK0005', 'MokelatSone', '13', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('140', 'LDK0001', 'Gin Tonic', '14', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('141', 'LDK0002', 'Cocopine', '14', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('142', 'LDK0003', 'Screwdriver', '14', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('143', 'LDK0004', 'Cubalibre', '14', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('144', 'LDK0005', 'Pokerface', '14', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('145', 'LDK0006', 'Woo Woo', '14', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('146', 'LDK0007', 'Jager Bomb', '14', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('147', 'SCK0001', 'Demoso', '15', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('148', 'SCK0002', 'Kayan', '15', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('149', 'SCK0003', 'DD3', '15', '4000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('150', 'BE0001', 'Myanmar Beer (640ml)', '16', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('151', 'BE0002', 'Tiger Crystal (330ml)', '16', '2500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('152', 'BE0003', 'Corona (330ml)', '16', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('153', 'BE0004', 'Hoe Gaarden (330ml)', '16', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('154', 'BE0005', 'Budweiser (330ml)', '16', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('155', 'BE0006', 'Heineken (330ml)', '16', '2500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('156', 'BE0007', 'Tiger Black (330ml)', '16', '2500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('157', 'BE0008', 'Draught Beer', '16', '0.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('158', 'SH0001', 'Kami kaze', '17', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('159', 'SH0002', 'Blue Tequila', '17', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('160', 'SH0003', 'Friendship', '17', '10000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('161', 'LA0001', '352', '18', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('162', 'LA0002', 'Blow Job', '18', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('163', 'LA0003', 'Brain Comer', '18', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('164', 'CF0001', 'Cappuccino <Hot>', '19', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('165', 'CF0002', 'Cappuccino <Cold>', '19', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('166', 'CF0003', 'CoffeeLatte <Hot>', '19', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('167', 'CF0004', 'CoffeeLatte <Cold>', '19', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('168', 'CF0005', 'Americano <Hot>', '19', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('169', 'CF0006', 'Americano <Cold>', '19', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('170', 'CF0007', 'Expresso', '19', '2000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('171', 'CF0008', 'Ice Coffee', '19', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('172', 'CF0009', 'Signature Coffee <TT\'S Coffee>', '19', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('173', 'CF0010', 'Mocha <Hot>', '19', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('174', 'CF0011', 'Mocha <Cold>', '19', '3500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('175', 'VA0001', 'Absolut Respberry (30ml)', '20', '2000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('176', 'VA0002', 'Absolut Respberry (1000ml)', '20', '30000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('177', 'VA0003', 'Absolut Peach (30ml)', '20', '2000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('178', 'VA0004', 'Absolut Peach (1000ml)', '20', '30000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('179', 'VA0005', 'Absolut Honey (30ml)', '20', '2000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('180', 'VA0006', 'Absolut Honey (1000ml)', '20', '30000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('181', 'VA0007', 'Absolut Apple (30ml)', '20', '2000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('182', 'VA0008', 'Absolut Apple (1000ml)', '20', '30000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('183', 'VA0009', 'Russion Standard (30ml)', '20', '2500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('184', 'VA0010', 'Russion Standard (1000ml)', '20', '30000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('185', 'VA0011', 'Grey Goose (30ml)', '20', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('186', 'VA0012', 'Grey Goose (1000ml)', '20', '50000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('187', 'RM0001', 'Barcadia (white) 1Liter (30ml)', '21', '2000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('188', 'RM0002', 'Barcadia (white) 1Liter (1000ml)', '21', '30000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('189', 'RM0003', 'Barcadia (Gold) 1Liter (30ml)', '21', '2000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('190', 'RM0004', 'Barcadia(Gold) 1Liter (1000ml)', '21', '30000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('191', 'RM0005', 'Myers\'s Rum <Dark> 0.7 (30ml)', '21', '2500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('192', 'RM0006', 'Myers\'s Rum <Dark> 0.7 (1000ml)', '21', '30000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('193', 'RM0007', 'Malibu 1Liter (30ml)', '21', '2500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('194', 'RM0008', 'Malibu 1Liter (1000ml)', '21', '35000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('195', 'GN0001', 'Bombay Sapphire (30ml)', '22', '2500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('196', 'GN0002', 'Bombay Sapphire (1000ml)', '22', '35000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('197', 'GN0003', 'BeeFeater (30ml)', '22', '2500.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('198', 'GN0004', 'BeeFeater (1000ml)', '22', '35000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('199', 'GN0005', 'Bulldog <700ml> (30ml)', '22', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('200', 'GN0006', 'Bulldog <700ml> (1000ml)', '22', '30000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('201', 'TA0001', 'Jose Cuervo <silver> (30ml)', '23', '2000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('202', 'TA0002', 'Jose Cuervo <silver> (1000ml)', '23', '35000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('203', 'TA0003', 'Jose Cuervo <Gold> (30ml)', '23', '2000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('204', 'TA0004', 'Jose Cuervo <Gold> (1000ml)', '23', '35000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('205', 'TA0005', 'Esplon <700ml> (30ml)', '23', '3000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('206', 'TA0006', 'Esplon <700ml> (1000ml)', '23', '35000.00', 'no_image.png', '0', '0.00', '1', '0.00', 'code39', 'standard', '0.00', '0.00', NULL, NULL, '');
+INSERT INTO `tec_products` (`id`, `code`, `name`, `category_id`, `price`, `image`, `tax`, `cost`, `tax_method`, `quantity`, `barcode_symbology`, `type`, `details`, `alert_quantity`, `brand_id`, `unit_id`, `is_serialized`) VALUES ('208', '28650445', 'testing product1', '3', '800.00', 'no_image.png', '0', '500.00', NULL, '30.00', 'code128', 'standard', '0', '0.00', '0', '1', '');
+
+
+#
+# TABLE STRUCTURE FOR: tec_purchase_items
+#
+
+DROP TABLE IF EXISTS `tec_purchase_items`;
+
+CREATE TABLE `tec_purchase_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `purchase_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` decimal(15,2) NOT NULL,
+  `cost` decimal(25,2) NOT NULL,
+  `subtotal` decimal(25,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_purchase_items` (`id`, `purchase_id`, `product_id`, `quantity`, `cost`, `subtotal`) VALUES ('2', '1', '208', '20.00', '500.00', '10000.00');
+INSERT INTO `tec_purchase_items` (`id`, `purchase_id`, `product_id`, `quantity`, `cost`, `subtotal`) VALUES ('3', '2', '208', '10.00', '500.00', '5000.00');
+
+
+#
+# TABLE STRUCTURE FOR: tec_purchase_trigger
+#
+
+DROP TABLE IF EXISTS `tec_purchase_trigger`;
+
+CREATE TABLE `tec_purchase_trigger` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` datetime(6) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `old_cost` int(11) NOT NULL,
+  `new_cost` int(11) NOT NULL,
+  `old_subtotal` int(11) NOT NULL,
+  `new_subtotal` int(11) NOT NULL,
+  `old_quantity` varchar(25) NOT NULL,
+  `new_quantity` varchar(25) NOT NULL,
+  `action` varchar(25) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_purchase_trigger` (`id`, `date`, `user_id`, `old_cost`, `new_cost`, `old_subtotal`, `new_subtotal`, `old_quantity`, `new_quantity`, `action`) VALUES ('1', '2019-07-12 10:19:04.000000', '1', '0', '0', '0', '0', '0', '10.00', 'INSERT');
+INSERT INTO `tec_purchase_trigger` (`id`, `date`, `user_id`, `old_cost`, `new_cost`, `old_subtotal`, `new_subtotal`, `old_quantity`, `new_quantity`, `action`) VALUES ('2', '2019-07-12 10:55:30.000000', '1', '500', '0', '5000', '0', '10.00', '0', 'DELETE');
+INSERT INTO `tec_purchase_trigger` (`id`, `date`, `user_id`, `old_cost`, `new_cost`, `old_subtotal`, `new_subtotal`, `old_quantity`, `new_quantity`, `action`) VALUES ('3', '2019-07-12 10:55:30.000000', '1', '0', '500', '0', '10000', '0', '20.00', 'INSERT');
+INSERT INTO `tec_purchase_trigger` (`id`, `date`, `user_id`, `old_cost`, `new_cost`, `old_subtotal`, `new_subtotal`, `old_quantity`, `new_quantity`, `action`) VALUES ('4', '2019-07-12 11:12:40.000000', '1', '0', '500', '0', '5000', '0', '10.00', 'INSERT');
+
+
+#
+# TABLE STRUCTURE FOR: tec_purchases
+#
+
+DROP TABLE IF EXISTS `tec_purchases`;
+
+CREATE TABLE `tec_purchases` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `reference` varchar(55) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `note` varchar(1000) NOT NULL,
+  `total` decimal(25,2) NOT NULL,
+  `attachment` varchar(255) DEFAULT NULL,
+  `supplier_id` int(11) DEFAULT NULL,
+  `received` tinyint(1) DEFAULT NULL,
+  `created_by` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_purchases` (`id`, `reference`, `date`, `note`, `total`, `attachment`, `supplier_id`, `received`, `created_by`, `store_id`) VALUES ('1', '', '2019-07-12 10:18:00', '', '10000.00', NULL, NULL, NULL, '1', '1');
+INSERT INTO `tec_purchases` (`id`, `reference`, `date`, `note`, `total`, `attachment`, `supplier_id`, `received`, `created_by`, `store_id`) VALUES ('2', '', '2019-07-12 11:12:00', '', '5000.00', NULL, NULL, NULL, '1', '1');
+
+
+#
+# TABLE STRUCTURE FOR: tec_registers
+#
+
+DROP TABLE IF EXISTS `tec_registers`;
+
+CREATE TABLE `tec_registers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_id` int(11) NOT NULL,
+  `cash_in_hand` decimal(25,2) NOT NULL,
+  `status` varchar(10) NOT NULL,
+  `total_cash` decimal(25,2) DEFAULT NULL,
+  `total_cheques` int(11) DEFAULT NULL,
+  `total_cc_slips` int(11) DEFAULT NULL,
+  `total_cash_submitted` decimal(25,2) NOT NULL,
+  `total_cheques_submitted` int(11) NOT NULL,
+  `total_cc_slips_submitted` int(11) NOT NULL,
+  `note` text,
+  `closed_at` timestamp NULL DEFAULT NULL,
+  `transfer_opened_bills` varchar(50) DEFAULT NULL,
+  `closed_by` int(11) DEFAULT NULL,
+  `store_id` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_registers` (`id`, `date`, `user_id`, `cash_in_hand`, `status`, `total_cash`, `total_cheques`, `total_cc_slips`, `total_cash_submitted`, `total_cheques_submitted`, `total_cc_slips_submitted`, `note`, `closed_at`, `transfer_opened_bills`, `closed_by`, `store_id`) VALUES ('1', '2019-06-25 13:57:46', '1', '0.00', 'close', '0.00', '0', '0', '0.00', '0', '0', '', '2019-06-25 13:59:10', NULL, '1', '1');
+INSERT INTO `tec_registers` (`id`, `date`, `user_id`, `cash_in_hand`, `status`, `total_cash`, `total_cheques`, `total_cc_slips`, `total_cash_submitted`, `total_cheques_submitted`, `total_cc_slips_submitted`, `note`, `closed_at`, `transfer_opened_bills`, `closed_by`, `store_id`) VALUES ('2', '2019-06-28 16:12:32', '1', '0.00', 'open', NULL, NULL, NULL, '0.00', '0', '0', NULL, NULL, NULL, NULL, '1');
+
+
+#
+# TABLE STRUCTURE FOR: tec_sale_items
+#
+
+DROP TABLE IF EXISTS `tec_sale_items`;
+
+CREATE TABLE `tec_sale_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sale_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` decimal(15,2) NOT NULL,
+  `unit_price` decimal(25,2) NOT NULL,
+  `net_unit_price` decimal(25,2) NOT NULL,
+  `discount` varchar(20) DEFAULT NULL,
+  `item_discount` decimal(25,2) DEFAULT NULL,
+  `tax` int(20) DEFAULT NULL,
+  `item_tax` decimal(25,2) DEFAULT NULL,
+  `subtotal` decimal(25,2) NOT NULL,
+  `real_unit_price` decimal(25,2) DEFAULT NULL,
+  `cost` decimal(25,2) DEFAULT '0.00',
+  `product_code` varchar(50) DEFAULT NULL,
+  `product_name` varchar(50) DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL,
+  `foc` varchar(20) DEFAULT NULL,
+  `p_price` varchar(25) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_sale_items` (`id`, `sale_id`, `product_id`, `quantity`, `unit_price`, `net_unit_price`, `discount`, `item_discount`, `tax`, `item_tax`, `subtotal`, `real_unit_price`, `cost`, `product_code`, `product_name`, `comment`, `foc`, `p_price`) VALUES ('1', '1', '1', '1.00', '800.00', '800.00', '0', '0.00', '0', '0.00', '800.00', '800.00', '0.00', '99756868', 'a11', '', '0', '0');
+INSERT INTO `tec_sale_items` (`id`, `sale_id`, `product_id`, `quantity`, `unit_price`, `net_unit_price`, `discount`, `item_discount`, `tax`, `item_tax`, `subtotal`, `real_unit_price`, `cost`, `product_code`, `product_name`, `comment`, `foc`, `p_price`) VALUES ('2', '2', '152', '1.00', '3500.00', '3500.00', '0', '0.00', '0', '0.00', '3500.00', '3500.00', '0.00', 'BE0003', 'Corona (330ml)', '', '0', '0');
+INSERT INTO `tec_sale_items` (`id`, `sale_id`, `product_id`, `quantity`, `unit_price`, `net_unit_price`, `discount`, `item_discount`, `tax`, `item_tax`, `subtotal`, `real_unit_price`, `cost`, `product_code`, `product_name`, `comment`, `foc`, `p_price`) VALUES ('3', '2', '37', '1.00', '4000.00', '4000.00', '0', '0.00', '0', '0.00', '4000.00', '4000.00', '0.00', 'AP0008', 'Demoso Gril Pork', '', '0', '0');
+INSERT INTO `tec_sale_items` (`id`, `sale_id`, `product_id`, `quantity`, `unit_price`, `net_unit_price`, `discount`, `item_discount`, `tax`, `item_tax`, `subtotal`, `real_unit_price`, `cost`, `product_code`, `product_name`, `comment`, `foc`, `p_price`) VALUES ('4', '2', '36', '1.00', '4500.00', '4500.00', '0', '0.00', '0', '0.00', '4500.00', '4500.00', '0.00', 'AP0007', 'Kayah Pork Sauscage', '', '0', '0');
+INSERT INTO `tec_sale_items` (`id`, `sale_id`, `product_id`, `quantity`, `unit_price`, `net_unit_price`, `discount`, `item_discount`, `tax`, `item_tax`, `subtotal`, `real_unit_price`, `cost`, `product_code`, `product_name`, `comment`, `foc`, `p_price`) VALUES ('8', '3', '38', '1.00', '4500.00', '4500.00', '0', '0.00', '0', '0.00', '4500.00', '4500.00', '0.00', 'AP0009', 'Mutton Lemongress Pounding', '', '0', '0');
+INSERT INTO `tec_sale_items` (`id`, `sale_id`, `product_id`, `quantity`, `unit_price`, `net_unit_price`, `discount`, `item_discount`, `tax`, `item_tax`, `subtotal`, `real_unit_price`, `cost`, `product_code`, `product_name`, `comment`, `foc`, `p_price`) VALUES ('9', '3', '36', '1.00', '4500.00', '4500.00', '0', '0.00', '0', '0.00', '4500.00', '4500.00', '0.00', 'AP0007', 'Kayah Pork Sauscage', '', '0', '0');
+
+
+#
+# TABLE STRUCTURE FOR: tec_sale_trigger
+#
+
+DROP TABLE IF EXISTS `tec_sale_trigger`;
+
+CREATE TABLE `tec_sale_trigger` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` datetime(6) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `old_grandtotal` varchar(25) NOT NULL,
+  `new_grandtotal` varchar(25) NOT NULL,
+  `old_totalitems` int(11) NOT NULL,
+  `new_totalitems` int(11) NOT NULL,
+  `old_totalquantity` int(11) NOT NULL,
+  `new_totalquantity` int(11) NOT NULL,
+  `action` varchar(25) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_sale_trigger` (`id`, `date`, `user_id`, `old_grandtotal`, `new_grandtotal`, `old_totalitems`, `new_totalitems`, `old_totalquantity`, `new_totalquantity`, `action`) VALUES ('1', '2019-07-12 11:10:18.000000', '1', '13000.00', '9000.00', '3', '2', '3', '2', 'UPDATE');
+INSERT INTO `tec_sale_trigger` (`id`, `date`, `user_id`, `old_grandtotal`, `new_grandtotal`, `old_totalitems`, `new_totalitems`, `old_totalquantity`, `new_totalquantity`, `action`) VALUES ('2', '2019-07-12 11:10:37.000000', '1', '9000.00', '9000.00', '2', '2', '2', '2', 'UPDATE');
+
+
+#
+# TABLE STRUCTURE FOR: tec_sales
+#
+
+DROP TABLE IF EXISTS `tec_sales`;
+
+CREATE TABLE `tec_sales` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` datetime NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `customer_name` varchar(55) NOT NULL,
+  `total` decimal(25,2) NOT NULL,
+  `product_discount` decimal(25,2) DEFAULT NULL,
+  `order_discount_id` varchar(20) DEFAULT NULL,
+  `order_discount` decimal(25,2) DEFAULT NULL,
+  `total_discount` decimal(25,2) DEFAULT NULL,
+  `product_tax` decimal(25,2) DEFAULT NULL,
+  `order_tax_id` varchar(20) DEFAULT NULL,
+  `order_tax` decimal(25,2) DEFAULT NULL,
+  `total_tax` decimal(25,2) DEFAULT NULL,
+  `grand_total` decimal(25,2) NOT NULL,
+  `total_items` int(11) DEFAULT NULL,
+  `total_quantity` decimal(15,2) DEFAULT NULL,
+  `paid` decimal(25,2) DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `note` varchar(1000) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  `rounding` decimal(8,2) DEFAULT NULL,
+  `store_id` int(11) NOT NULL DEFAULT '1',
+  `hold_ref` varchar(255) DEFAULT NULL,
+  `service_charges` varchar(20) DEFAULT NULL,
+  `sc_id` varchar(20) DEFAULT NULL,
+  `capacity` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `sale_types_id` int(11) NOT NULL,
+  `table_id` int(11) NOT NULL,
+  `balance` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_sales` (`id`, `date`, `customer_id`, `customer_name`, `total`, `product_discount`, `order_discount_id`, `order_discount`, `total_discount`, `product_tax`, `order_tax_id`, `order_tax`, `total_tax`, `grand_total`, `total_items`, `total_quantity`, `paid`, `created_by`, `updated_by`, `updated_at`, `note`, `status`, `rounding`, `store_id`, `hold_ref`, `service_charges`, `sc_id`, `capacity`, `order_id`, `sale_types_id`, `table_id`, `balance`) VALUES ('1', '2019-07-03 08:43:28', '2', 't1', '800.00', '0.00', NULL, '0.00', '0.00', '0.00', '5%', '40.00', '40.00', '880.00', '1', '1.00', '880.00', '1', NULL, NULL, '', 'paid', '0.00', '1', 't1', '40', '5%', '1', '0', '1', '1', '0');
+INSERT INTO `tec_sales` (`id`, `date`, `customer_id`, `customer_name`, `total`, `product_discount`, `order_discount_id`, `order_discount`, `total_discount`, `product_tax`, `order_tax_id`, `order_tax`, `total_tax`, `grand_total`, `total_items`, `total_quantity`, `paid`, `created_by`, `updated_by`, `updated_at`, `note`, `status`, `rounding`, `store_id`, `hold_ref`, `service_charges`, `sc_id`, `capacity`, `order_id`, `sale_types_id`, `table_id`, `balance`) VALUES ('2', '2019-07-12 11:09:32', '1', 'Walk_in_Client', '12000.00', '0.00', NULL, '0.00', '0.00', '0.00', NULL, '0.00', '0.00', '12000.00', '3', '3.00', '12000.00', '1', NULL, NULL, '', 'paid', '0.00', '1', '', '0', '0', '1', '0', '1', '1', '0');
+INSERT INTO `tec_sales` (`id`, `date`, `customer_id`, `customer_name`, `total`, `product_discount`, `order_discount_id`, `order_discount`, `total_discount`, `product_tax`, `order_tax_id`, `order_tax`, `total_tax`, `grand_total`, `total_items`, `total_quantity`, `paid`, `created_by`, `updated_by`, `updated_at`, `note`, `status`, `rounding`, `store_id`, `hold_ref`, `service_charges`, `sc_id`, `capacity`, `order_id`, `sale_types_id`, `table_id`, `balance`) VALUES ('3', '2019-07-12 11:09:55', '1', 'Walk_in_Client', '9000.00', '0.00', NULL, '0.00', '0.00', '0.00', NULL, '0.00', '0.00', '9000.00', '2', '2.00', '13000.00', '1', '1', '2019-07-12 11:10:18', ' ', 'paid', '0.00', '1', '', '0', '0', '1', '0', '1', '1', '0');
+
+
+#
+# TABLE STRUCTURE FOR: tec_sessions
+#
+
+DROP TABLE IF EXISTS `tec_sessions`;
+
+CREATE TABLE `tec_sessions` (
+  `id` varchar(40) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `timestamp` int(10) unsigned NOT NULL DEFAULT '0',
+  `data` blob NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ci_sessions_timestamp` (`timestamp`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('0h346d3i30qcq5n4h6un9au2ojul0rur', '127.0.0.1', '1561715108', '__ci_last_regenerate|i:1561714836;identity|s:15:\"admin@iwave.com\";username|s:5:\"admin\";email|s:15:\"admin@iwave.com\";user_id|s:1:\"1\";first_name|s:5:\"Admin\";last_name|s:5:\"Admin\";created_on|s:24:\"Thu 25 Jun 2015 10:29 AM\";old_last_login|s:10:\"1561447659\";last_ip|s:3:\"::1\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"1\";store_id|i:1;has_store_id|s:1:\"1\";register_id|s:1:\"2\";cash_in_hand|s:4:\"0.00\";register_open_time|s:19:\"2019-06-28 16:12:32\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('3uc9hrlnacjnsr2h5cj8nstb23uvrdgv', '127.0.0.1', '1562906667', '__ci_last_regenerate|i:1562906667;identity|s:15:\"admin@iwave.com\";username|s:5:\"admin\";email|s:15:\"admin@iwave.com\";user_id|s:1:\"1\";first_name|s:5:\"Admin\";last_name|s:5:\"Admin\";created_on|s:24:\"Thu 25 Jun 2015 10:29 AM\";old_last_login|s:10:\"1562902491\";last_ip|s:9:\"127.0.0.1\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"1\";store_id|i:1;has_store_id|s:1:\"1\";register_id|s:1:\"2\";cash_in_hand|s:4:\"0.00\";register_open_time|s:19:\"2019-06-28 16:12:32\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('44qab8p348q04gjvt1s4gp48pc6fbvhf', '127.0.0.1', '1562905588', '__ci_last_regenerate|i:1562905515;identity|s:15:\"admin@iwave.com\";username|s:5:\"admin\";email|s:15:\"admin@iwave.com\";user_id|s:1:\"1\";first_name|s:5:\"Admin\";last_name|s:5:\"Admin\";created_on|s:24:\"Thu 25 Jun 2015 10:29 AM\";old_last_login|s:10:\"1562902491\";last_ip|s:9:\"127.0.0.1\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"1\";store_id|i:1;has_store_id|s:1:\"1\";register_id|s:1:\"2\";cash_in_hand|s:4:\"0.00\";register_open_time|s:19:\"2019-06-28 16:12:32\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('6h8uecqbojnf809vmibt14gkpbh5j1rg', '127.0.0.1', '1562902504', '__ci_last_regenerate|i:1562902484;identity|s:15:\"admin@iwave.com\";username|s:5:\"admin\";email|s:15:\"admin@iwave.com\";user_id|s:1:\"1\";first_name|s:5:\"Admin\";last_name|s:5:\"Admin\";created_on|s:24:\"Thu 25 Jun 2015 10:29 AM\";old_last_login|s:10:\"1562119971\";last_ip|s:9:\"127.0.0.1\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"1\";store_id|i:1;has_store_id|s:1:\"1\";register_id|s:1:\"2\";cash_in_hand|s:4:\"0.00\";register_open_time|s:19:\"2019-06-28 16:12:32\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('bfrh4cbfctf6lfu5c0955uvifcbp7d3n', '127.0.0.1', '1561715513', '__ci_last_regenerate|i:1561715385;identity|s:15:\"admin@iwave.com\";username|s:5:\"admin\";email|s:15:\"admin@iwave.com\";user_id|s:1:\"1\";first_name|s:5:\"Admin\";last_name|s:5:\"Admin\";created_on|s:24:\"Thu 25 Jun 2015 10:29 AM\";old_last_login|s:10:\"1561447659\";last_ip|s:3:\"::1\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"1\";store_id|i:1;has_store_id|s:1:\"1\";register_id|s:1:\"2\";cash_in_hand|s:4:\"0.00\";register_open_time|s:19:\"2019-06-28 16:12:32\";message|s:29:\"Settings successfully updated\";__ci_vars|a:1:{s:7:\"message\";s:3:\"old\";}');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('bht0ijvelmrpupl2jvh49sg7t0vvoev8', '127.0.0.1', '1562120401', '__ci_last_regenerate|i:1562120243;identity|s:15:\"admin@iwave.com\";username|s:5:\"admin\";email|s:15:\"admin@iwave.com\";user_id|s:1:\"1\";first_name|s:5:\"Admin\";last_name|s:5:\"Admin\";created_on|s:24:\"Thu 25 Jun 2015 10:29 AM\";old_last_login|s:10:\"1561714842\";last_ip|s:9:\"127.0.0.1\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"1\";store_id|i:1;has_store_id|s:1:\"1\";register_id|s:1:\"2\";cash_in_hand|s:4:\"0.00\";register_open_time|s:19:\"2019-06-28 16:12:32\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('e29q4q28k36usprv3tgr36l16rl5g1qk', '::1', '1561447754', '__ci_last_regenerate|i:1561447754;');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('hbvdahim17gqnhnv1eojt7n4ilrgupfj', '127.0.0.1', '1562120805', '__ci_last_regenerate|i:1562120804;identity|s:15:\"admin@iwave.com\";username|s:5:\"admin\";email|s:15:\"admin@iwave.com\";user_id|s:1:\"1\";first_name|s:5:\"Admin\";last_name|s:5:\"Admin\";created_on|s:24:\"Thu 25 Jun 2015 10:29 AM\";old_last_login|s:10:\"1561714842\";last_ip|s:9:\"127.0.0.1\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"1\";store_id|i:1;has_store_id|s:1:\"1\";register_id|s:1:\"2\";cash_in_hand|s:4:\"0.00\";register_open_time|s:19:\"2019-06-28 16:12:32\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('imhbo2cec2hmsinncflgafp9ll43uct4', '127.0.0.1', '1562908088', '__ci_last_regenerate|i:1562908087;identity|s:15:\"admin@iwave.com\";username|s:5:\"admin\";email|s:15:\"admin@iwave.com\";user_id|s:1:\"1\";first_name|s:5:\"Admin\";last_name|s:5:\"Admin\";created_on|s:24:\"Thu 25 Jun 2015 10:29 AM\";old_last_login|s:10:\"1562902491\";last_ip|s:9:\"127.0.0.1\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"1\";store_id|i:1;has_store_id|s:1:\"1\";register_id|s:1:\"2\";cash_in_hand|s:4:\"0.00\";register_open_time|s:19:\"2019-06-28 16:12:32\";message|s:29:\"Settings successfully updated\";__ci_vars|a:1:{s:7:\"message\";s:3:\"old\";}');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('li2pglapaukm3v9u317sljc3itmophll', '127.0.0.1', '1562902973', '__ci_last_regenerate|i:1562902747;identity|s:15:\"admin@iwave.com\";username|s:5:\"admin\";email|s:15:\"admin@iwave.com\";user_id|s:1:\"1\";first_name|s:5:\"Admin\";last_name|s:5:\"Admin\";created_on|s:24:\"Thu 25 Jun 2015 10:29 AM\";old_last_login|s:10:\"1562902491\";last_ip|s:9:\"127.0.0.1\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"1\";store_id|i:1;has_store_id|s:1:\"1\";register_id|s:1:\"2\";cash_in_hand|s:4:\"0.00\";register_open_time|s:19:\"2019-06-28 16:12:32\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('or0rf1s0lf9810f5avi67381kurmc5ec', '192.168.0.103', '1561715010', '__ci_last_regenerate|i:1561714985;identity|s:16:\"waiter@iwave.com\";username|s:2:\"ww\";email|s:16:\"waiter@iwave.com\";user_id|s:2:\"20\";first_name|s:1:\"w\";last_name|s:1:\"w\";created_on|s:24:\"Fri 28 Jun 2019 04:13 PM\";old_last_login|s:10:\"1561714980\";last_ip|N;avatar|N;gender|s:4:\"male\";group_id|s:1:\"4\";store_id|i:1;has_store_id|s:1:\"1\";register_id|N;cash_in_hand|s:1:\"0\";register_open_time|N;message|s:26:\"sale saved to opened bill \";__ci_vars|a:1:{s:7:\"message\";s:3:\"old\";}');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('peh6sc5dmvkcfcktkqp4acfdb4mcqdlv', '127.0.0.1', '1562906608', '__ci_last_regenerate|i:1562906339;identity|s:15:\"admin@iwave.com\";username|s:5:\"admin\";email|s:15:\"admin@iwave.com\";user_id|s:1:\"1\";first_name|s:5:\"Admin\";last_name|s:5:\"Admin\";created_on|s:24:\"Thu 25 Jun 2015 10:29 AM\";old_last_login|s:10:\"1562902491\";last_ip|s:9:\"127.0.0.1\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"1\";store_id|i:1;has_store_id|s:1:\"1\";register_id|s:1:\"2\";cash_in_hand|s:4:\"0.00\";register_open_time|s:19:\"2019-06-28 16:12:32\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('q5mva4mrv6jctn0tfl88fukbqmc9rcvm', '127.0.0.1', '1562903346', '__ci_last_regenerate|i:1562903108;identity|s:15:\"admin@iwave.com\";username|s:5:\"admin\";email|s:15:\"admin@iwave.com\";user_id|s:1:\"1\";first_name|s:5:\"Admin\";last_name|s:5:\"Admin\";created_on|s:24:\"Thu 25 Jun 2015 10:29 AM\";old_last_login|s:10:\"1562902491\";last_ip|s:9:\"127.0.0.1\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"1\";store_id|i:1;has_store_id|s:1:\"1\";register_id|s:1:\"2\";cash_in_hand|s:4:\"0.00\";register_open_time|s:19:\"2019-06-28 16:12:32\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('r8jrpfo3g7pksg10ppn8iu6bk7msjps3', '127.0.0.1', '1562907761', '__ci_last_regenerate|i:1562907761;identity|s:15:\"admin@iwave.com\";username|s:5:\"admin\";email|s:15:\"admin@iwave.com\";user_id|s:1:\"1\";first_name|s:5:\"Admin\";last_name|s:5:\"Admin\";created_on|s:24:\"Thu 25 Jun 2015 10:29 AM\";old_last_login|s:10:\"1562902491\";last_ip|s:9:\"127.0.0.1\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"1\";store_id|i:1;has_store_id|s:1:\"1\";register_id|s:1:\"2\";cash_in_hand|s:4:\"0.00\";register_open_time|s:19:\"2019-06-28 16:12:32\";message|s:29:\"Settings successfully updated\";__ci_vars|a:1:{s:7:\"message\";s:3:\"new\";}');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('uhl27nj6pn6n2i81jh056j4hgfva4d37', '127.0.0.1', '1562121366', '__ci_last_regenerate|i:1562121168;identity|s:15:\"admin@iwave.com\";username|s:5:\"admin\";email|s:15:\"admin@iwave.com\";user_id|s:1:\"1\";first_name|s:5:\"Admin\";last_name|s:5:\"Admin\";created_on|s:24:\"Thu 25 Jun 2015 10:29 AM\";old_last_login|s:10:\"1561714842\";last_ip|s:9:\"127.0.0.1\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"1\";store_id|i:1;has_store_id|s:1:\"1\";register_id|s:1:\"2\";cash_in_hand|s:4:\"0.00\";register_open_time|s:19:\"2019-06-28 16:12:32\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('vfkev52v4ggs4j2kc88n8brstn729imh', '127.0.0.1', '1562120022', '__ci_last_regenerate|i:1562119940;identity|s:15:\"admin@iwave.com\";username|s:5:\"admin\";email|s:15:\"admin@iwave.com\";user_id|s:1:\"1\";first_name|s:5:\"Admin\";last_name|s:5:\"Admin\";created_on|s:24:\"Thu 25 Jun 2015 10:29 AM\";old_last_login|s:10:\"1561714842\";last_ip|s:9:\"127.0.0.1\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"1\";store_id|i:1;has_store_id|s:1:\"1\";register_id|s:1:\"2\";cash_in_hand|s:4:\"0.00\";register_open_time|s:19:\"2019-06-28 16:12:32\";');
+
+
+#
+# TABLE STRUCTURE FOR: tec_settings
+#
+
+DROP TABLE IF EXISTS `tec_settings`;
+
+CREATE TABLE `tec_settings` (
+  `setting_id` int(1) NOT NULL,
+  `logo` varchar(255) NOT NULL,
+  `site_name` varchar(55) NOT NULL,
+  `tel` varchar(20) NOT NULL,
+  `dateformat` varchar(20) DEFAULT NULL,
+  `timeformat` varchar(20) DEFAULT NULL,
+  `default_email` varchar(100) NOT NULL,
+  `language` varchar(20) NOT NULL,
+  `version` varchar(5) NOT NULL DEFAULT '1.0',
+  `theme` varchar(20) NOT NULL,
+  `timezone` varchar(255) NOT NULL DEFAULT '0',
+  `protocol` varchar(20) NOT NULL DEFAULT 'mail',
+  `smtp_host` varchar(255) DEFAULT NULL,
+  `smtp_user` varchar(100) DEFAULT NULL,
+  `smtp_pass` varchar(255) DEFAULT NULL,
+  `smtp_port` varchar(10) DEFAULT '25',
+  `smtp_crypto` varchar(5) DEFAULT NULL,
+  `mmode` tinyint(1) NOT NULL,
+  `captcha` tinyint(1) NOT NULL DEFAULT '1',
+  `mailpath` varchar(55) DEFAULT NULL,
+  `currency_prefix` varchar(3) NOT NULL,
+  `default_customer` int(11) NOT NULL,
+  `default_tax_rate` varchar(20) NOT NULL,
+  `rows_per_page` int(2) NOT NULL,
+  `total_rows` int(2) NOT NULL,
+  `header` varchar(1000) NOT NULL,
+  `footer` varchar(1000) NOT NULL,
+  `bsty` tinyint(4) NOT NULL,
+  `display_kb` tinyint(4) NOT NULL,
+  `default_category` int(11) NOT NULL,
+  `default_discount` varchar(20) NOT NULL,
+  `item_addition` tinyint(1) NOT NULL,
+  `barcode_symbology` varchar(55) NOT NULL,
+  `pro_limit` tinyint(4) NOT NULL,
+  `decimals` tinyint(1) NOT NULL DEFAULT '2',
+  `thousands_sep` varchar(2) NOT NULL DEFAULT ',',
+  `decimals_sep` varchar(2) NOT NULL DEFAULT '.',
+  `focus_add_item` varchar(55) DEFAULT NULL,
+  `add_customer` varchar(55) DEFAULT NULL,
+  `toggle_category_slider` varchar(55) DEFAULT NULL,
+  `cancel_sale` varchar(55) DEFAULT NULL,
+  `suspend_sale` varchar(55) DEFAULT NULL,
+  `print_order` varchar(55) DEFAULT NULL,
+  `print_bill` varchar(55) DEFAULT NULL,
+  `finalize_sale` varchar(55) DEFAULT NULL,
+  `today_sale` varchar(55) DEFAULT NULL,
+  `open_hold_bills` varchar(55) DEFAULT NULL,
+  `close_register` varchar(55) DEFAULT NULL,
+  `java_applet` tinyint(1) NOT NULL,
+  `receipt_printer` varchar(55) DEFAULT NULL,
+  `pos_printers` varchar(255) DEFAULT NULL,
+  `cash_drawer_codes` varchar(55) DEFAULT NULL,
+  `char_per_line` tinyint(4) DEFAULT '42',
+  `rounding` tinyint(1) DEFAULT '0',
+  `pin_code` varchar(20) DEFAULT NULL,
+  `stripe` tinyint(1) DEFAULT NULL,
+  `stripe_secret_key` varchar(100) DEFAULT NULL,
+  `stripe_publishable_key` varchar(100) DEFAULT NULL,
+  `purchase_code` varchar(100) DEFAULT NULL,
+  `envato_username` varchar(50) DEFAULT NULL,
+  `theme_style` varchar(25) DEFAULT 'green',
+  `after_sale_page` tinyint(1) DEFAULT NULL,
+  `overselling` tinyint(1) DEFAULT '1',
+  `multi_store` tinyint(1) DEFAULT NULL,
+  `qty_decimals` tinyint(1) DEFAULT '2',
+  `symbol` varchar(55) DEFAULT NULL,
+  `sac` tinyint(1) DEFAULT '0',
+  `display_symbol` tinyint(1) DEFAULT NULL,
+  `remote_printing` tinyint(1) DEFAULT '1',
+  `printer` int(11) DEFAULT NULL,
+  `order_printers` varchar(55) DEFAULT NULL,
+  `auto_print` tinyint(1) DEFAULT '0',
+  `service_charges` varchar(255) DEFAULT NULL,
+  `order_count` int(11) NOT NULL,
+  PRIMARY KEY (`setting_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_settings` (`setting_id`, `logo`, `site_name`, `tel`, `dateformat`, `timeformat`, `default_email`, `language`, `version`, `theme`, `timezone`, `protocol`, `smtp_host`, `smtp_user`, `smtp_pass`, `smtp_port`, `smtp_crypto`, `mmode`, `captcha`, `mailpath`, `currency_prefix`, `default_customer`, `default_tax_rate`, `rows_per_page`, `total_rows`, `header`, `footer`, `bsty`, `display_kb`, `default_category`, `default_discount`, `item_addition`, `barcode_symbology`, `pro_limit`, `decimals`, `thousands_sep`, `decimals_sep`, `focus_add_item`, `add_customer`, `toggle_category_slider`, `cancel_sale`, `suspend_sale`, `print_order`, `print_bill`, `finalize_sale`, `today_sale`, `open_hold_bills`, `close_register`, `java_applet`, `receipt_printer`, `pos_printers`, `cash_drawer_codes`, `char_per_line`, `rounding`, `pin_code`, `stripe`, `stripe_secret_key`, `stripe_publishable_key`, `purchase_code`, `envato_username`, `theme_style`, `after_sale_page`, `overselling`, `multi_store`, `qty_decimals`, `symbol`, `sac`, `display_symbol`, `remote_printing`, `printer`, `order_printers`, `auto_print`, `service_charges`, `order_count`) VALUES ('1', 'logo.png', 'MANNA', '0105292122', 'D j M Y', 'h:i A', 'noreply@spos.abc.my', 'english', '4.0.7', 'default', 'Asia/Rangoon', 'mail', 'pop.gmail.com', 'noreply@spos.abc.my', '', '25', '', '0', '0', NULL, 'MMK', '1', '0', '10', '30', '', '', '1', '0', '0', '0', '1', '', '25', '0', ',', '.', 'ALT+F1', 'ALT+F2', 'ALT+F10', 'ALT+F5', 'ALT+F6', 'ALT+F11', 'ALT+F12', 'ALT+F8', 'Ctrl+F1', 'Ctrl+F2', 'ALT+F7', '0', '', '', '', '42', '0', '11111', '1', 'sk_test_jHf4cEzAYtgcXvgWPCsQAn50', 'pk_test_beat8SWPORb0OVdF2H77A7uG', '5423452435245', 'lol', 'blue', '0', '1', '0', '0', '', '0', '0', '1', '1', '[\"1\"]', '0', '0', '0');
+
+
+#
+# TABLE STRUCTURE FOR: tec_stores
+#
+
+DROP TABLE IF EXISTS `tec_stores`;
+
+CREATE TABLE `tec_stores` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `code` varchar(20) NOT NULL,
+  `logo` varchar(40) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `phone` varchar(50) NOT NULL,
+  `address1` varchar(50) DEFAULT NULL,
+  `address2` varchar(50) DEFAULT NULL,
+  `city` varchar(20) DEFAULT NULL,
+  `state` varchar(20) DEFAULT NULL,
+  `postal_code` varchar(8) DEFAULT NULL,
+  `country` varchar(25) DEFAULT NULL,
+  `currency_code` varchar(3) NOT NULL,
+  `receipt_header` text,
+  `receipt_footer` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_stores` (`id`, `name`, `code`, `logo`, `email`, `phone`, `address1`, `address2`, `city`, `state`, `postal_code`, `country`, `currency_code`, `receipt_header`, `receipt_footer`) VALUES ('1', 'MANNA', 'MN', 'service channe1l.png', 'store@abc.com', '09765000454 [Facebook :Manna Food Castle]', 'အမွတ္(၁၀၁)၊ ရန္ကုန္ အင္းစိန္လမ္းမ', 'ခ၀ဲျခံမွတ္တိုင္၊', 'မရမ္းကုန္း', '', '46000', 'Myanmar', 'MYR', '', 'ေက်းဇူးတင္ပါသည္။');
+
+
+#
+# TABLE STRUCTURE FOR: tec_suppliers
+#
+
+DROP TABLE IF EXISTS `tec_suppliers`;
+
+CREATE TABLE `tec_suppliers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(55) NOT NULL,
+  `cf1` varchar(255) NOT NULL,
+  `cf2` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_suppliers` (`id`, `name`, `cf1`, `cf2`, `phone`, `email`) VALUES ('1', 'Kyaw Kyaw', '', '', '', '');
+
+
+#
+# TABLE STRUCTURE FOR: tec_suspended_items
+#
+
+DROP TABLE IF EXISTS `tec_suspended_items`;
+
+CREATE TABLE `tec_suspended_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `suspend_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` decimal(15,2) NOT NULL,
+  `unit_price` decimal(25,2) NOT NULL,
+  `net_unit_price` decimal(25,2) NOT NULL,
+  `discount` varchar(20) DEFAULT NULL,
+  `item_discount` decimal(25,2) DEFAULT NULL,
+  `tax` int(20) DEFAULT NULL,
+  `item_tax` decimal(25,2) DEFAULT NULL,
+  `subtotal` decimal(25,2) NOT NULL,
+  `real_unit_price` decimal(25,2) DEFAULT NULL,
+  `product_code` varchar(50) DEFAULT NULL,
+  `product_name` varchar(50) DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL,
+  `foc` varchar(20) DEFAULT NULL,
+  `p_price` varchar(25) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# TABLE STRUCTURE FOR: tec_suspended_sales
+#
+
+DROP TABLE IF EXISTS `tec_suspended_sales`;
+
+CREATE TABLE `tec_suspended_sales` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` datetime NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `customer_name` varchar(55) NOT NULL,
+  `total` decimal(25,2) NOT NULL,
+  `product_discount` decimal(25,2) DEFAULT NULL,
+  `order_discount_id` varchar(20) DEFAULT NULL,
+  `order_discount` decimal(25,2) DEFAULT NULL,
+  `total_discount` decimal(25,2) DEFAULT NULL,
+  `product_tax` decimal(25,2) DEFAULT NULL,
+  `order_tax_id` varchar(20) DEFAULT NULL,
+  `order_tax` decimal(25,2) DEFAULT NULL,
+  `total_tax` decimal(25,2) DEFAULT NULL,
+  `grand_total` decimal(25,2) NOT NULL,
+  `total_items` int(11) DEFAULT NULL,
+  `total_quantity` decimal(15,2) DEFAULT NULL,
+  `paid` decimal(25,2) DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `note` varchar(1000) DEFAULT NULL,
+  `hold_ref` varchar(255) DEFAULT NULL,
+  `store_id` int(11) NOT NULL DEFAULT '1',
+  `service_charges` varchar(20) DEFAULT NULL,
+  `sc_id` varchar(20) DEFAULT NULL,
+  `capacity` int(11) NOT NULL DEFAULT '0',
+  `order_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# TABLE STRUCTURE FOR: tec_unit
+#
+
+DROP TABLE IF EXISTS `tec_unit`;
+
+CREATE TABLE `tec_unit` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(20) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_unit` (`id`, `code`, `name`) VALUES ('1', 'pc', 'pieces');
+
+
+#
+# TABLE STRUCTURE FOR: tec_user_logins
+#
+
+DROP TABLE IF EXISTS `tec_user_logins`;
+
+CREATE TABLE `tec_user_logins` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `company_id` int(11) DEFAULT NULL,
+  `ip_address` varbinary(16) NOT NULL,
+  `login` varchar(100) NOT NULL,
+  `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('1', '1', NULL, '::1', 'admin@iwave.com', '2019-06-25 13:57:39');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('2', '1', NULL, '127.0.0.1', 'admin@iwave.com', '2019-06-28 16:10:43');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('3', '20', NULL, '192.168.0.103', 'waiter@iwave.com', '2019-06-28 16:13:12');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('4', '1', NULL, '127.0.0.1', 'admin@iwave.com', '2019-07-03 08:42:51');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('5', '1', NULL, '127.0.0.1', 'admin@iwave.com', '2019-07-12 10:04:51');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('6', '1', NULL, '127.0.0.1', 'admin@iwave.com', '2019-07-12 10:09:15');
+
+
+#
+# TABLE STRUCTURE FOR: tec_users
+#
+
+DROP TABLE IF EXISTS `tec_users`;
+
+CREATE TABLE `tec_users` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `last_ip_address` varbinary(45) DEFAULT NULL,
+  `ip_address` varbinary(45) DEFAULT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(40) NOT NULL,
+  `salt` varchar(40) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
+  `activation_code` varchar(40) DEFAULT NULL,
+  `forgotten_password_code` varchar(40) DEFAULT NULL,
+  `forgotten_password_time` int(11) unsigned DEFAULT NULL,
+  `remember_code` varchar(40) DEFAULT NULL,
+  `created_on` int(11) unsigned NOT NULL,
+  `last_login` int(11) unsigned DEFAULT NULL,
+  `active` tinyint(1) unsigned DEFAULT NULL,
+  `first_name` varchar(50) DEFAULT NULL,
+  `last_name` varchar(50) DEFAULT NULL,
+  `company` varchar(100) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `avatar` varchar(55) DEFAULT NULL,
+  `gender` varchar(20) DEFAULT NULL,
+  `group_id` int(11) unsigned NOT NULL DEFAULT '2',
+  `store_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `group_id` (`group_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`) VALUES ('1', '127.0.0.1', '127.0.0.1', 'admin', 'fe941d48eb1fbce34b4588ae500861570fb0e398', NULL, 'admin@iwave.com', NULL, NULL, NULL, 'b2d2c8fd5d9a5f19901279ac74cec92dc15ac970', '1435204774', '1562902755', '1', 'Admin', 'Admin', 'Tecdiary', '012345678', NULL, 'male', '1', '1');
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`) VALUES ('2', '::1', '::1', 'staff@innowave.com', '2654fd92cac4cfa79962a395a20c0f05ae4ef238', NULL, 'staff@innowave.com', NULL, NULL, NULL, NULL, '1488354879', '1488354893', '1', 'mg', 'Staff', NULL, '453453', NULL, 'male', '3', '1');
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`) VALUES ('3', NULL, '::1', '', 'ec92f2a70928b8c0d666fdfbcaba73ccbd978d6a', NULL, 'manager@iwave.com', NULL, NULL, NULL, NULL, '1502081038', '1502081038', '1', 'Super ', 'Manager', NULL, '9', NULL, 'male', '2', '1');
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`) VALUES ('4', '::1', '::1', 'MayMoe', 'eff8659934db91b1c677103aae2e16272dd3bd3a', NULL, 'maymoe@admin.com', NULL, NULL, NULL, NULL, '1553500566', '1557407982', '1', 'May', 'Moe', NULL, '09', NULL, 'male', '1', '1');
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`) VALUES ('5', NULL, '::1', '', 'af30748a7cb8be543ff1b853f0d981c6a9f3fb99', NULL, 'manager@manna.com', NULL, NULL, NULL, NULL, '1553500649', '1553500649', '1', 'Manager', 'Manager', NULL, '09', NULL, 'male', '2', '1');
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`) VALUES ('7', '::1', '::1', '', 'bac7066ed09edee4326a3fc8193e5c6cd6a1c12d', NULL, 'staff1@manna.com', NULL, NULL, NULL, NULL, '1553500822', '1554374183', '1', 'Staff', 'Staff', NULL, '09', NULL, 'male', '3', '1');
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`) VALUES ('8', NULL, '::1', '', '3b8add1e4c456079d2d681b1a6f7083f66ba02e3', NULL, 'staff2@manna.com', NULL, NULL, NULL, NULL, '1553500899', '1553500899', '1', 'Staff', 'Staff', NULL, '09', NULL, 'male', '3', '1');
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`) VALUES ('9', '192.168.0.100', '::1', '', 'a9ff03e81f031234de6e87c0f6b4b5a591991447', NULL, 'waiter1@manna.com', NULL, NULL, NULL, NULL, '1553500976', '1556694759', '1', 'waiter', 'waiter', NULL, '09', NULL, 'male', '4', '1');
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`) VALUES ('10', '192.168.0.100', '::1', 'Htet Htet Aung', 'd6187ca3a16ee31258e3a4860597712f961bd5ec', NULL, 'htethtetaung@manna.com', NULL, NULL, NULL, NULL, '1553501053', '1556515555', '1', 'Htet Htet ', 'Aung', NULL, '09', NULL, 'male', '4', '1');
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`) VALUES ('12', '::1', '::1', '', '8c7c9949f327b431ff7c97247603985472a3e4fa', NULL, 'myatsandi@manna.com', NULL, NULL, NULL, NULL, '1554375873', '1557460748', '1', 'Khin Cho', 'San', NULL, '09', NULL, 'female', '3', '1');
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`) VALUES ('13', NULL, '::1', 'suer visor', '9b9f7a494d7986a604b2a5017b4d8771acf61c67', NULL, 'supervisor@mana.com', NULL, NULL, NULL, NULL, '1555042719', '1555042719', '1', 'Manna', 'Supervisor', NULL, '09', NULL, 'female', '2', '1');
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`) VALUES ('15', '::1', '::1', '', '53fff46e84bd3a32d9fd76ec4ffe4caa14d1ceb3', NULL, 'sv@manna.com', NULL, NULL, NULL, NULL, '1555747123', '1557317230', '1', 'Super', 'Visor', NULL, '09', NULL, 'male', '2', '1');
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`) VALUES ('16', '127.0.0.1', '127.0.0.1', 'waiter', 'a1a87a507ea2b0549dcb46287a9a32b54332b453', NULL, 'waiter1@iwave.com', NULL, NULL, NULL, NULL, '1558683283', '1558683301', '1', 'w', 'w', NULL, '0', NULL, 'female', '4', '1');
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`) VALUES ('17', '127.0.0.1', '127.0.0.1', 'staff2', '91b334b414a292470fe952d60838dcdee9f05814', NULL, 'staff@123.com', NULL, NULL, NULL, NULL, '1559551395', '1559551414', '1', 'staff', 'staff', NULL, '09', NULL, 'male', '3', '1');
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`) VALUES ('18', '127.0.0.1', '127.0.0.1', 'manager@iwave.com', 'e31244578ed739afd736699722db4ebd973f13ba', NULL, 'manager@tt.com', NULL, NULL, NULL, NULL, '1560228285', '1560229903', '1', 'Mya', 'Thway', NULL, '09', NULL, 'female', '2', '0');
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`) VALUES ('19', '127.0.0.1', '127.0.0.1', 'staff@iwave.com', 'af7127e0f2db62d573d303da294a585c27ea1841', NULL, 'staff@tt.com', NULL, NULL, NULL, NULL, '1560228349', '1560230554', '1', 'Thway', 'Thway', NULL, '09', NULL, 'female', '3', '1');
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`) VALUES ('20', '192.168.0.103', '127.0.0.1', 'ww', '5fdc544155e197e1f503656bbc3404a83e597b75', NULL, 'waiter@iwave.com', NULL, NULL, NULL, NULL, '1561714980', '1561714992', '1', 'w', 'w', NULL, '09', NULL, 'male', '4', '1');
+
+

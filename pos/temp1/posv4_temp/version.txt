@@ -1,0 +1,19 @@
+﻿Stock လက္က်န္နွင့္ cost ေပါင္းၿပီး ပစၥည္းတန္ဖိုးမည္မွ်က်န္သည္ကို သိနုိင္
+product list ေအာက္ဆံုးေတြ total cost နွင့္ Total stockqmount cost ကိုလာၿပေပး 
+အထက္ပါ ၂ ခ်က္ကို Flag လုပ္ထား ၿပီး
+Print တြင္ additional order လုပ္ပါက hold လုပ္ၿပီးသား item မထြက္ 
+အသစ္ထပ္ထည့္ေသာ item သာ ပါသည္။
+same product ၿဖစ္ေနပါကလည္း အသစ္ထပ္ထည့္ေသာ amount သာ ၿပေပး 
+new
+2.2.5 
+View bill တြင္ Item 18 ထက္ပိုပါက scroll ဆြဲၿပီးၾကည့္နုိင္မည္
+POS cache ရွင္းcodeၿပီးၿဖစ္သည္
+Print label မွာ "Price" ကိုၿဖဳတ္ေပးၿပီးၿဖစ္သည္။
+Sale Report ေအာက္ကို list sale ေရာက္ရွိေအာင္ထြည့္သြင္းထားသည္
+
+2.2.7 
+POS မွ Cache ရွင္းထားၿပီးေသာ version ပါဝင္လာသည္။
+
+2.2.8
+
+2.2.9 မွာ Cash in Hand Value ပါမည္ ။ Restaurant မဟုတ္ပါက Waiter role add လို.မရ 
